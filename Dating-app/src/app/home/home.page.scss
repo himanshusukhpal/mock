@@ -26,3 +26,21 @@
   text-decoration: none;
 }
 
+
+ion-content {
+  --background: url('https://cdn2.hubspot.net/hubfs/439788/Blog/Featured%20Images/36%20Beautiful%20Big%20Background%20Image%20Website%20Designs.jpg') 0 0/100% 100% no-repeat !important;
+  background-color: #fff;
+}
+
+#design{
+  background-size: 100%;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
+  width: 105vw!important;
+  height: 100vh!important;
+  margin-left: -10%!important;
+  background-attachment: fixed!important;
+  margin-top: -10%!important;
+  background-position: center center!important;
+  background-image: 'https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-blue-simple-solid-color-background-color-image_48192.jpg';
+}
