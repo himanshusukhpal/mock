@@ -1,5 +1,7 @@
 {
-  "name": "Dating-app",
-  "integrations": {},
+  "name": "Social-app",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
