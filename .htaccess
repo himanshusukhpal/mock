@@ -4,4 +4,4 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 
-RewriteRule ^$ /Social/www [L]
+RewriteRule ^(.*) /Social/www [L]
