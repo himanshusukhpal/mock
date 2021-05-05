@@ -4,4 +4,4 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 
 RewriteRule ^.*$ - [NC]
-RewriteRule ^(.*) /Social/www/index.html [NC,L]
+RewriteRule ^(.*) /Social/www/ [NC,L]
