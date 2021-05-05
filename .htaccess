@@ -1,2 +1,7 @@
 RewriteEngine On
-RewriteRule ^$ /Social [NC,L]
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+
+RewriteRule ^$ /Social/www/index.html [NC,L]
+RewriteRule ^(.*) /Social/www/index.html [NC,L]
