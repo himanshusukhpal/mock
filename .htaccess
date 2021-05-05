@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^$ /Social/www [NC,L]
+RewriteRule ^$ /Social [NC,L]
