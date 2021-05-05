@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^$ /Social/www/index.html [L]
+RewriteRule ^$ /Social/www [L]
