@@ -49,3 +49,12 @@ img{
   margin: 5%;
   padding-bottom: 10%;
 }
+ion-grid{
+  height: 100%;
+  flex-flow: column;
+  display: flex;
+  ion-row{
+    height: 50%;
+    flex-grow: 1;
+  }
+}

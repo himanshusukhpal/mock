@@ -1,20 +1,24 @@
-<div class="main">
+
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
       Home
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 
 
 
-<ion-content no-padding>
+<ion-content >
+  <div class="main">
 <ion-grid>
-  <ion-row justify-content-end >
+  <ion-row justify-content-end align-items-center >
     <ion-col  size-sm="6" size-md="6" size-lg="6" align-self-stretch >
-      <ion-card button >
+      <ion-card button (click)="onGoOut()">
         <ion-card-content class="ion-no-padding">
           <ion-card-title class="myoverlay">
             Stay In
@@ -28,7 +32,7 @@
       </ion-card>
     </ion-col>
     <ion-col  size-xs="12" size-sm="6" size-md="6" size-lg="6" align-self-stretch>
-      <ion-card class="ion-no-padding" button>
+      <ion-card  button (click)="onStayIn()">
 
         <ion-card-content class="ion-no-padding">
           <ion-card-title class="myoverlay">
@@ -43,8 +47,8 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-
-</ion-content>
 </div>
+</ion-content>
+
 
 

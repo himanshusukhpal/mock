@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router, private appService: AppService) {}
 
+  onStayIn(){
+    this.router.navigateByUrl('/activities');
+    this.appService.activity=1;
+  }
+  onGoOut(){
+    this.router.navigateByUrl('/activities');
+    this.appService.activity=2;
+  }
 }
