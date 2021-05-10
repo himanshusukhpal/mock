@@ -7,11 +7,12 @@ import { AppService } from '../app.service';
   styleUrls: ['./activities.page.scss'],
 })
 export class ActivitiesPage implements OnInit {
-
+  x: number;
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    console.log(this.appService.activity);
+    this.x=this.appService.activity;
+    console.log(this.x);
   }
 
 }
