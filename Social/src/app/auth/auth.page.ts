@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,11 +11,11 @@ import { LoadingController } from '@ionic/angular';
 })
 export class AuthPage implements OnInit {
   isLoading=false;
-  constructor(private authService: AuthService, private router: Router, private loadingCtrl: LoadingController) { }
+  constructor(private appService: AppService, private router: Router, private loadingCtrl: LoadingController) { }
   ngOnInit() {
   }
   onLogin(){
-    this.authService.login();
+    this.appService.networking.login();
     this.isLoading=true;
     this.loadingCtrl.create({keyboardClose:true, message:'Logging In ...'})
     .then(loadingEl=>{

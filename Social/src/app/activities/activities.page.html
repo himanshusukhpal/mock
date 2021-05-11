@@ -18,83 +18,30 @@
             </ion-card-header>
             <div *ngIf="x==1">
               <ion-list>
-                <ion-item button class="ion-padding">
+                <ion-item button class="ion-padding" *ngFor="let activity of loadedActivities" (click)="addFriend()">
                   <ion-avatar slot="start">
-                    <ion-img src="https://lh3.googleusercontent.com/proxy/PCVv2rJ0OEAfyP6XmHRr4i4abi3VfN7l7GXuLemhsi2HyNYdvE-SFMcNmn4F5G77rv1gimOKy0vk8SAFxEKZLlTYqL2Y_TYI1Qj2rUMuDlMJYwjgfn11PxrIvTt0tUUb53lcrI0x8wAfKdZ-lg">
+                    <ion-img src={{activity.imageUrl}}>
+
 
                     </ion-img>
                   </ion-avatar>
-                  <ion-label>Netflix n Chill!</ion-label>
+                  <ion-label>{{activity.title}}</ion-label>
                 </ion-item>
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://www.pngkit.com/png/detail/112-1128378_house-party-logo-png-house-party-movie-clipart.png">
 
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>House Party</ion-label>
-                </ion-item >
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png">
-
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>Workout</ion-label>
-                </ion-item>
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://future.ipsos.com/wp-content/uploads/2019/06/gen-pop-hero-june-13-2019.jpg">
-
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>Cleanup</ion-label>
-                </ion-item>
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://us.123rf.com/450wm/decorwithme/decorwithme1809/decorwithme180900245/108770020-sleeping-girl-cartoon-people-character-isolated-illustration-on-white-background-high-quality-compos.jpg?ver=6">
-
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>Nap</ion-label>
-                </ion-item>
               </ion-list>
             </div>
 
             <div *ngIf="x==2">
               <ion-list>
-                <ion-item button class="ion-padding">
+                <ion-item button class="ion-padding" *ngFor="let activity2 of loadedActivities2" (click)="addFriend()">
                   <ion-avatar slot="start">
-                    <ion-img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-281151,resizemode-1,msid-77068536/industry/media/entertainment/inox-leisure-to-not-shut-any-cinema-hall-to-add-41-screens-in-fy-21-alok-tandon-ceo.jpg">
+                    <ion-img src={{activity2.imageUrl}}>
 
                     </ion-img>
                   </ion-avatar>
-                  <ion-label>Movies</ion-label>
+                  <ion-label>{{activity2.title}}</ion-label>
                 </ion-item>
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://www.pngkit.com/png/detail/112-1128378_house-party-logo-png-house-party-movie-clipart.png">
 
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>House Party</ion-label>
-                </ion-item >
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png">
-
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>Workout</ion-label>
-                </ion-item>
-                <ion-item button class="ion-padding">
-                  <ion-avatar slot="start">
-                    <ion-img src="https://future.ipsos.com/wp-content/uploads/2019/06/gen-pop-hero-june-13-2019.jpg">
-
-                    </ion-img>
-                  </ion-avatar>
-                  <ion-label>Cleanup</ion-label>
-                </ion-item>
               </ion-list>
             </div>
 
