@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { AppService } from '../services/app.service';
 import { Activities } from './acivities.model';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { DetailsComponent } from './details/details.component';
 
 @Component({
   selector: 'app-activities',
@@ -14,7 +15,8 @@ export class ActivitiesPage implements OnInit {
   x: number;
   loadedActivities: Activities[];
   loadedActivities2: Activities[];
-  constructor(private appService: AppService, public actionSheetCtrl: ActionSheetController, public router: Router) { }
+  constructor(private appService: AppService, public actionSheetCtrl: ActionSheetController, public router: Router,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.x=this.appService.activity;
@@ -24,34 +26,13 @@ export class ActivitiesPage implements OnInit {
     console.log(this.loadedActivities);
   }
 
+
+
+
   addFriend(){
-    console.log('cdc');
-    this.actionSheetCtrl.create(
-      {
-        header:'Select',
-        buttons:[
-          {
-            text:'Add a friend',
-            handler:()=>{this.onAddFriend();}
-          },
-          {
-            text:'Go solo',
-            handler:()=>{}
-          },
-          {
-            text:'Cancel',
-            role:'Cancel',
-            icon:'close',
-            handler:()=>{}
-
-          }
-        ]
-      }
-    ).then(actionSheetEl=>{actionSheetEl.present();});
-  }
-
-  onAddFriend(){
-    this.router.navigateByUrl('/friends');
+    this.modalCtrl.create({component: DetailsComponent}).then(modalEl=>{
+      modalEl.present();
+    });
   }
 
 }
