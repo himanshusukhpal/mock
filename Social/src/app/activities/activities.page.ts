@@ -30,9 +30,10 @@ export class ActivitiesPage implements OnInit {
 
 
   addFriend(){
-    this.modalCtrl.create({component: DetailsComponent}).then(modalEl=>{
-      modalEl.present();
-    });
+    //this.modalCtrl.create({component: DetailsComponent}).then(modalEl=>{
+      //modalEl.present();
+      this.router.navigateByUrl('/friends');
+    //});
   }
 
 }

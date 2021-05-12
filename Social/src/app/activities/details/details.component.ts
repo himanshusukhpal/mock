@@ -13,61 +13,61 @@ export class DetailsComponent implements OnInit {
     id: 1,
     name: 'Leanne Graham',
     email: 'Sincere@april.biz',
-    check: 'false'
+    check: null
   },
   {
     id: 2,
     name: 'Ervin Howell',
     email: 'Shanna@melissa.tv',
-    check: 'false'
+    check: null
   },
   {
     id: 3,
     name: 'Clementine Bauch',
     email: 'Nathan@yesenia.net',
-    check: 'false'
+    check: null
   },
   {
     id: 4,
     name: 'Patricia Lebsack',
     email: 'Julianne.OConner@kory.org',
-    check: 'false'
+    check: null
   },
   {
     id: 5,
     name: 'Chelsey Dietrich',
     email: 'Lucio_Hettinger@annie.ca',
-    check: 'false'
+    check: null
   },
   {
     id: 6,
     name: 'Mrs. Dennis Schulist',
     email: 'Karley_Dach@jasper.info',
-    check: 'false'
+    check: null
   },
   {
     id: 7,
     name: 'Kurtis Weissnat',
     email: 'Telly.Hoeger@billy.biz',
-    check: 'false'
+    check: null
   },
   {
     id: 8,
     name: 'Nicholas Runolfsdottir V',
     email: 'Sherwood@rosamond.me',
-    check: 'false'
+    check: null
   },
   {
     id: 9,
     name: 'Glenna Reichert',
     email: 'Chaim_McDermott@dana.io',
-    check: 'false'
+    check: null
   },
   {
     id: 10,
     name: 'Clementina DuBuque',
     email: 'Rey.Padberg@karina.biz',
-    check: 'false'
+    check: null
   }
 ];
   constructor() { }

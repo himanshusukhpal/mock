@@ -1,9 +1,74 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>friends </ion-title>
+    <ion-title>
+      Activity-Details
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-</ion-content>
+  <ion-content >
+    <div class="main">
+    <ion-card >
+      <ion-card-content>
+        <ion-list >
+          <ion-item lines="full">
+            <ion-label position="floating">Location</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Start Date and Time</ion-label>
+            <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+<ion-card align-text-center ion-justify-content-center>
+
+<ion-card-header class="ion-padding"><h4 style="text-align: center;">Invite Friends</h4>
+</ion-card-header>
+<ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+
+<ion-list>
+  <ion-item *ngFor="let data of userRecords | filter:filterTerm">
+
+    <ion-label>{{data.id}}</ion-label>
+    <ion-checkbox color="dark" (ionChange) ="onCheck()"slot="start" [(ngModel)]="data.check"></ion-checkbox>
+    <ion-label>{{data.name}}</ion-label>
+    <ion-label>{{data.email}}</ion-label>
+  </ion-item>
+</ion-list>
+<div *ngFor="let data of userRecords">
+  <ion-chip *ngIf="data.check==='false'">
+    <ion-label color="primary">{{data.name}}</ion-label>
+  </ion-chip>
+</div>
+
+</ion-card>
+<ion-card>
+  <ion-card-content>
+    <form #f="ngForm" (ngSubmit)="onAddRequirements(f)">
+      <ion-item>
+        <ion-label position="floating">
+          Enter Requirements
+        </ion-label>
+        <ion-input type="text" ngModel name="requirement" required ></ion-input>
+      </ion-item>
+      <ion-button  type="submit"> Add</ion-button>
+
+    </form>
+    <ion-item *ngFor="let a of display">
+      {{a}}
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+</div>
+  </ion-content>
+
+
+
+

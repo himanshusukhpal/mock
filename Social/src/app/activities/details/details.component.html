@@ -37,7 +37,7 @@
   </ion-item>
 </ion-list>
 <div *ngFor="let data of userRecords">
-  <ion-chip *ngIf="data.check==='false'">
+  <ion-chip *ngIf="data.check==='true'">
     <ion-label color="primary">{{data.name}}</ion-label>
   </ion-chip>
 </div>
