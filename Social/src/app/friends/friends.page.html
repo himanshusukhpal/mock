@@ -34,16 +34,21 @@
 <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
 
 <ion-list>
-  <ion-item *ngFor="let data of userRecords | filter:filterTerm">
+  <ion-item *ngFor="let data of displayList | filter:filterTerm">
 
-    <ion-label>{{data.id}}</ion-label>
+
     <ion-checkbox color="dark" (ionChange) ="onCheck()"slot="start" [(ngModel)]="data.check"></ion-checkbox>
+
+
+    <ion-avatar>
+      <ion-img src={{data.imageUrl}}></ion-img>
+    </ion-avatar>
     <ion-label>{{data.name}}</ion-label>
     <ion-label>{{data.email}}</ion-label>
   </ion-item>
 </ion-list>
-<div *ngFor="let data of userRecords">
-  <ion-chip *ngIf="data.check==='false'">
+<div *ngFor="let data of displayList">
+  <ion-chip *ngIf="data.check===true">
     <ion-label color="primary">{{data.name}}</ion-label>
   </ion-chip>
 </div>
