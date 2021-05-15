@@ -12,20 +12,33 @@
 
   <ion-content >
     <div class="main">
-    <ion-card >
-      <ion-card-content>
-        <ion-list >
-          <ion-item lines="full">
-            <ion-label position="floating">Location</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Start Date and Time</ion-label>
-            <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
+    <ion-card align-text-center ion-justify-content-center>
+      <ion-card-header class="ion-padding"><h4 style="text-align: center;">Select a Location</h4></ion-card-header>
+        <ion-item><ion-label> Locations</ion-label>
+          <ion-select >
+            <div  *ngFor="let add of location">
+              <ion-select-option *ngIf="add.id===id">
+                {{add.address}}
+              </ion-select-option>
+            </div>
+        </ion-select>
+      </ion-item>
+
+
+  </ion-card>
+
+  <ion-card align-text-center ion-justify-content-center>
+    <ion-item>
+      <ion-label>Start Date and Time</ion-label>
+      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
+</ion-card>
+
+
+
+
+
 
 <ion-card align-text-center ion-justify-content-center>
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 
@@ -10,6 +11,8 @@ export class NetworkingService {
   get authenticated(){
     return this._isAuthenticated;
   }
+
+  activity: number;
   constructor() { }
   login(){
     this._isAuthenticated=true;

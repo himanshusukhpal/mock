@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FriendsPageRoutingModule } from './friends-routing.module';
 
 import { FriendsPage } from './friends.page';
+import{ IonicSelectableModule} from 'ionic-selectable';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     IonicModule,
     FriendsPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    IonicSelectableModule
   ],
   declarations: [FriendsPage]
 })

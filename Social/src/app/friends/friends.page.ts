@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AppService } from '../services/app.service';
 import { Friends } from './friends.model';
+import { Locations } from './location.model';
 
 @Component({
   selector: 'app-friends',
@@ -14,9 +15,14 @@ export class FriendsPage implements OnInit{
   filterTerm: string;
   requirement: string;
   displayList: Friends[]=[];
+  id: number;
   display=[];
+  location: Locations[]=[];
+
+
 
   constructor(private appService: AppService) { }
+
 
 
   onCheck(){
@@ -33,8 +39,12 @@ export class FriendsPage implements OnInit{
     form.reset();
   }
   ngOnInit() {
+    this.id=this.appService.networking.activity;
+    console.log(this.id);
     this.displayList=this.appService.storage.userRecords;
     console.log(this.display);
+    this.location=this.appService.storage.location;
+    console.log(this.location);
   }
 
 
