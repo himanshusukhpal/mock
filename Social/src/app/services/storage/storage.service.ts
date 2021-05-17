@@ -21,37 +21,37 @@ export class StorageService {
   ];
 
   private _activities2: Activities[]=[
-    new Activities('Netflix Chill','https://image.shutterstock.com/image-photo/netflix-chill-home-editorial-260nw-1402991972.jpg',6),
-    new Activities('House Party','https://i.pinimg.com/originals/63/1b/83/631b83648511a1e90b4c98864226c5ef.jpg',7),
-    new Activities('Workout','https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png',8),
-    new Activities('Cleanup','https://future.ipsos.com/wp-content/uploads/2019/06/gen-pop-hero-june-13-2019.jpg',9),
+    new Activities('Watch a Movie','https://s.abcnews.com/images/Lifestyle/WireAP_4e06c47257e74d629e0eeb949752f7be_16x9_992.jpg',6),
+    new Activities('Clubbing','https://st2.depositphotos.com/1594308/10494/i/600/depositphotos_104945140-stock-photo-people-dancing-at-party.jpg',7),
+    new Activities('Hiking','https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528',8),
+    new Activities('Biking','https://cf.bstatic.com/data/xphoto/1182x887/228/22858255.jpg?size=S',9),
   ];
 
   userRecords: Friends[]= [{
     id: 1,
-    name: 'Leanne Graham',
-    email: 'Sincere@april.biz',
+    name: 'Himanshu Sukhpal',
+    email: 'hsukhpal@outlook.in',
     imageUrl:'https://storage.googleapis.com/snapchat-lens-assets/f1a09194-f02d-43ed-92b8-62e843179ff0/lensStudio/Michael-Porter-Profile.png',
     check: false
   },
   {
     id: 2,
-    name: 'Ervin Howell',
-    email: 'Shanna@melissa.tv',
-    imageUrl:'https://storage.googleapis.com/snapchat-lens-assets/f1a09194-f02d-43ed-92b8-62e843179ff0/lensStudio/Michael-Porter-Profile.png',
-    check: false
-  },
-  {
-    id: 3,
-    name: 'Clementine Bauch',
-    email: 'Nathan@yesenia.net',
+    name: 'Debanshu Panda',
+    email: 'dpanda@outlook.in',
     imageUrl:'https://camo.githubusercontent.com/7a22182cae9e758489a9e0492b03cb7c45f79574c156db6a22b1c12e3fd92271/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f736e6170636861742d6c656e732d6173736574732f66316130393139342d663032642d343365642d393262382d3632653834333137396666302f6c656e7353747564696f2f4e73617270726f66696c6569636f6e2e4a5047',
     check: false
   },
   {
+    id: 3,
+    name:'Swikriti Chauhan',
+    email: 'schauhan2000@outlook.in',
+    imageUrl:'https://storage.googleapis.com/snapchat-lens-assets/f1a09194-f02d-43ed-92b8-62e843179ff0/lensStudio/NATALIESUTO_Profile-Natalie-Suto.JPG',
+    check: false
+  },
+  {
     id: 4,
-    name: 'Patricia Lebsack',
-    email: 'Julianne.OConner@kory.org',
+    name: 'Utkarsh Srivastava',
+    email: 'usrivastava@outlook.in',
     imageUrl:'https://camo.githubusercontent.com/7a22182cae9e758489a9e0492b03cb7c45f79574c156db6a22b1c12e3fd92271/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f736e6170636861742d6c656e732d6173736574732f66316130393139342d663032642d343365642d393262382d3632653834333137396666302f6c656e7353747564696f2f4e73617270726f66696c6569636f6e2e4a5047',
     check: false
   },
@@ -103,40 +103,68 @@ export class StorageService {
 location: Locations[]=[
   {
     id:1,
-    address:'kanpur,U.P.,India'
+    address:'Your Address'
     },
 
     {
-      id:1,
-      address:'Lucknow,U.P.,India'
+      id:2,
+      address:'Your Address'
     },
     {
-      id:2,
-      address:'Agra,U.P.,India'
-      },
-      {
-        id:2,
-        address:'Lucknow,U.P.,India'
-      },
-      {
-        id:3,
-        address:'Lucknow,U.P.,India'
-      },
-      {
-        id:3,
-        address:'Lucknow,U.P.,India'
-      },
-      {
-        id:3,
-        address:'Lucknow,U.P.,India'
-      },
-      {
-        id:1,
-        address:'Lucknow,U.P.,India'
+      id:3,
+      address:'Your Address'
       },
       {
         id:4,
-        address:'Lucknow,U.P.,India'
+        address:'Your Address'
+      },
+      {
+        id:5,
+        address:'Your Address'
+      },
+      {
+        id:6,
+        address:'Carnival Cinemas.Rave 3 Mall, Rawatpur'
+      },
+      {
+        id:6,
+        address:'Miraj Cinemas, Gurdev, Lakhanpur'
+      },
+      {
+        id:6,
+        address:'CineMax ,South X Mall,Kidwai Nagar'
+      },
+      {
+        id:7,
+        address:'The Yacht Club,Allenganj,Swaroop Nagar'
+      },
+      {
+        id:7,
+        address:'Forest 91 Club, NH 91 Bypass '
+      },
+      {
+        id:7,
+        address:'Offline Cafe,Khalasi Lines,Tilak Nagar'
+      },
+      {
+        id:8,
+        address:'Kargil Park,Motijheel,Colonelganj'
+      },
+      {
+        id:8,
+        address:'Sudhanshu Ashram,Bithoor'
+      },
+      {
+        id:8,
+        address:'Blue World Theme Park,Bithoor Road'
+      },
+      {
+        id:9,
+        address:'Ganga Bairaj Road,Nawabgunj'
+      },
+      {
+        id:9,
+        address:'Bithoor Road, Bithoor'
       },
 
 ];
