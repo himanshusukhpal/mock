@@ -29,29 +29,29 @@ export class StorageService {
 
   userRecords: Friends[]= [{
     id: 1,
-    name: 'Himanshu Sukhpal',
-    email: 'hsukhpal@outlook.in',
+    name: 'Harry Potter',
+    email: 'harry@gryffindor@hogwarts',
     imageUrl:'https://storage.googleapis.com/snapchat-lens-assets/f1a09194-f02d-43ed-92b8-62e843179ff0/lensStudio/Michael-Porter-Profile.png',
     check: false
   },
   {
     id: 2,
-    name: 'Debanshu Panda',
-    email: 'dpanda@outlook.in',
+    name: 'Ron Weasley',
+    email: 'ron@gryffindor@hogwarts',
     imageUrl:'https://camo.githubusercontent.com/7a22182cae9e758489a9e0492b03cb7c45f79574c156db6a22b1c12e3fd92271/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f736e6170636861742d6c656e732d6173736574732f66316130393139342d663032642d343365642d393262382d3632653834333137396666302f6c656e7353747564696f2f4e73617270726f66696c6569636f6e2e4a5047',
     check: false
   },
   {
     id: 3,
-    name:'Swikriti Chauhan',
-    email: 'schauhan2000@outlook.in',
+    name:'Hermoine Granger',
+    email: 'hermoine@gryffindor@hogwarts',
     imageUrl:'https://storage.googleapis.com/snapchat-lens-assets/f1a09194-f02d-43ed-92b8-62e843179ff0/lensStudio/NATALIESUTO_Profile-Natalie-Suto.JPG',
     check: false
   },
   {
     id: 4,
-    name: 'Utkarsh Srivastava',
-    email: 'usrivastava@outlook.in',
+    name: 'Draco Malfoy',
+    email: 'draco@slythering.hogwarts',
     imageUrl:'https://camo.githubusercontent.com/7a22182cae9e758489a9e0492b03cb7c45f79574c156db6a22b1c12e3fd92271/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f736e6170636861742d6c656e732d6173736574732f66316130393139342d663032642d343365642d393262382d3632653834333137396666302f6c656e7353747564696f2f4e73617270726f66696c6569636f6e2e4a5047',
     check: false
   },

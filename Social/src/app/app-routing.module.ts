@@ -29,6 +29,12 @@ const routes: Routes = [
     canLoad:[AuthGuard],
     loadChildren: () => import('./friends/friends.module').then( m => m.FriendsPageModule)
   },
+  {
+    path: 'dashboard',
+    canLoad:[AuthGuard],
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+
 
 
 ];

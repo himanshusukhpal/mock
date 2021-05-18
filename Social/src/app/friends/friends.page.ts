@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AppService } from '../services/app.service';
 import { Friends } from './friends.model';
 import { Locations } from './location.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends',
@@ -18,10 +19,14 @@ export class FriendsPage implements OnInit{
   id: number;
   display=[];
   location: Locations[]=[];
+  cnfrmlist=[];
+  cnfrmLoc: string;
+  cnfrmDate: string;
+  myLocation: string;
 
 
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
 
 
@@ -46,6 +51,17 @@ export class FriendsPage implements OnInit{
     this.location=this.appService.storage.location;
     console.log(this.location);
   }
-
+ onConfirm(){
+   console.log(this.myDate);
+   console.log(this.myLocation);
+   console.log(this.display);
+   this.displayList.forEach(i=>{
+     if(i.check===true)
+     {
+       console.log(i.name);
+     }
+   });
+   this.router.navigateByUrl('/dashboard');
+ }
 
 }

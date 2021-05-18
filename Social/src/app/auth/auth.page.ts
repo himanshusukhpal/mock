@@ -23,7 +23,7 @@ export class AuthPage implements OnInit {
       setTimeout(()=>{
         this.isLoading=false;
         loadingEl.dismiss();
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/dashboard');
       },1500);
     });
   }

@@ -15,7 +15,7 @@
     <ion-card align-text-center ion-justify-content-center>
       <ion-card-header class="ion-padding"><h4 style="text-align: center;">Select a Location</h4></ion-card-header>
         <ion-item><ion-label> Locations</ion-label>
-          <ion-select >
+          <ion-select [(ngModel)]="myLocation">
             <div  *ngFor="let add of location">
               <ion-select-option *ngIf="add.id===id">
                 {{add.address}}
@@ -34,7 +34,6 @@
     </ion-item>
 
 </ion-card>
-
 
 
 
@@ -59,15 +58,21 @@
     <ion-label>{{data.name}}</ion-label>
     <ion-label>{{data.email}}</ion-label>
   </ion-item>
-</ion-list>
-<div *ngFor="let data of displayList">
-  <ion-chip *ngIf="data.check===true">
-    <ion-label color="primary">{{data.name}}</ion-label>
-  </ion-chip>
-</div>
+  </ion-list>
+
+
 
 </ion-card>
 <ion-card>
+  <div *ngFor="let data of displayList">
+    <ion-chip *ngIf="data.check===true">
+      <ion-label color="primary">{{data.name}}</ion-label>
+    </ion-chip>
+  </div>
+</ion-card>
+
+<ion-card>
+
   <ion-card-content>
     <form #f="ngForm" (ngSubmit)="onAddRequirements(f)">
       <ion-item>
@@ -79,12 +84,17 @@
       <ion-button  type="submit"> Add</ion-button>
 
     </form>
-    <ion-item *ngFor="let a of display">
-      {{a}}
-    </ion-item>
+
+    <ion-chip *ngFor="let a of display">
+      <ion-label color="primary">{{a}}</ion-label>
+    </ion-chip>
   </ion-card-content>
 </ion-card>
+<ion-button color="success"expand ="block"(click)="onConfirm()">
+  Confirm
+</ion-button>
 </div>
+
   </ion-content>
 
 
