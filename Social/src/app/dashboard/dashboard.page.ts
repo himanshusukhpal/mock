@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
   sampleLoc='Miraj Cinemas';
+  buttons=true;
+  cards=true;
   sampleDateTime: string = new Date().toISOString();
   sampleRecord: Friends[]=[{
     id: 1,
@@ -46,7 +48,15 @@ export class DashboardPage implements OnInit {
   onAddActivity(){
 this.router.navigateByUrl('/home');
   }
+
+  onAccept()
+{
+    console.log('In Accept');
+    this.buttons=false;
+  }
+  onDecline(){
+    this.cards=false;
+  }
   ngOnInit() {
   }
-
 }

@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <div class="main">
+  <div *ngIf="cards">
   <ion-card>
     <ion-card-header class="ion-padding"><h4 style="text-align: center;">Your Invitation</h4></ion-card-header>
     <ion-item>
@@ -29,7 +33,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-item><ion-label> Req</ion-label>
+    <ion-item><ion-label> Items you can come up with</ion-label>
       <ion-select >
         <div  *ngFor="let add of sampleReq">
           <ion-select-option >
@@ -38,24 +42,29 @@
         </div>
     </ion-select>
   </ion-item>
+  <div *ngIf="buttons">
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button color="success" expand="block">Accept</ion-button>
+        <ion-button color="success" expand="block" (click)="onAccept()">Accept</ion-button>
       </ion-col>
-      <ion-col> <ion-button color="danger" expand="block">Decline</ion-button></ion-col>
+      <ion-col> <ion-button color="danger" expand="block" (click)="onDecline()">Decline</ion-button></ion-col>
 
 </ion-row>
   </ion-grid>
+</div>
 
 
   </ion-card>
+</div>
 
-  <ion-card>
+  <ion-card >
 
     <ion-button color="primary" expand="block" (click)="onAddActivity()">
       <ion-label>Add an Activity</ion-label>
+      <ion-icon name="add"></ion-icon>
     </ion-button>
     </ion-card>
+
 </div>
 </ion-content>
