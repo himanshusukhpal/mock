@@ -170,6 +170,15 @@ location: Locations[]=[
 ];
 
 
+
+exampleLoc: string;
+exampleRec=[];
+exampleDate: string;
+exampleReq=[];
+
+
+
+
   constructor() { }
 
   getActivities()

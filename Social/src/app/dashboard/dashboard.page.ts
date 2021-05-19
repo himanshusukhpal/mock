@@ -2,6 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Friends } from '../friends/friends.model';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +13,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
   sampleLoc='Miraj Cinemas';
+  filterTerm: string;
   buttons=true;
   cards=true;
   sampleDateTime: string = new Date().toISOString();
+  activity='Watch a movie!';
   sampleRecord: Friends[]=[{
     id: 1,
     name: 'Harry Potter',
@@ -43,12 +48,20 @@ export class DashboardPage implements OnInit {
   }];
 
   sampleReq=['Wand','Cloak','Philospher Stone'];
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modalCtrl: ModalController, private appservice: AppService) { }
   onAddActivity(){
 this.router.navigateByUrl('/home');
   }
 
+  onDetail(){
+    this.modalCtrl.create({component: ActivityDetailComponent, componentProps:{exLoc:this.sampleLoc, exDate: this.sampleDateTime, exRecord: this.sampleRecord,exReq: this.sampleReq, activity: this.activity}})
+    .then(modalEl=>{modalEl.present();});
+  }
   onAccept()
 {
     console.log('In Accept');
@@ -58,5 +71,9 @@ this.router.navigateByUrl('/home');
     this.cards=false;
   }
   ngOnInit() {
+    this.appservice.storage.exampleLoc=this.sampleLoc;
+    this.appservice.storage.exampleDate=this.sampleDateTime;
+    this.appservice.storage.exampleRec=this.sampleRecord;
+    this.appservice.storage.exampleReq=this.sampleReq;
   }
 }

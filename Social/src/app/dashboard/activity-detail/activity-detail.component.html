@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Activity Detail</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main">
+    <div >
+      <ion-card >
+        <ion-card-header class="ion-padding"><h4 style="text-align: center;">{{activity}}</h4></ion-card-header>
+        <ion-item>
+          <ion-label> Location</ion-label>
+          <ion-label>{{exLoc}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label> Date And Time</ion-label>
+          <ion-label>{{exDate}}</ion-label>
+        </ion-item>
+
+        <ion-list>
+          <ion-list-header>Invited Friends</ion-list-header>
+          <ion-item *ngFor="let data of exRecord">
+            <ion-avatar>
+              <ion-img src={{data.imageUrl}}></ion-img>
+            </ion-avatar>
+            <ion-label>{{data.name}}</ion-label>
+            <ion-label>{{data.email}}</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-item><ion-label> Items you can come up with</ion-label>
+          <ion-select >
+            <div  *ngFor="let add of exReq">
+              <ion-select-option >
+                {{add}}
+              </ion-select-option>
+            </div>
+        </ion-select>
+      </ion-item>
+      <div >
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button color="success" expand="block" >Accept</ion-button>
+            </ion-col>
+            <ion-col> <ion-button color="danger" expand="block" >Decline</ion-button></ion-col>
+
+      </ion-row>
+        </ion-grid>
+      </div>
+
+
+        </ion-card>
+      </div>
+  </div>
+</ion-content>
