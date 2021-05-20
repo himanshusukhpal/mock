@@ -5,6 +5,7 @@ import { AppService } from '../services/app.service';
 import { Friends } from './friends.model';
 import { Locations } from './location.model';
 import { Router } from '@angular/router';
+import { Card } from '../dashboard/card.model';
 
 @Component({
   selector: 'app-friends',
@@ -23,7 +24,9 @@ export class FriendsPage implements OnInit{
   cnfrmLoc: string;
   cnfrmDate: string;
   myLocation: string;
-
+cards: Card[]=[];
+ element: Card={location:'',date:'',req:[],records:[]};
+ selected=[];
 
 
   constructor(private appService: AppService, private router: Router) { }
@@ -52,15 +55,24 @@ export class FriendsPage implements OnInit{
     console.log(this.location);
   }
  onConfirm(){
+  this.displayList.forEach(i=>{
+    if(i.check===true)
+    {
+      this.selected.push(i.name);
+    }
+  });
    console.log(this.myDate);
+    this.element.location=this.myLocation;
+    this.element.date=this.myDate;
+    this.element.records=this.selected;
+    this.element.req=this.display;
+
    console.log(this.myLocation);
    console.log(this.display);
-   this.displayList.forEach(i=>{
-     if(i.check===true)
-     {
-       console.log(i.name);
-     }
-   });
+
+   this.appService.storage.cards.push(this.element);
+   console.log(this.element);
+   console.log(this.appService.storage.cards);
    this.router.navigateByUrl('/dashboard');
  }
 

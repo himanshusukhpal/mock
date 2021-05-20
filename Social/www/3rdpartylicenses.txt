@@ -13,6 +13,12 @@ MIT
 @angular/router
 MIT
 
+@ionic-super-tabs/angular
+MIT
+
+@ionic-super-tabs/core
+MIT
+
 @ionic/angular
 MIT
 
@@ -300,6 +306,8 @@ Apache-2.0
  limitations under the License.
  
 
+
+supertabs-loader
 
 tslib
 0BSD

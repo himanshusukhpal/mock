@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Activities } from 'src/app/activities/acivities.model';
 import { Friends } from 'src/app/friends/friends.model';
 import { Locations } from 'src/app/friends/location.model';
+import { Card } from 'src/app/dashboard/card.model';
 
 
 @Injectable({
@@ -26,6 +27,8 @@ export class StorageService {
     new Activities('Hiking','https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528',8),
     new Activities('Biking','https://cf.bstatic.com/data/xphoto/1182x887/228/22858255.jpg?size=S',9),
   ];
+
+  cards: Card[]=[];
 
   userRecords: Friends[]= [{
     id: 1,
