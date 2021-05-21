@@ -26,7 +26,7 @@ export class FriendsPage implements OnInit{
   myLocation: string;
 cards: Card[]=[];
  element: Card={location:'',date:'',req:[],records:[]};
- selected=[];
+ selected: Friends[]=[];
 
 
   constructor(private appService: AppService, private router: Router) { }
@@ -58,7 +58,7 @@ cards: Card[]=[];
   this.displayList.forEach(i=>{
     if(i.check===true)
     {
-      this.selected.push(i.name);
+      this.selected.push(i);
     }
   });
    console.log(this.myDate);

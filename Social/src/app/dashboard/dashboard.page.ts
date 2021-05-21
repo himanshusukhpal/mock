@@ -19,6 +19,7 @@ export class DashboardPage implements OnInit {
   cards=true;
   sampleDateTime: string = new Date().toISOString();
   activity='Watch a movie!';
+  activity2: string;
   addedCard: Card[]=[];
   sampleRecord: Friends[]=[{
     id: 1,
@@ -62,11 +63,15 @@ this.router.navigateByUrl('/home');
   }
 
   onDetail(){
-    this.modalCtrl.create({component: ActivityDetailComponent, componentProps:{exLoc:this.sampleLoc, exDate: this.sampleDateTime, exRecord: this.sampleRecord,exReq: this.sampleReq, activity: this.activity}})
+    this.modalCtrl.create({component: ActivityDetailComponent, componentProps:{ exLoc:this.sampleLoc, exDate: this.sampleDateTime, exRecord: this.sampleRecord,exReq: this.sampleReq, activity: this.activity}})
     .then(modalEl=>{modalEl.present();});
   }
-  onDetail2(){
-    this.modalCtrl.create({component: ActivityDetailComponent, componentProps:{exLoc:this.addedCard[0], exDate: this.sampleDateTime[1], exRecord: this.sampleRecord,exReq: this.sampleReq[2], activity: this.activity[3]}})
+  onDetail2(date: string,location: string,record: Friends[] ,req: Array<string>){
+    console.log(record);
+    console.log(location);
+    console.log(this.activity2);
+    console.log(this.addedCard);
+    this.modalCtrl.create({component: ActivityDetailComponent, componentProps:{ exDate: date,exLoc: location, exRecord: record, exReq :req, act: this.activity2}})
     .then(modalEl=>{modalEl.present();});
   }
   onAccept()
@@ -78,10 +83,15 @@ this.router.navigateByUrl('/home');
     this.cards=false;
   }
   ngOnInit() {
+
     this.appservice.storage.exampleLoc=this.sampleLoc;
     this.appservice.storage.exampleDate=this.sampleDateTime;
     this.appservice.storage.exampleRec=this.sampleRecord;
     this.appservice.storage.exampleReq=this.sampleReq;
     this.addedCard=this.appservice.storage.cards;
+  }
+  ionViewWillEnter(){
+    console.log(this.appservice.networking.activityName);
+    this.activity2=this.appservice.networking.activityName;
   }
 }

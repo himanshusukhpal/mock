@@ -18,7 +18,7 @@
             </ion-card-header>
             <div *ngIf="x==1">
               <ion-list>
-                <ion-item button class="ion-padding" *ngFor="let activity of loadedActivities" (click)="addFriend(activity.id)">
+                <ion-item button class="ion-padding" *ngFor="let activity of loadedActivities" (click)="addFriend(activity.id,activity.title)">
                   <ion-avatar slot="start">
                     <ion-img src={{activity.imageUrl}}>
 
@@ -33,7 +33,7 @@
 
             <div *ngIf="x==2">
               <ion-list>
-                <ion-item button class="ion-padding" *ngFor="let activity2 of loadedActivities2" (click)="addFriend(activity2.id)">
+                <ion-item button class="ion-padding" *ngFor="let activity2 of loadedActivities2" (click)="addFriend(activity2.id,activity2.title)">
                   <ion-avatar slot="start">
                     <ion-img src={{activity2.imageUrl}}>
 

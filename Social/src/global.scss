@@ -42,3 +42,7 @@
 .picker-toolbar.sc-ion-picker-md{
   justify-content: flex-start;
 }
+
+.ion-invalid.ion-touched ion-label{
+  color: var(--ion-color-danger);
+}

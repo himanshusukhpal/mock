@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AppService } from '../services/app.service';
+import { NgForm } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-auth',
@@ -11,10 +14,11 @@ import { AppService } from '../services/app.service';
 })
 export class AuthPage implements OnInit {
   isLoading=false;
-  constructor(private appService: AppService, private router: Router, private loadingCtrl: LoadingController) { }
+  login= true;
+  constructor(private appService: AppService, private router: Router, private loadingCtrl: LoadingController, public afAuth: AngularFireAuth) { }
   ngOnInit() {
   }
-  onLogin(){
+   onLogin(){
     this.appService.networking.login();
     this.isLoading=true;
     this.loadingCtrl.create({keyboardClose:true, message:'Logging In ...'})
@@ -27,4 +31,11 @@ export class AuthPage implements OnInit {
       },1500);
     });
   }
-}
+  onSwitch(){
+    this.login=!this.login;
+  }
+   onSubmit(form: NgForm){
+    console.log(form.value.email);
+    console.log(form.value.password);
+  }
+  }

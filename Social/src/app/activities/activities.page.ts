@@ -29,11 +29,14 @@ export class ActivitiesPage implements OnInit {
 
 
 
-  addFriend(id: number){
+  addFriend(id: number, title: string){
     //this.modalCtrl.create({component: DetailsComponent}).then(modalEl=>{
       //modalEl.present();
       console.log(id);
       this.appService.networking.activity=id;
+      this.appService.networking.activityName=title;
+      console.log(this.appService.networking.activityName);
+
       this.router.navigateByUrl('/friends');
 
     //});

@@ -78,8 +78,8 @@
           </ion-card>
         </div>
         <div *ngFor="let add of addedCard">
-          <ion-card button >
-            <ion-card-header class="ion-padding"><h4 style="text-align: center;">{{activity}}</h4></ion-card-header>
+          <ion-card button (click)="onDetail2(add.date,add.location,add.records,add.req)">
+            <ion-card-header class="ion-padding"><h4 style="text-align: center;">{{activity2}}</h4></ion-card-header>
             <ion-item>
               <ion-label> Location</ion-label>
               <ion-label>{{add.location}}</ion-label>

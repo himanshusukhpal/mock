@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Authenticate</ion-title>
+    <ion-title>{{!login ? 'Signup' :'Login'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,21 +16,33 @@
       <ion-col size-sm="6" offset-sm="3">
         <ion-card>
           <ion-card-content>
-            <form>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
               <ion-item lines="full">
                 <ion-label position="floating">Email</ion-label>
-                <ion-input type="text" required id="email" #email></ion-input>
+                <ion-input
+                type="email"
+                 required
+                 id="email"
+                 #email="ngModel"
+                 ngModel
+                 name="email"></ion-input>
+              </ion-item>
+              <ion-item lines="none"  *ngIf="!email.valid && email.touched">
+                Should be a valid email address!
               </ion-item>
 
               <ion-item lines="full">
                 <ion-label position="floating">Password</ion-label>
-                <ion-input type="password" id="password" required></ion-input>
+                <ion-input type="password" id="password" required minlength="6" ngModel name="password" #password="ngModel"></ion-input>
+              </ion-item>
+              <ion-item lines="none"  *ngIf="!password.valid && password.touched">
+                Should be of at least 6 characters!
               </ion-item>
 
               <ion-row>
                 <ion-col>
-
-                  <ion-button color="primary" expand ="block"(click)="onLogin()" >Login</ion-button>
+                  <ion-button class="primary" fill="clear" expand="block" type="button" (click)="onSwitch()">Switch to {{login ? 'Signup' :'Login'}}</ion-button>
+                  <ion-button color="primary" expand ="block"(click)="onLogin()" type="submit">Login</ion-button>
 
                 </ion-col>
               </ion-row>

@@ -13,6 +13,7 @@ export class NetworkingService {
   }
 
   activity: number;
+  activityName: string;
   constructor() { }
   login(){
     this._isAuthenticated=true;
