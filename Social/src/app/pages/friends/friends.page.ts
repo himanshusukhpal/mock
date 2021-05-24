@@ -1,18 +1,19 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AppService } from '../services/app.service';
-import { Friends } from './friends.model';
-import { Locations } from './location.model';
-import { Router } from '@angular/router';
-import { Card } from '../dashboard/card.model';
+import { AppService } from 'src/app/services/app.service';
+
+import { Friends } from 'src/app/models/friends.model';
+import { Locations } from 'src/app/models/location.model';
+import { Card } from 'src/app/models/card.model';
 
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.page.html',
   styleUrls: ['./friends.page.scss'],
 })
-export class FriendsPage implements OnInit{
+export class FriendsPage implements OnInit {
+
   myDate: string = new Date().toISOString();
   filterTerm: string;
   requirement: string;
@@ -24,13 +25,14 @@ export class FriendsPage implements OnInit{
   cnfrmLoc: string;
   cnfrmDate: string;
   myLocation: string;
-cards: Card[]=[];
- element: Card={location:'',date:'',req:[],records:[]};
- selected: Friends[]=[];
+  cards: Card[]=[];
+  element: Card={location:'',date:'',req:[],records:[]};
+  selected: Friends[]=[];
 
 
-  constructor(private appService: AppService, private router: Router) { }
-
+  constructor(
+    private appService: AppService,
+  ) { }
 
 
   onCheck(){
@@ -47,11 +49,11 @@ cards: Card[]=[];
     form.reset();
   }
   ngOnInit() {
-    this.id=this.appService.networking.activity;
+    this.id=this.appService.activity;
     console.log(this.id);
-    this.displayList=this.appService.storage.userRecords;
+    this.displayList=this.appService.data.userRecords;
     console.log(this.display);
-    this.location=this.appService.storage.location;
+    this.location=this.appService.data.location;
     console.log(this.location);
   }
  onConfirm(){
@@ -70,10 +72,10 @@ cards: Card[]=[];
    console.log(this.myLocation);
    console.log(this.display);
 
-   this.appService.storage.cards.push(this.element);
+   this.appService.data.cards.push(this.element);
    console.log(this.element);
-   console.log(this.appService.storage.cards);
-   this.router.navigateByUrl('/dashboard');
+   console.log(this.appService.data.cards);
+   this.appService.nav.navigateForward("home/dashboard");
  }
 
 }

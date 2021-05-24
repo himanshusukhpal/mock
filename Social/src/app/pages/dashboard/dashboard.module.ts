@@ -20,7 +20,10 @@ import { SuperTabsModule } from '@ionic-super-tabs/angular';
     DashboardPageRoutingModule,
     SuperTabsModule
   ],
-  declarations: [DashboardPage,ActivityDetailComponent],
+  declarations: [
+    DashboardPage,
+    ActivityDetailComponent
+  ],
   entryComponents: [ActivityDetailComponent]
 })
 export class DashboardPageModule {}

@@ -1,11 +1,6 @@
-/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { AppService } from '../services/app.service';
 import { NgForm } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-auth',
@@ -15,21 +10,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthPage implements OnInit {
   isLoading=false;
   login= true;
-  constructor(private appService: AppService, private router: Router, private loadingCtrl: LoadingController, public afAuth: AngularFireAuth) { }
+  constructor(
+    private appService: AppService
+  ) { }
   ngOnInit() {
   }
-   onLogin(){
-    this.appService.networking.login();
+   async onLogin(){
+    this.appService.login();
     this.isLoading=true;
-    this.loadingCtrl.create({keyboardClose:true, message:'Logging In ...'})
-    .then(loadingEl=>{
-      loadingEl.present();
-      setTimeout(()=>{
-        this.isLoading=false;
-        loadingEl.dismiss();
-        this.router.navigateByUrl('/dashboard');
-      },1500);
-    });
+    await this.appService.presentLoading("Logging In ...",1500);
+    this.appService.nav.navigateForward("home/dashboard");
+    await this.appService.dimissLoading();
   }
   onSwitch(){
     this.login=!this.login;
