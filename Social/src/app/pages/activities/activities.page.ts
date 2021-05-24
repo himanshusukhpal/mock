@@ -30,7 +30,7 @@ export class ActivitiesPage implements OnInit {
     this.appService.activity=id;
     this.appService.activityName=title;
     console.log(this.appService.activityName);
-    this.appService.nav.navigateForward('friends');
+    this.appService.nav.navigateForward('home/friends');
   }
 
 }

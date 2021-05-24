@@ -13,11 +13,11 @@ export class HomePage {
   constructor(private router: Router, private appService: AppService) {}
 
   onStayIn(){
-    this.router.navigateByUrl('/activities');
     this.appService.activity=1;
+    this.appService.nav.navigateForward('home/activities');
   }
   onGoOut(){
-    this.router.navigateByUrl('/activities');
     this.appService.activity=2;
+    this.appService.nav.navigateForward('home/activities');
   }
 }

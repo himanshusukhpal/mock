@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ActivitiesPageRoutingModule } from './activities-routing.module';
 
 import { ActivitiesPage } from './activities.page';
-import { DetailsComponent } from './details/details.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -19,7 +18,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ActivitiesPageRoutingModule,
     Ng2SearchPipeModule
   ],
-  declarations: [ActivitiesPage,DetailsComponent],
-  entryComponents:[DetailsComponent]
+  declarations: [ActivitiesPage]
 })
 export class ActivitiesPageModule {}

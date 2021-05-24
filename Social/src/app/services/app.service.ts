@@ -43,10 +43,10 @@ export class AppService {
 
   async presentLoading(message:string,duration:number=null,customClass:string = null) {
     const loading = await this.load.create({
-      cssClass: customClass,
       message: message
     })
-    if(duration) loading.duration = duration;
+    if(customClass) loading["cssClass"] = customClass;
+    if(duration) loading["duration"] = duration;
     await loading.present();
   }
   dimissLoading = async() => await this.load.dismiss();

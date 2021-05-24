@@ -8,25 +8,32 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
+
   isLoading=false;
   login= true;
+
   constructor(
     private appService: AppService
   ) { }
+
   ngOnInit() {
   }
-   async onLogin(){
+
+  async onLogin(){
     this.appService.login();
     this.isLoading=true;
-    await this.appService.presentLoading("Logging In ...",1500);
+    await this.appService.presentLoading("Logging In ...");
     this.appService.nav.navigateForward("home/dashboard");
     await this.appService.dimissLoading();
   }
+
   onSwitch(){
     this.login=!this.login;
   }
-   onSubmit(form: NgForm){
+
+  onSubmit(form: NgForm){
     console.log(form.value.email);
     console.log(form.value.password);
   }
-  }
+
+}

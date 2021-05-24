@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { AppService } from 'src/app/services/app.service';
 
-import { Friends } from '../friends/friends.model';
+import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
 
 @Component({
