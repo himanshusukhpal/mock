@@ -75,7 +75,7 @@ export class FriendsPage implements OnInit {
    this.appService.data.cards.push(this.element);
    console.log(this.element);
    console.log(this.appService.data.cards);
-   this.appService.nav.navigateForward("home/dashboard");
+   this.appService.nav.navigateForward('home/dashboard');
  }
 
 }

@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 import { Activities } from '../../models/acivities.model';
 import { Friends } from '../../models/friends.model';
@@ -122,6 +125,8 @@ export class DataService {
   exampleRec=[];
   exampleDate: string;
   exampleReq=[];
+  activity: number;
+  activityName: string;
 
   constructor() { }
 

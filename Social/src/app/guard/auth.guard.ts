@@ -7,13 +7,13 @@ import { AppService } from 'src/app/services/app.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor (
+  constructor(
     private appService: AppService
   ) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!this.appService.authenticated) this.appService.nav.navigateBack('auth');
+    if(!this.appService.authenticated) {this.appService.nav.navigateBack('auth/login');}
     return this.appService.authenticated;
   }
 

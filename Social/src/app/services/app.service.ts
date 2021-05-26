@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/ban-types */
 
 import { Injectable } from '@angular/core';
 import { NavController, ModalController, LoadingController } from '@ionic/angular';
@@ -14,7 +18,7 @@ import { AlertService } from './alert/alert.service';
 })
 export class AppService {
 
-  activity: number = 1;
+  activity = 1;
   activityName: string;
 
   constructor(
@@ -41,24 +45,26 @@ export class AppService {
     this._isAuthenticated=false;
   }
 
-  async presentLoading(message:string,duration:number=null,customClass:string = null) {
+  async presentLoading(message: string,duration: number=null,customClass: string = null) {
     const loading = await this.load.create({
-      message: message
-    })
-    if(customClass) loading["cssClass"] = customClass;
-    if(duration) loading["duration"] = duration;
+      message
+    });
+    if(customClass) {loading.cssClass = customClass;}
+    if(duration) {loading.duration = duration;}
     await loading.present();
   }
-  dimissLoading = async() => await this.load.dismiss();
+  dimissLoading = async () => await this.load.dismiss();
 
-  async presentModal(component,input_obj:{},customClass:string=null) {
+  async presentModal(component,input_obj: {},customClass: string=null) {
     const modal = await this.modal.create({
-      component: component,
+      component,
       cssClass: customClass,
       componentProps: input_obj
     });
+    console.log(input_obj);
+    console.log('In present modal');
     return await modal.present();
   }
-  dismissModal = async() => await this.modal.dismiss();
+  dismissModal = async () => await this.modal.dismiss();
 
 }

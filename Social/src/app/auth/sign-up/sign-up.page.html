@@ -1,9 +1,86 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>sign-up</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Sign-up</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="main">
+    <ion-grid>
+      <ion-row style="padding-top: 10vw;">
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-card>
+            <ion-card-content>
+              <form #f="ngForm" (ngSubmit)="onSignup(f)">
+                <ion-item lines="full">
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input
+                  type="email"
+                   required
+                   id="email"
+                   #email="ngModel"
+                   ngModel
+                   name="email"></ion-input>
+                </ion-item>
+                <ion-item lines="none"  *ngIf="!email.valid && email.touched">
+                  Should be a valid email address!
+                </ion-item>
+
+                <ion-item lines="full">
+                  <ion-label position="floating">Full Name</ion-label>
+                  <ion-input
+                  type="text"
+                   required
+                   id="name"
+                   #name="ngModel"
+                   ngModel
+                   name="name"></ion-input>
+                </ion-item>
+                <ion-item lines="none"  *ngIf="!name.valid && name.touched">
+                  Should be a valid name!
+                </ion-item>
+
+                <ion-item lines="full">
+                  <ion-label position="floating">Username</ion-label>
+                  <ion-input
+                  type="text"
+                   required
+                   id="username"
+                   #username="ngModel"
+                   ngModel
+                   name="username"></ion-input>
+                </ion-item>
+                <ion-item lines="none"  *ngIf="!username.valid && username.touched">
+                  Should be a valid username!
+                </ion-item>
+
+                <ion-item lines="full">
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input type="password" id="password" required minlength="6" ngModel name="password" #password="ngModel"></ion-input>
+                </ion-item>
+                <ion-item lines="none"  *ngIf="!password.valid && password.touched">
+                  Should be of at least 6 characters!
+                </ion-item>
+
+                <ion-row>
+                  <ion-col>
+                    <ion-button class="primary"  expand="block" type="submit" [disabled]="!email.valid || !password.valid">Signup</ion-button>
+
+
+                  </ion-col>
+                </ion-row>
+              </form>
+            </ion-card-content>
+
+          </ion-card>
+          <ion-card>
+            <ion-card-content>
+              <ion-label>Have an account? <ion-button fill="clear"(click)="login()">Login</ion-button></ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
 </ion-content>

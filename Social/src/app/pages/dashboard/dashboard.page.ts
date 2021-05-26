@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { AppService } from 'src/app/services/app.service';
@@ -82,7 +83,8 @@ export class DashboardPage implements OnInit {
     exRecord: this.sampleRecord,
     exReq: this.sampleReq,
     activity: this.activity
-  })
+  }
+  );
 
   onDetail2(date: string,location: string,record: Friends[] ,req: Array<string>){
     console.log(record);
@@ -96,6 +98,7 @@ export class DashboardPage implements OnInit {
       exReq :req,
       act: this.activity2
     });
+    console.log('In on detail');
   }
 
   onAccept() {

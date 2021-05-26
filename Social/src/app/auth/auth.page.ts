@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -13,18 +14,24 @@ export class AuthPage implements OnInit {
   login= true;
 
   constructor(
-    private appService: AppService
-  ) { }
+    private appService: AppService, private roue: Router) { }
 
   ngOnInit() {
+    this.appService.nav.navigateForward('auth/login');
+
+  }
+  async dashboard(){
+    console.log('In');
+    await this.appService.nav.navigateBack('home/dashboard');
+    //this.roue.navigateByUrl('home/dashboard');
   }
 
   async onLogin(){
-    this.appService.login();
-    this.isLoading=true;
-    await this.appService.presentLoading("Logging In ...");
-    this.appService.nav.navigateForward("home/dashboard");
-    await this.appService.dimissLoading();
+     this.appService.login();
+     this.isLoading=true;
+   // await this.appService.presentLoading('Logging In ...');
+    this.appService.nav.navigateForward('home/dashboard');
+    // await this.appService.dimissLoading();
   }
 
   onSwitch(){
