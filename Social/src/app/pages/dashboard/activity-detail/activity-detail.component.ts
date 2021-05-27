@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 
-import { Friends } from "src/app/models/friends.model"
+import { Friends } from 'src/app/models/friends.model';
 
 @Component({
   selector: 'app-activity-detail',

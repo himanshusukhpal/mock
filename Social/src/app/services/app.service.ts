@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/member-ordering */
@@ -5,7 +6,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/ban-types */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from '@ionic/angular';
 
 import { AuthService } from './auth/auth.service';
@@ -47,15 +48,16 @@ export class AppService {
   }
   dimissLoading = async () => await this.load.dismiss();
 
-  async presentModal(component,input_obj: {},customClass: string=null) {
+  async presentModal(component,input_obj: {}) {
+    console.log(component);
     const modal = await this.modal.create({
-      component,
-      cssClass: customClass,
+      component: component,
       componentProps: input_obj
     });
     console.log(input_obj);
     console.log('In present modal');
     return await modal.present();
+
   }
   dismissModal = async () => await this.modal.dismiss();
 
