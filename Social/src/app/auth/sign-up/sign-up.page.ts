@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -21,19 +22,25 @@ export class SignUpPage implements OnInit {
     this.appService.nav.navigateForward('/auth/login');
   }
   async onSignup(form: NgForm){
+    this.appService.presentLoading('Logging In ...');
+
     this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
       console.log(resdata);
-      console.log('Hi');
-         this.appService.presentLoading('Logging In ...');
-        console.log('Hi');
          this.appService.dimissLoading();
-        this.appService.login();
     this.appService.nav.navigateForward('home/dashboard');
+        },errorRes=>{
+          this.appService.dimissLoading();
+          const code= errorRes.error.error.message;
+          let message='Can\'t Sign you Up, please try again!';
+          if (code==='EMAIL_EXISTS'){message='This Email already exists!';}
+          this.showAlert(message);
+          form.reset();
         });
 
   }
 
-  // showAlert(){
-  //   this.appService.alert.presentAlert({'Authentication failed' ,message, ['Okay']});
-  // }
+  showAlert(message: string){
+    const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
+    this.appService.alert.presentAlert(alerto);
+  }
 }

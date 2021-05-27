@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -12,6 +14,7 @@ import { EndpointsService } from './networking/endpoints.service';
 import { DataService } from './data/data.service';
 import { StorageService } from './storage/storage.service';
 import { AlertService } from './alert/alert.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,17 +36,6 @@ export class AppService {
     public modal: ModalController
   ) { }
 
-  private _isAuthenticated=false;
-  get authenticated(){
-    return this._isAuthenticated;
-  }
-
-  login(){
-    this._isAuthenticated=true;
-  }
-  logout(){
-    this._isAuthenticated=false;
-  }
 
   async presentLoading(message: string,duration: number=null,customClass: string = null) {
     const loading = await this.load.create({

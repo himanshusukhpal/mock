@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -22,13 +23,22 @@ export class LoginPage implements OnInit {
     this.appService.presentLoading('Logging In ...');
     this.appService.auth.login(form.value.email,form.value.password).subscribe(resdata=>{
       console.log(resdata);
-
-        console.log('Hi');
          this.appService.dimissLoading();
-        this.appService.login();
     this.appService.nav.navigateForward('home/dashboard');
-        },
+        },errorRes=>{
+          this.appService.dimissLoading();
+          const code= errorRes.error.error.message;
+          let message='Login failed, please try again!';
+          if (code==='INVALID_PASSWORD'){message='Wrong email or password!';}
+          this.showAlert(message);
+          form.reset();
+        }
         );
   }
+showAlert(message: string){
+  const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
+  this.appService.alert.presentAlert(alerto);
+}
+
   }
 

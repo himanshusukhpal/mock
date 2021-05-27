@@ -27,7 +27,7 @@ export class AuthPage implements OnInit {
   }
 
   async onLogin(){
-     this.appService.login();
+
      this.isLoading=true;
    // await this.appService.presentLoading('Logging In ...');
     this.appService.nav.navigateForward('home/dashboard');
