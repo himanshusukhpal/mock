@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Sign-up</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,55 +11,60 @@
   <div class="main">
     <ion-grid>
       <ion-row style="padding-top: 10vw;">
-        <ion-col size-sm="6" offset-sm="3">
+        <ion-col size-sm="5" offset-sm="4">
           <ion-card>
             <ion-card-content>
               <form #f="ngForm" (ngSubmit)="onSignup(f)">
                 <ion-item lines="full">
-                  <ion-label position="floating">Email</ion-label>
+                  <!-- <ion-label position="floating">Email</ion-label> -->
                   <ion-input
                   type="email"
+                  placeholder="Enter your email address"
                    required
                    id="email"
                    #email="ngModel"
                    ngModel
-                   name="email"></ion-input>
+                   name="email"><ion-icon name="mail-outline"></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!email.valid && email.touched">
                   Should be a valid email address!
                 </ion-item>
 
                 <ion-item lines="full">
-                  <ion-label position="floating">Full Name</ion-label>
+                  <!-- <ion-label position="floating">Full Name</ion-label> -->
                   <ion-input
                   type="text"
+                  placeholder="Full name"
                    required
                    id="name"
                    #name="ngModel"
                    ngModel
-                   name="name"></ion-input>
+                   name="name"><ion-icon name="person-outline"  ></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!name.valid && name.touched">
                   Should be a valid name!
                 </ion-item>
 
                 <ion-item lines="full">
-                  <ion-label position="floating">Username</ion-label>
+                  <!-- <ion-label position="floating">Username</ion-label> -->
                   <ion-input
                   type="text"
+                  placeholder="Enter your username"
                    required
                    id="username"
                    #username="ngModel"
                    ngModel
-                   name="username"></ion-input>
+                   name="username"><ion-icon name="person-circle-outline"></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!username.valid && username.touched">
                   Should be a valid username!
                 </ion-item>
 
                 <ion-item lines="full">
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input type="password" id="password" required minlength="6" ngModel name="password" #password="ngModel"></ion-input>
+                  <!-- <ion-label position="floating">Password</ion-label> -->
+                  <ion-input type="password" id="password" required minlength="6" ngModel name="password" placeholder="***********" #password="ngModel">
+                   <ion-icon name="lock-closed"></ion-icon>
+                  </ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!password.valid && password.touched">
                   Should be of at least 6 characters!
@@ -64,18 +72,42 @@
 
                 <ion-row>
                   <ion-col>
-                    <ion-button class="primary"  expand="block" type="submit" [disabled]="!email.valid || !password.valid">Signup</ion-button>
+                    <div class="sign-btn-wrap">
+                      <ion-button  shape="round" type="submit" expand="block" fill="solid" class="sign-btn" [disabled]="!email.valid || !password.valid">Sign Up</ion-button>
+                     </div>
+                    <!-- <ion-button class="primary"  expand="block" type="submit" [disabled]="!email.valid || !password.valid">Signup</ion-button> -->
 
 
                   </ion-col>
                 </ion-row>
               </form>
+              <div class="text-tag">
+                <span>Sign Up with</span>
+                </div>
+
+                <div class="social-btns">
+                  <ion-button fill="clear"  class="facebookbtn ion-no-padding">
+                <ion-img src="https://i.pinimg.com/736x/d5/18/ec/d518eceea19f4b1a2ee032ddc634dd7d.jpg"></ion-img>
+                  </ion-button>
+                  <ion-button fill="clear"  class="googlebtn ion-no-padding">
+                <ion-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"></ion-img>
+                  </ion-button>
+
+
+                </div>
+
             </ion-card-content>
 
           </ion-card>
           <ion-card>
             <ion-card-content>
-              <ion-label>Have an account? <ion-button fill="clear"(click)="login()">Login</ion-button></ion-label>
+              <ion-item>
+
+                <div class="ion-card-footer">
+       <span>Already have an account?</span><button class="ion-no-padding" (click)="login()">Log In</button>
+        </div>
+
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-col>

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
   <ion-toolbar color ="primary ">
     <ion-title>Login</ion-title>
   </ion-toolbar>
@@ -7,57 +7,104 @@
 <ion-content>
  <div class="main">
    <ion-grid>
-     <ion-row style="padding-top: 15vw;">
-       <ion-col  size-sm="6" offset-sm="3">
-         <ion-card>
+     <ion-row style="padding-top: 20vh;">
+       <ion-col  size-sm="5" offset-sm="4">
+         <ion-card >
+
            <ion-card-content>
             <form #f="ngForm" (ngSubmit)="onLogin(f)">
+              <div class="wrapform">
               <ion-item lines="full">
-                <ion-label position="floating">Email</ion-label>
+                <!-- <ion-label position="floating">
+                  Email</ion-label> -->
                 <ion-input
+                placeholder="Enter your email address"
                 type="email"
                  required
                  id="email"
                  #email="ngModel"
                  ngModel
-                 name="email"></ion-input>
+                 name="email"> <ion-icon name="mail-outline"></ion-icon>
+                </ion-input>
+
               </ion-item>
               <ion-item lines="none"  *ngIf="!email.valid && email.touched">
                 Should be a valid email address!
               </ion-item>
 
               <ion-item lines="full">
-                <ion-label position="floating">Password</ion-label>
+                <!-- <ion-label position="floating"></ion-label> -->
                 <ion-input
                 type="password"
-
+                placeholder="**************"
                  required minlength="6"
                  id="password"
                  #password="ngModel"
                  ngModel
-                 name="password"></ion-input>
+                 name="password"><ion-icon name="lock-closed"></ion-icon></ion-input>
+
               </ion-item>
               <ion-item lines="none"  *ngIf="!password.valid && password.touched">
-                Should be a valid email address!
+                Password should be of minimum 6 characters!
               </ion-item>
 
               <ion-row>
                 <ion-col>
-                  <ion-button class="primary"  expand="block" type="submit" [disabled]="!email.valid || !password.valid">Login</ion-button>
+
+                <div class="password_forgot">
+                   <ion-button fill="clear" class="ion-no-padding">Forgot Password?</ion-button>
+                </div>
+                <div class="sign-btn-wrap">
+                  <ion-button class="sign-btn"  expand="block" shape="round " fill="solid" type="submit" [disabled]="!email.valid || !password.valid">Login</ion-button>
+                  </div>
+
 
 
                 </ion-col>
               </ion-row>
+              </div>
             </form>
+
+            <!-- <ion-row>
+              <ion-col><ion-text class="ion-text-center" color="dark"><h2><b>OR</b></h2></ion-text></ion-col>
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col><ion-text class="ion-text-center" color="dark"><h2><b>Log In With</b></h2></ion-text></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col> <ion-icon class="fb" name="logo-facebook" size="large" ></ion-icon></ion-col>
+              <ion-col><ion-icon class ="google" name="logo-google" size="large"></ion-icon></ion-col>
+            </ion-row> -->
+
+            <div class="text-tag">
+              <span>Or via Social Media</span>
+              </div>
+
+              <div class="social-btns">
+                  <ion-button fill="clear"  class="facebookbtn ion-no-padding">
+                <ion-img src="https://i.pinimg.com/736x/d5/18/ec/d518eceea19f4b1a2ee032ddc634dd7d.jpg"></ion-img>
+                  </ion-button>
+                  <ion-button fill="clear"  class="googlebtn ion-no-padding">
+                <ion-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"></ion-img>
+                  </ion-button>
+
+
+                </div>
            </ion-card-content>
          </ion-card>
 
         <ion-card>
           <ion-card-content>
             <ion-item>
-              <ion-label>Don't have an account? <ion-button fill="clear" (click)="Signup()">Sign- up here</ion-button>
-              </ion-label>
+
+              <div class="ion-card-footer">
+     <span>Don’t have an account?</span><button class="ion-no-padding" (click)="Signup()">Sign Up</button>
+      </div>
+
             </ion-item>
+
           </ion-card-content>
         </ion-card>
        </ion-col>

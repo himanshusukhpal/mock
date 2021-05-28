@@ -13,7 +13,9 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class SignUpPage implements OnInit {
 
-
+fullname: string;
+username: string;
+userdetails: any[]=[];
   constructor( private appService: AppService){ }
 
   ngOnInit() {
@@ -22,12 +24,14 @@ export class SignUpPage implements OnInit {
     this.appService.nav.navigateForward('/auth/login');
   }
   async onSignup(form: NgForm){
+
+    this.userdetails.push({name:form.value.name,username:form.value.username,email:form.value.email});
     this.appService.presentLoading('Logging In ...');
 
     this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
       console.log(resdata);
          this.appService.dimissLoading();
-    this.appService.nav.navigateForward('home/dashboard');
+    this.appService.nav.navigateForward('auth/profile');
         },errorRes=>{
           this.appService.dimissLoading();
           const code= errorRes.error.error.message;
