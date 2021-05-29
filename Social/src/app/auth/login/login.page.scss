@@ -1,13 +1,4 @@
-// ion-icon{
-//   width:100%;
-// display:flex;
-// align-items: center;
-// justify-content:center;
-// color: blue;
-// }
-// ion-icon.google{
-//   color: red;
-// }
+
 
 
 
@@ -19,6 +10,10 @@ ion-header{
 //   --ion-background-color: transparent;
 //   --opacity: 0;
 // }
+.error{
+  color: rgb(255, 44, 44);
+  font-size: 15px;
+}
 
 ion-content{
   //--ion-background-color:#E1EAF9 !important;
@@ -28,10 +23,7 @@ ion-content{
 .wrapform{
   margin-top: 15px;
 }
-.error_message{
-  font-size: 6px;
-  color: red;
-}
+
 ion-item {
     //color:#647B9D;
     color:#74787E;
@@ -39,6 +31,8 @@ ion-item {
   --highlight-color-focused:#1248A0;
   --padding-start:0;
   --inner-padding-end:0;
+  --highlight-color-invalid: #215AB7;
+   --highlight-color-valid: #215AB7;
 
 
 

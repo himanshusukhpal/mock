@@ -27,7 +27,7 @@
                    name="email"><ion-icon name="mail-outline"></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!email.valid && email.touched">
-                  Should be a valid email address!
+                  <div class="error">Should be a valid email address!</div>
                 </ion-item>
 
                 <ion-item lines="full">
@@ -42,7 +42,8 @@
                    name="name"><ion-icon name="person-outline"  ></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!name.valid && name.touched">
-                  Should be a valid name!
+                  <div class="error">Should be a valid name!</div>
+
                 </ion-item>
 
                 <ion-item lines="full">
@@ -57,7 +58,8 @@
                    name="username"><ion-icon name="person-circle-outline"></ion-icon></ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!username.valid && username.touched">
-                  Should be a valid username!
+                  <div class="error">Should be a valid username!</div>
+
                 </ion-item>
 
                 <ion-item lines="full">
@@ -67,7 +69,8 @@
                   </ion-input>
                 </ion-item>
                 <ion-item lines="none"  *ngIf="!password.valid && password.touched">
-                  Should be of at least 6 characters!
+                  <div class="error">Should be of at least 6 characters!</div>
+
                 </ion-item>
 
                 <ion-row>

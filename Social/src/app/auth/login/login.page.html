@@ -29,7 +29,8 @@
 
               </ion-item>
               <ion-item lines="none"  *ngIf="!email.valid && email.touched">
-                Should be a valid email address!
+                <div class="error">Should be a valid email address!</div>
+
               </ion-item>
 
               <ion-item lines="full">
@@ -45,7 +46,8 @@
 
               </ion-item>
               <ion-item lines="none"  *ngIf="!password.valid && password.touched">
-                Password should be of minimum 6 characters!
+                <div class="error">Password should be of minimum 6 characters!</div>
+
               </ion-item>
 
               <ion-row>
