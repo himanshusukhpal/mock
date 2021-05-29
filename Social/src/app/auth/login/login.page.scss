@@ -34,6 +34,7 @@ ion-content{
 }
 ion-item {
     //color:#647B9D;
+    color:#74787E;
   --border-color: #D4D7DB;
   --highlight-color-focused:#1248A0;
   --padding-start:0;
@@ -41,10 +42,10 @@ ion-item {
 
 
 
-    font-size: 12px;
+    font-size: 13px;
      --color-focused:#1248A0 !important;
      ion-input{
-       color:#647B9D;
+      color:#74787E;
 
      }
     ion-icon{
@@ -84,14 +85,13 @@ ion-item {
     background-color: #215AB7;
   }
 }
-
 .text-tag{
-  margin-top: 30px;
+  margin-top: 35px;
   text-align: center;
   span{
     font-size: 13px;
     font-weight: normal;
-    color:#898585;
+    color:#334862;
   }
 }
 
