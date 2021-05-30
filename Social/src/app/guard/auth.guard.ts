@@ -14,10 +14,12 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.appService.auth.authenticated.pipe(take(1),tap(isAuthenticated=>{
-      console.log(isAuthenticated);
-      if(!isAuthenticated) {this.appService.nav.navigateBack('auth/login');}
-    }));
+    // return this.appService.auth.authenticated.pipe(take(1),tap(isAuthenticated=>{
+    //   console.log(isAuthenticated);
+    //   if(!isAuthenticated) {this.appService.nav.navigateBack('auth/login');}
+    // }));
+    if(this.appService.auth.authenticated===false){this.appService.nav.navigateBack('auth/login');}
+   return this.appService.auth.authenticated;
   }
 
 }

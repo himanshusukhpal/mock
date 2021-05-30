@@ -110,4 +110,9 @@ export class DashboardPage implements OnInit {
     this.cards=false;
   }
 
+  logout(){
+    this.appService.auth.signOut();
+    this.appService.nav.navigateBack('auth/login');
+  }
+
 }

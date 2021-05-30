@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { AppService } from 'src/app/services/app.service';
 
 
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -23,28 +24,42 @@ userdetails: any[]=[];
   login(){
     this.appService.nav.navigateForward('/auth/login');
   }
-  async onSignup(form: NgForm){
+  // async onSignup(form: NgForm){
 
-    this.userdetails.push({name:form.value.name,username:form.value.username,email:form.value.email});
+  //   this.userdetails.push({name:form.value.name,username:form.value.username,email:form.value.email});
+  //   this.appService.presentLoading('Logging In ...');
+
+  //   this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
+  //     console.log(resdata);
+  //        this.appService.dimissLoading();
+  //   this.appService.nav.navigateForward('auth/profile');
+  //       },errorRes=>{
+  //         this.appService.dimissLoading();
+  //         const code= errorRes.error.error.message;
+  //         let message='Can\'t Sign you Up, please try again!';
+  //         if (code==='EMAIL_EXISTS'){message='This Email already exists!';}
+  //         this.showAlert(message);
+  //         form.reset();
+  //       });
+
+  // }
+  onSignup(form: NgForm){
     this.appService.presentLoading('Logging In ...');
-
-    this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
-      console.log(resdata);
-         this.appService.dimissLoading();
-    this.appService.nav.navigateForward('auth/profile');
-        },errorRes=>{
-          this.appService.dimissLoading();
-          const code= errorRes.error.error.message;
-          let message='Can\'t Sign you Up, please try again!';
-          if (code==='EMAIL_EXISTS'){message='This Email already exists!';}
-          this.showAlert(message);
-          form.reset();
-        });
-
-  }
+    this.appService.auth.signup(form.value.email, form.value.password)
+    .then((res) => {
+      // Do something here
+      this.appService.dimissLoading();
+        this.appService.nav.navigateForward('auth/profile');
+    }).catch((error) => {
+      this.appService.dimissLoading();
+      this.showAlert(error.message);
+      form.reset();
+    });
+}
 
   showAlert(message: string){
     const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
     this.appService.alert.presentAlert(alerto);
   }
 }
+
