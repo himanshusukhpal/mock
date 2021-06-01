@@ -44,12 +44,13 @@ userdetails: any[]=[];
 
   // }
   onSignup(form: NgForm){
+    this.appService.data.username=form.value.username;
     this.appService.presentLoading('Logging In ...');
     this.appService.auth.signup(form.value.email, form.value.password)
     .then((res) => {
       // Do something here
       this.appService.dimissLoading();
-        this.appService.nav.navigateForward('auth/profile');
+        this.appService.nav.navigateForward('auth/edit-profile');
     }).catch((error) => {
       this.appService.dimissLoading();
       this.showAlert(error.message);

@@ -1,12 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 export class User{
   constructor(
-    public id: string,
-    public email: string ,
+    public id?: string,
+    public email?: string ,
     //private _token: string,
-    public token: string,
+    public token?: string,
     //private tokenExpirationDate: Date
-    public tokenExpirationDate: Date
+    public tokenExpirationDate?: Date,
+    public fname?: any,
+    public lname?: string,
+    public phone?: string,
+    public username?: string,
+    public address?: string
     ){}
 
     // get token(){

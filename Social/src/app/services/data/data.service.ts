@@ -6,6 +6,7 @@ import { Activities } from '../../models/acivities.model';
 import { Friends } from '../../models/friends.model';
 import { Locations } from '../../models/location.model';
 import { Card } from '../../models/card.model';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,9 @@ export class DataService {
   ];
 
   cards: Card[]=[];
+  username: string;
+
+  userdetails: User[]=[];
 
   userRecords: Friends[]= [
     {

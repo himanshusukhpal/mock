@@ -114,5 +114,7 @@ export class DashboardPage implements OnInit {
     this.appService.auth.signOut();
     this.appService.nav.navigateBack('auth/login');
   }
-
+  profile(){
+    this.appService.nav.navigateForward('auth/edit-profile');
+  }
 }

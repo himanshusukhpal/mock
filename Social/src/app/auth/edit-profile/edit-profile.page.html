@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+    <ion-grid>
+      <ion-row style="padding-top: 15vh;">
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-card>
+            <ion-card-content>
+              <form #f="ngForm" (ngSubmit)="editProfile(f)">
+                <ion-item lines="full">
+                  <!-- <ion-label position="floating">Email</ion-label> -->
+                  <ion-input
+                  type="text"
+                  placeholder="First Name"
+                   id="fname"
+                   #fname="ngModel"
+                   ngModel
+                   name="fname"><ion-icon name="person-circle-outline"></ion-icon></ion-input>
+                </ion-item>
+
+                <ion-item lines="full">
+                  <!-- <ion-label position="floating">Full Name</ion-label> -->
+                  <ion-input
+                  type="text"
+                  placeholder="Last name"
+
+                   id="lname"
+                   #lname="ngModel"
+                   ngModel
+                   name="lname"><ion-icon name="person-outline"  ></ion-icon></ion-input>
+                </ion-item>
+
+
+                <ion-item lines="full">
+                  <!-- <ion-label position="floating">Username</ion-label> -->
+                  <ion-input
+                  type="tel"
+                  placeholder="Phone No."
+
+                   id="phone"
+                   #phone="ngModel"
+                   ngModel
+                   name="phone"><ion-icon name="call"></ion-icon></ion-input>
+                </ion-item>
+
+                <ion-item lines="full">
+                  <!-- <ion-label position="floating">Username</ion-label> -->
+                  <ion-input
+                  type="text"
+                  placeholder="Address"
+
+                   id="address"
+                   #address="ngModel"
+                   ngModel
+                   name="address"><ion-icon name="home"></ion-icon></ion-input>
+                </ion-item>
+
+
+
+                <ion-item lines="full">
+                  <!-- <ion-label position="floating">Password</ion-label> -->
+                  <ion-input type="email" id="email" ngModel name="email" placeholder="Registration email" #password="ngModel">
+                   <ion-icon name="mail"></ion-icon>
+                  </ion-input>
+                </ion-item>
+
+                <div class="social-btns">
+                  <ion-item>
+                    <ion-button fill="clear"  class="facebookbtn ion-no-padding">
+                    <ion-img src="https://i.pinimg.com/736x/d5/18/ec/d518eceea19f4b1a2ee032ddc634dd7d.jpg"></ion-img>
+                      </ion-button>
+                      <ion-input type="text" id="fb" ngModel name="fb" placeholder="Facebook URL here" #fb="ngModel"></ion-input>
+                    </ion-item>
+
+
+
+                  <ion-item>
+                    <ion-button fill="clear"  class="instabtn ion-no-padding">
+                    <ion-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"></ion-img>
+                      </ion-button>
+                      <ion-input type="text" id="fb" ngModel name="fb" placeholder="Instagram URL here" #fb="ngModel"></ion-input>
+                    </ion-item>
+
+
+
+                </div>
+
+                <ion-row>
+                  <ion-col>
+                    <div class="sign-btn-wrap">
+                      <ion-button  shape="round" type="submit" expand="block" fill="solid" class="sign-btn">Save</ion-button>
+                     </div>
+                    <!-- <ion-button class="primary"  expand="block" type="submit" [disabled]="!email.valid || !password.valid">Signup</ion-button> -->
+
+
+                  </ion-col>
+                </ion-row>
+              </form>
+
+
+
+
+            </ion-card-content>
+
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
