@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
     this.appService.presentLoading('Logging In ...');
     this.appService.auth.login(form.value.email, form.value.password)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
           this.appService.dimissLoading();
           this.appService.nav.navigateForward('home/dashboard');
           //console.log('ji');
@@ -50,6 +50,8 @@ export class LoginPage implements OnInit {
         this.showAlert(error.message);
         form.reset();
       });
+      //this.appService.data.email=this.appService.auth.email;
+      console.log(this.appService.auth.email);
   }
 showAlert(message: string){
   const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};

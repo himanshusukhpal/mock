@@ -30,8 +30,9 @@ export class DataService {
 
   cards: Card[]=[];
   username: string;
+  email: string;
 
-  userdetails: User[]=[];
+  userdetails: User={};
 
   userRecords: Friends[]= [
     {

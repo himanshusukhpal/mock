@@ -45,6 +45,9 @@ userdetails: any[]=[];
   // }
   onSignup(form: NgForm){
     this.appService.data.username=form.value.username;
+    console.log(this.appService.data.username);
+    this.appService.data.email=form.value.email;
+    console.log(this.appService.data.email);
     this.appService.presentLoading('Logging In ...');
     this.appService.auth.signup(form.value.email, form.value.password)
     .then((res) => {

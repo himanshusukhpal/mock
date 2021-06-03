@@ -11,9 +11,9 @@ export class AlertService {
     private alertCtrl: AlertController
     ) { }
 
-  async presentToast(message:string, pos:"top" | "bottom" | "middle" = "top") {
+  async presentToast(message: string, pos: 'top' | 'bottom' | 'middle' = 'top') {
     const toast = await this.toastCtrl.create({
-      message: message,
+      message,
       duration: 1500,
       position: pos,
       color: 'dark'
@@ -23,12 +23,12 @@ export class AlertService {
 
   async presentAlert(alerto) {
     const alert = await this.alertCtrl.create({
-      header: alerto["header"],
-      cssClass: alerto['customClass'],
-      message: alerto["message"],
-      inputs: alerto["inputs"],
-      buttons: alerto["buttons"],
-      backdropDismiss: alerto['backdropDismiss']
+      header: alerto.header,
+      cssClass: alerto.customClass,
+      message: alerto.message,
+      inputs: alerto.inputs,
+      buttons: alerto.buttons,
+      backdropDismiss: alerto.backdropDismiss
     });
     alert.present();
   }

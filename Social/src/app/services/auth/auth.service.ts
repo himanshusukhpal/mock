@@ -5,15 +5,17 @@
 /* eslint-disable no-underscore-dangle */
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import { BehaviorSubject, from } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { tap } from 'rxjs/operators';
+import { AppService } from '../app.service';
+
 
 
 interface AuthResponseData{
-  idToken:	string;
+idToken:	string;
 email:	string;
 refreshToken:	string;
 expiresIn:	string;
@@ -39,7 +41,7 @@ export class AuthService {
   //       }));
   // }
   userData: any;
-
+  email: any;
   constructor(private http: HttpClient
     ,public afstore: AngularFirestore
     ,public ngFireAuth: AngularFireAuth,
@@ -50,6 +52,8 @@ export class AuthService {
       this.ngFireAuth.authState.subscribe(user => {
         if (user) {
           this.userData = user;
+          this.email=user.email;
+          console.log(this.email +' hi');
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
@@ -68,6 +72,11 @@ export class AuthService {
   //       ));
   // }
   signup(email: string, password: string) {
+    this.ngFireAuth.onAuthStateChanged(user => {if(user) {
+      console.log(user.uid);
+      console.log(user.email);
+    }
+  });
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
   }
 
@@ -81,6 +90,7 @@ export class AuthService {
   login(email: string, password: string) {
     console.log(this.ngFireAuth.signInWithEmailAndPassword(email, password));
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
+
   }
 
   // private setUserData(userData: AuthResponseData){
@@ -92,6 +102,15 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null ) ? true : false;
   }
+  // getemail(){
+  //   const user= JSON.parse(localStorage.getItem('user'));
+  //   console.log(user);
+  //   return user.email;
+  // }
+
+ update(user){
+   this.ngFireAuth.updateCurrentUser(user).then(()=>console.log('updated')).catch(err=>{console.log(err);});
+ }
 
   setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afstore.doc(`users/${user.uid}`);
