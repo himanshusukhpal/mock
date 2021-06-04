@@ -7,6 +7,7 @@ import { Friends } from '../../models/friends.model';
 import { Locations } from '../../models/location.model';
 import { Card } from '../../models/card.model';
 import { User } from 'src/app/models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class DataService {
     new Activities('Hiking','https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528',8),
     new Activities('Biking','https://cf.bstatic.com/data/xphoto/1182x887/228/22858255.jpg?size=S',9),
   ];
+
 
   cards: Card[]=[];
   username: string;

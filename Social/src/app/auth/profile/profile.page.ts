@@ -16,16 +16,18 @@ import { User } from 'src/app/models/user.model';
 export class ProfilePage implements OnInit{
 
   constructor(private appservice: AppService, private http: HttpClient) { }
-  element=[];
+  //element=this.appservice.data.fetchedUser.asObservable();
+  element1=[];
 
   ngOnInit() {
-    this.fetchUser();
+    console.log('in init');
+//this.fetchUser();
   }
-  ionViewDidEnter(){
-
-    console.log('in view');
+  ionViewWillEnter(){
+    console.log('In view');
+   // console.log(this.element);
     this.fetchUser();
-    console.log(this.element);
+    //console.log(this.element);
   }
 
   profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
@@ -34,6 +36,9 @@ export class ProfilePage implements OnInit{
     //console.log(this.locate);
     this.appservice.nav.navigateForward('auth/edit-profile');
   }
+  home(){
+    this.appservice.nav.navigateBack('home/dashboard');
+  }
 
   fetchUser(){
     this.http.get<User>('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json')
@@ -41,6 +46,7 @@ export class ProfilePage implements OnInit{
       {//console.log(resData.email);
         const user=[];
         for (const key in resData){
+          console.log(this.appservice.auth.email);
           if(resData[key].email===this.appservice.auth.email)
           {user.push({userID:key,email:resData[key].email, ...resData[key]});}
 
@@ -50,12 +56,16 @@ export class ProfilePage implements OnInit{
        // console.log(this.element);
         return user;
       }))
-    .subscribe(users=>{ this.element=(users);
+    .subscribe(users=>{
+      //this.appservice.data.fetchedUser.next(users);
+      //this.element1=(users);
       console.log(users);
-      console.log('User',this.element);
+      this.element1=(users);
+      //console.log(this.element1+'x');
+      //console.log('User',this.element);
      }
     );
-    console.log(this.element);
+    //console.log(this.element);
 
   }
 

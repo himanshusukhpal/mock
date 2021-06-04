@@ -9,8 +9,6 @@ import { BehaviorSubject, from } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { tap } from 'rxjs/operators';
-import { AppService } from '../app.service';
 
 
 

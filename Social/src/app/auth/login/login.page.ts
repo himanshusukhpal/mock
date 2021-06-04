@@ -36,13 +36,13 @@ export class LoginPage implements OnInit {
   //       );
   // }
 
-  onLogin(form: NgForm) {
+  async onLogin(form: NgForm) {
     this.appService.presentLoading('Logging In ...');
-    this.appService.auth.login(form.value.email, form.value.password)
-      .then((res) => {
+    await this.appService.auth.login(form.value.email, form.value.password)
+      .then( (res) => {
         //console.log(res);
           this.appService.dimissLoading();
-          this.appService.nav.navigateForward('home/dashboard');
+           this.appService.nav.navigateForward('home/dashboard');
           //console.log('ji');
         }
       ).catch((error) => {
