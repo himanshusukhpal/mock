@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit{
   constructor(private appservice: AppService, private http: HttpClient) { }
   //element=this.appservice.data.fetchedUser.asObservable();
   element1=[];
-
+  email=this.appservice.auth.email;
   ngOnInit() {
     console.log('in init');
 //this.fetchUser();
@@ -41,12 +41,12 @@ export class ProfilePage implements OnInit{
   }
 
   fetchUser(){
-    this.http.get<User>('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json')
+    this.http.get<User>('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)
     .pipe(map(resData=>
       {//console.log(resData.email);
         const user=[];
         for (const key in resData){
-          console.log(this.appservice.auth.email);
+          console.log(this.email);
           if(resData[key].email===this.appservice.auth.email)
           {user.push({userID:key,email:resData[key].email, ...resData[key]});}
 

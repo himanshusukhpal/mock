@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable max-len */
@@ -9,6 +10,7 @@ import { BehaviorSubject, from } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 
 
@@ -40,6 +42,7 @@ export class AuthService {
   // }
   userData: any;
   email: any;
+  userToken: string;
   constructor(private http: HttpClient
     ,public afstore: AngularFirestore
     ,public ngFireAuth: AngularFireAuth,
@@ -51,6 +54,7 @@ export class AuthService {
         if (user) {
           this.userData = user;
           this.email=user.email;
+          user.getIdToken().then(res=>{this.userToken=res;});
           console.log(this.email +' hi');
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
@@ -59,6 +63,7 @@ export class AuthService {
           JSON.parse(localStorage.getItem('user'));
         }
       });
+     // this.token1=ngFireAuth.idToken;
 }
 
   // signup(email: string, password: string){
