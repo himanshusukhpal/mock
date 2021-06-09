@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +14,8 @@ import { AppService } from 'src/app/services/app.service';
 export class LoginPage implements OnInit {
 
   constructor(private appService: AppService) { }
+  userdata={};
+  newdata={};
 
   ngOnInit() {
   }
@@ -43,6 +46,11 @@ export class LoginPage implements OnInit {
         //console.log(res);
           this.appService.dimissLoading();
            this.appService.nav.navigateForward('home/dashboard');
+           this.userdata=this.appService.auth.userData;
+           //console.log(this.userdata);
+           this.appService.store.setUser(this.userdata);
+            this.appService.store.getUser().then(res1=>{console.log(res1.uid,'data');});
+            //console.log(this.newdata,'data');
           //console.log('ji');
         }
       ).catch((error) => {
@@ -51,7 +59,6 @@ export class LoginPage implements OnInit {
         form.reset();
       });
       //this.appService.data.email=this.appService.auth.email;
-      console.log(this.appService.auth.email);
   }
 showAlert(message: string){
   const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};

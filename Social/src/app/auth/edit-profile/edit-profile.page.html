@@ -19,6 +19,7 @@
                   <!-- <ion-label position="floating">Email</ion-label> -->
                   <ion-input
                   type="text"
+                  value={{userDetails.fname}}
                   placeholder="First Name"
                    id="fname"
                    #fname="ngModel"
@@ -31,7 +32,7 @@
                   <ion-input
                   type="text"
                   placeholder="Last name"
-
+                  value={{userDetails.lname}}
                    id="lname"
                    #lname="ngModel"
                    ngModel
@@ -43,7 +44,7 @@
                   <ion-input
                   type="text"
                   placeholder="Username"
-
+                  value={{userDetails.username}}
                    id="username"
                    #username="ngModel"
                    ngModel
@@ -57,7 +58,7 @@
                   <ion-input
                   type="tel"
                   placeholder="Phone No."
-
+                  value={{userDetails.phone}}
                    id="phone"
                    #phone="ngModel"
                    ngModel
@@ -69,7 +70,7 @@
                   <ion-input
                   type="text"
                   placeholder="Address"
-
+                  value={{userDetails.address}}
                    id="address"
                    #address="ngModel"
                    ngModel

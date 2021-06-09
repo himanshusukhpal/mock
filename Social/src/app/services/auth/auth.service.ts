@@ -11,6 +11,7 @@ import { User } from 'src/app/models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { AppService } from '../app.service';
 
 
 
@@ -41,24 +42,28 @@ export class AuthService {
   //       }));
   // }
   userData: any;
+  userdetails: User={};
   email: any;
   userToken: string;
   constructor(private http: HttpClient
     ,public afstore: AngularFirestore
     ,public ngFireAuth: AngularFireAuth,
     //public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
    )
     {
       this.ngFireAuth.authState.subscribe(user => {
         if (user) {
+          console.log('in if');
           this.userData = user;
+          console.log(this.userData);
           this.email=user.email;
           user.getIdToken().then(res=>{this.userToken=res;});
           console.log(this.email +' hi');
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
+          console.log('in else');
           localStorage.setItem('user', null);
           JSON.parse(localStorage.getItem('user'));
         }
@@ -74,10 +79,14 @@ export class AuthService {
   //     tap(this.setUserData.bind(this)
   //       ));
   // }
+
   signup(email: string, password: string) {
     this.ngFireAuth.onAuthStateChanged(user => {if(user) {
+      this.userdetails.email=user.email;
+      this.userdetails.id=user.uid;
       console.log(user.uid);
       console.log(user.email);
+      console.log(this.userdetails);
     }
   });
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
@@ -91,6 +100,9 @@ export class AuthService {
   //       ));
   // }
   login(email: string, password: string) {
+    this.ngFireAuth.onAuthStateChanged(user=>{if(user){
+      this.userdetails.id=user.uid;
+    }});
     console.log(this.ngFireAuth.signInWithEmailAndPassword(email, password));
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
 

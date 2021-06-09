@@ -16,43 +16,57 @@ import { Observable } from 'rxjs';
 export class EditProfilePage implements OnInit {
 
   constructor(private appservice: AppService, private http: HttpClient) { }
+  userDetails: User={};
   ngOnInit() {
     //console.log(this.appservice.auth.userData
+    console.log(this.appservice.auth.userdetails.id);
+    this.callUser();
+
   }
 
-
+async callUser(){
+  this.userDetails=await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
+  //this.element1 =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
+  console.log(this.userDetails);
+}
   editProfile(form: NgForm){
     //console.log(form.value.fname)
-    this.appservice.data.userdetails.fname=form.value.fname;
-    this.appservice.data.userdetails.lname=form.value.lname;
-    this.appservice.data.userdetails.address=form.value.address;
-    this.appservice.data.userdetails.phone=form.value.phone;
-    this.appservice.data.userdetails.email=this.appservice.auth?.email;
-    this.appservice.data.userdetails.username=form.value.username;
-    console.log(this.appservice.auth.userToken);
+    this.userDetails.fname=form.value.fname;
+    this.userDetails.lname=form.value.lname;
+    this.userDetails.address=form.value.address;
+    this.userDetails.phone=form.value.phone;
+   // this.appservice.data.userdetails.email=this.appservice.auth?.email;
+    this.userDetails.username=form.value.username;
+    console.log(this.userDetails);
+    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json',this.userDetails).subscribe(res=>{
+      console.log(res);
+      this.appservice.nav.navigateBack('auth/profile');
+    });
 
-    this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)
-    .pipe(map(resFetch=>{
-      let found=false;
-      for(const key in resFetch){
-        if(resFetch[key].email===this.appservice.auth.email){
-          found=true;
-          console.log('in if');
-          this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+key+'.json?auth='+this.appservice.auth.userToken,this.appservice.data.userdetails
-          ).subscribe(editres=>{console.log(editres);
-          this.appservice.nav.navigateForward('auth/profile');
-        });
-          break;
-        }
 
-      }
-      if(found===false){
-          console.log('in else');
-          this.http.post('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken,this.appservice.data.userdetails).subscribe(res=>{ this.appservice.nav.navigateForward('auth/profile');//console.log(res);
-        });
-      }
+  //   this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)
+  //   .pipe(map(resFetch=>{
+  //     let found=false;
+  //     for(const key in resFetch){
+  //       if(resFetch[key].email===this.appservice.auth.email){
+  //         found=true;
+  //         console.log('in if');
+  //         this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+key+'.json?auth='+this.appservice.auth.userToken,this.appservice.data.userdetails
+  //         ).subscribe(editres=>{console.log(editres);
+  //         this.appservice.nav.navigateForward('auth/profile');
+  //       });
+  //         break;
+  //       }
 
-    })).subscribe(resdata=>{});
-  }
+  //     }
+  //     if(found===false){
+  //         console.log('in else');
+  //         this.http.post('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken,this.appservice.data.userdetails).subscribe(res=>{ this.appservice.nav.navigateForward('auth/profile');//console.log(res);
+  //       });
+  //     }
+
+  //   })).subscribe(resdata=>{});
+  //
+}
 
 }
