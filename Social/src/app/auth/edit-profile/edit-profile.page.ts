@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
@@ -25,9 +26,12 @@ export class EditProfilePage implements OnInit {
   }
 
 async callUser(){
-  this.userDetails=await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
+  await this.appservice.store.getUser().then(res1=>{console.log(res1,'res1');
+    this.userDetails=res1;});
+  console.log(this.userDetails,'before');
+  //this.userDetails=await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
   //this.element1 =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
-  console.log(this.userDetails);
+  //console.log(this.userDetails);
 }
   editProfile(form: NgForm){
     //console.log(form.value.fname)
@@ -37,11 +41,12 @@ async callUser(){
     this.userDetails.phone=form.value.phone;
    // this.appservice.data.userdetails.email=this.appservice.auth?.email;
     this.userDetails.username=form.value.username;
-    console.log(this.userDetails);
-    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json',this.userDetails).subscribe(res=>{
-      console.log(res);
+    console.log(this.userDetails,'after');
+    this.appservice.store.setUser(this.userDetails);
+    // this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json',this.userDetails).subscribe(res=>{
+    //   console.log(res);
       this.appservice.nav.navigateBack('auth/profile');
-    });
+   // });
 
 
   //   this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)

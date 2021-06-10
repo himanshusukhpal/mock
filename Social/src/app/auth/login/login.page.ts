@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +16,10 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService,private http: HttpClient) { }
   userdata={};
   newdata={};
+  id: string;
 
   ngOnInit() {
   }
@@ -42,14 +46,18 @@ export class LoginPage implements OnInit {
   async onLogin(form: NgForm) {
     this.appService.presentLoading('Logging In ...');
     await this.appService.auth.login(form.value.email, form.value.password)
-      .then( (res) => {
+      .then ( async (res) => {
         //console.log(res);
           this.appService.dimissLoading();
            this.appService.nav.navigateForward('home/dashboard');
-           this.userdata=this.appService.auth.userData;
-           //console.log(this.userdata);
-           this.appService.store.setUser(this.userdata);
-            this.appService.store.getUser().then(res1=>{console.log(res1.uid,'data');});
+           this.id=this.appService.auth.userData.uid;
+           console.log('res:',this.id);
+           this.userdata =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json').toPromise();
+           console.log(this.userdata);
+
+           await this.appService.store.setUser(this.userdata);
+
+            this.appService.store.getUser().then(res1=>{console.log(res1.id,'data');});
             //console.log(this.newdata,'data');
           //console.log('ji');
         }

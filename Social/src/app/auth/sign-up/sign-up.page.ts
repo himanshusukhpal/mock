@@ -55,6 +55,7 @@ userdetails: User={};
       this.userdetails=this.appService.auth.userdetails;
       this.userdetails.username=form.value.username;
       console.log(this.userdetails);
+      this.appService.store.setUser(this.userdetails);
       this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.userdetails.id+'.json',this.userdetails).subscribe(
         resData=>{
           console.log(resData);
@@ -73,11 +74,9 @@ userdetails: User={};
     }
     );
     console.log('on signup');
-    this.newF();
+
 }
-newF(){
-console.log('newF');
-}
+
   showAlert(message: string){
     const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
     this.appService.alert.presentAlert(alerto);

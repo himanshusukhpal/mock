@@ -5,6 +5,7 @@ import { AppService } from 'src/app/services/app.service';
 
 import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,8 @@ import { Card } from 'src/app/models/card.model';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  id: string;
+  userDetails={};
   sampleLoc='Miraj Cinemas';
   filterTerm: string;
   buttons=true;
@@ -58,7 +61,7 @@ export class DashboardPage implements OnInit {
   };
 
   constructor(
-    private appService: AppService
+    private appService: AppService, private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -110,9 +113,14 @@ export class DashboardPage implements OnInit {
     this.cards=false;
   }
 
-  logout(){
+  async logout(){
     this.appService.auth.signOut();
-    this.appService.nav.navigateBack('auth/login');
+    await this.appService.store.getUser().then(res=>{this.userDetails=res;
+    this.id=res.id;});
+    console.log(this.userDetails);
+
+    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json',this.userDetails).subscribe(res1=>{this.appService.nav.navigateBack('auth/login');});
+    this.appService.store.removeUser();
   }
   profile(){
     this.appService.nav.navigateForward('auth/profile');

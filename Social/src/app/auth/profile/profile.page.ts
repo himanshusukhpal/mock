@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
+import { combineAll } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -18,18 +19,25 @@ export class ProfilePage implements OnInit{
   //element=this.appservice.data.fetchedUser.asObservable();
   element1: User={};
   getdata ={};
-  id: string;
+  id;
   email=this.appservice.auth.email;
   ngOnInit() {
     console.log('in init');
+    this.appservice.store.getUser().then(res=>{console.log(res.uid);
+      this.id=(res.uid);
+      console.log(this.id);
+     // console.log(res.uid,'data');
+     });
 //this.fetchUser();
   }
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
   //   this.appservice.store.getUser().then(res=>{this.getdata=res;
   //     console.log(res);});
   //  // this.id=this.getdata.uid;
   //   console.log(this.id);
-  // this.appservice.store.getUser().then(res=>{console.log(res.uid);
+  //this.id =await this.appservice.store.getUser();
+  //console.log(this.id.uid,'id');
+
   //   this.id=res.uid;});
   // console.log(this.id);
     console.log('In view');
@@ -49,8 +57,9 @@ export class ProfilePage implements OnInit{
   }
 
   async fetchUser(){
-    console.log(this.appservice.auth.userdetails.id);
-    this.element1 =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
+    //console.log(this.appservice.auth.userdetails.id);
+    console.log(this.id,'this');
+    this.element1 =await this.appservice.store.getUser();
     console.log('ELement: ',this.element1);
      // this.element1=(users);
      // console.log(this.element1);

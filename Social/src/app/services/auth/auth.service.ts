@@ -48,15 +48,14 @@ export class AuthService {
   constructor(private http: HttpClient
     ,public afstore: AngularFirestore
     ,public ngFireAuth: AngularFireAuth,
-    //public router: Router,
     public ngZone: NgZone,
    )
     {
       this.ngFireAuth.authState.subscribe(user => {
         if (user) {
           console.log('in if');
-          this.userData = user;
-          console.log(this.userData);
+          this.userData=user;
+          console.log(this.userData,'userdata');
           this.email=user.email;
           user.getIdToken().then(res=>{this.userToken=res;});
           console.log(this.email +' hi');
