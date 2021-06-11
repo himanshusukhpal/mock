@@ -82,7 +82,7 @@ export class AuthService {
     this.ngFireAuth.onAuthStateChanged(user => {if(user) {
       this.userdetails.email=user.email;
      // user.getIdToken().then(async (res)=>{this.userToken= res; });
-      this.userdetails.id=user.uid;
+      //this.userdetails.id=user.uid;
       console.log(user.uid);
       console.log(user.email);
       console.log(this.userdetails);
@@ -101,6 +101,7 @@ export class AuthService {
   // }
   login(email: string, password: string) {
     this.ngFireAuth.onAuthStateChanged(user=>{if(user){
+      console.log(user.uid,'uid');
       this.userdetails.id=user.uid;
     }});
     console.log(this.ngFireAuth.signInWithEmailAndPassword(email, password));

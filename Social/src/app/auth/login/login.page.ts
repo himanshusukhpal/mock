@@ -46,14 +46,16 @@ export class LoginPage implements OnInit {
 
   async onLogin(form: NgForm) {
     this.appService.presentLoading('Logging In ...');
-    this.appService.store.seToken(this.appService.auth.userToken);
     await this.appService.auth.login(form.value.email, form.value.password)
       .then ( async (res) => {
         //console.log(res);
           this.appService.dimissLoading();
            this.appService.nav.navigateForward('home/dashboard');
-           this.id=this.appService.auth.userData.uid;
-           await this.appService.store.getToken().then(token=>{this.token=token;});
+           this.id=this.appService.auth.userdetails.id;
+           console.log(this.id,'id');
+           this.appService.store.seToken(this.appService.auth.userToken);
+           await this.appService.store.getToken().then(token=>{this.token=token;
+          console.log(token,'token1');});
 
            this.userdata =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token).toPromise();
            console.log(this.userdata);
