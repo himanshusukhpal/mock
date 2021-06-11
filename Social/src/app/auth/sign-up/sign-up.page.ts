@@ -18,6 +18,7 @@ import { User } from 'src/app/models/user.model';
 export class SignUpPage implements OnInit {
 
 fullname: string;
+token: string;
 
 userdetails: User={};
   constructor( private appService: AppService, private http: HttpClient){ }
@@ -50,13 +51,15 @@ userdetails: User={};
     //this.appService.auth..username=form.value.username;
     this.appService.presentLoading('Logging In ...');
     this.appService.auth.signup(form.value.email, form.value.password)
-    .then((res) => {
+    .then(async (res) => {
       console.log('then');
       this.userdetails=this.appService.auth.userdetails;
       this.userdetails.username=form.value.username;
       console.log(this.userdetails);
       this.appService.store.setUser(this.userdetails);
-      this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.userdetails.id+'.json',this.userdetails).subscribe(
+      this.appService.store.seToken(this.appService.auth.userToken);
+      await this.appService.store.getToken().then(token=>{this.token=token;});
+      this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.userdetails.id+'.json?auth='+this.token,this.userdetails).subscribe(
         resData=>{
           console.log(resData);
           this.appService.nav.navigateForward('auth/profile');

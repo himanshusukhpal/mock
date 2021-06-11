@@ -43,7 +43,6 @@ export class AuthService {
   // }
   userData: any;
   userdetails: User={};
-  email: any;
   userToken: string;
   constructor(private http: HttpClient
     ,public afstore: AngularFirestore
@@ -51,14 +50,14 @@ export class AuthService {
     public ngZone: NgZone,
    )
     {
-      this.ngFireAuth.authState.subscribe(user => {
+      this.ngFireAuth.authState.subscribe(async user => {
         if (user) {
           console.log('in if');
           this.userData=user;
           console.log(this.userData,'userdata');
-          this.email=user.email;
-          user.getIdToken().then(res=>{this.userToken=res;});
-          console.log(this.email +' hi');
+         await user.getIdToken().then(res=>{this.userToken=res;console.log(res,'re');});
+          console.log(this.userToken,'token');
+
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
@@ -82,10 +81,12 @@ export class AuthService {
   signup(email: string, password: string) {
     this.ngFireAuth.onAuthStateChanged(user => {if(user) {
       this.userdetails.email=user.email;
+     // user.getIdToken().then(async (res)=>{this.userToken= res; });
       this.userdetails.id=user.uid;
       console.log(user.uid);
       console.log(user.email);
       console.log(this.userdetails);
+      //console.log(this.userToken,'as');
     }
   });
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password);

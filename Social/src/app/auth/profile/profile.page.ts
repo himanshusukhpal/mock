@@ -20,7 +20,7 @@ export class ProfilePage implements OnInit{
   element1: User={};
   getdata ={};
   id;
-  email=this.appservice.auth.email;
+
   ngOnInit() {
     console.log('in init');
     this.appservice.store.getUser().then(res=>{console.log(res.uid);

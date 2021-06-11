@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
   userdata={};
   newdata={};
   id: string;
+  token: string;
 
   ngOnInit() {
   }
@@ -45,18 +46,19 @@ export class LoginPage implements OnInit {
 
   async onLogin(form: NgForm) {
     this.appService.presentLoading('Logging In ...');
+    this.appService.store.seToken(this.appService.auth.userToken);
     await this.appService.auth.login(form.value.email, form.value.password)
       .then ( async (res) => {
         //console.log(res);
           this.appService.dimissLoading();
            this.appService.nav.navigateForward('home/dashboard');
            this.id=this.appService.auth.userData.uid;
-           console.log('res:',this.id);
-           this.userdata =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json').toPromise();
+           await this.appService.store.getToken().then(token=>{this.token=token;});
+
+           this.userdata =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token).toPromise();
            console.log(this.userdata);
 
            await this.appService.store.setUser(this.userdata);
-
             this.appService.store.getUser().then(res1=>{console.log(res1.id,'data');});
             //console.log(this.newdata,'data');
           //console.log('ji');

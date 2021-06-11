@@ -18,6 +18,7 @@ export class EditProfilePage implements OnInit {
 
   constructor(private appservice: AppService, private http: HttpClient) { }
   userDetails: User={};
+  token: string;
   ngOnInit() {
     //console.log(this.appservice.auth.userData
     console.log(this.appservice.auth.userdetails.id);
@@ -33,7 +34,7 @@ async callUser(){
   //this.element1 =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
   //console.log(this.userDetails);
 }
-  editProfile(form: NgForm){
+  async editProfile(form: NgForm){
     //console.log(form.value.fname)
     this.userDetails.fname=form.value.fname;
     this.userDetails.lname=form.value.lname;
@@ -41,12 +42,14 @@ async callUser(){
     this.userDetails.phone=form.value.phone;
    // this.appservice.data.userdetails.email=this.appservice.auth?.email;
     this.userDetails.username=form.value.username;
+    await this.appservice.store.getToken().then(token=>{this.token=token;});
+
     console.log(this.userDetails,'after');
     this.appservice.store.setUser(this.userDetails);
-    // this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json',this.userDetails).subscribe(res=>{
-    //   console.log(res);
+    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json?auth='+this.token,this.userDetails).subscribe(res=>{
+      console.log(res);
       this.appservice.nav.navigateBack('auth/profile');
-   // });
+   });
 
 
   //   this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)

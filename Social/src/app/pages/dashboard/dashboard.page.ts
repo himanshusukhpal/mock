@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  token: string;
   id: string;
   userDetails={};
   sampleLoc='Miraj Cinemas';
@@ -117,10 +118,13 @@ export class DashboardPage implements OnInit {
     this.appService.auth.signOut();
     await this.appService.store.getUser().then(res=>{this.userDetails=res;
     this.id=res.id;});
-    console.log(this.userDetails);
 
-    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json',this.userDetails).subscribe(res1=>{this.appService.nav.navigateBack('auth/login');});
+    console.log(this.userDetails);
+    await this.appService.store.getToken().then(token=>{this.token=token;});
+
+   this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token,this.userDetails).subscribe(res1=>{this.appService.nav.navigateBack('auth/login');});
     this.appService.store.removeUser();
+   // this.appService.nav.navigateBack('auth/login');
   }
   profile(){
     this.appService.nav.navigateForward('auth/profile');

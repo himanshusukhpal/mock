@@ -15,4 +15,6 @@ export class StorageService {
   getUser = async () => JSON.parse((await Storage.get({ key: 'user'})).value);
   removeUser = async () => await Storage.remove({ key:'user' });
 
+  seToken= async (token)=> await Storage.set({key: 'token',value: JSON.stringify(token)});
+  getToken= async ()=> JSON.parse((await Storage.get({key: 'token'})).value);
 }
