@@ -50,7 +50,7 @@ export class ProfilePage implements OnInit{
 
   edit(){
     //console.log(this.locate);
-    this.appservice.nav.navigateForward('auth/edit-profile');
+    this.appservice.nav.navigateForward('profile/edit-profile');
   }
   home(){
     this.appservice.nav.navigateBack('dashboard');
