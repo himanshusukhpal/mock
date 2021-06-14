@@ -53,7 +53,7 @@ export class ProfilePage implements OnInit{
     this.appservice.nav.navigateForward('auth/edit-profile');
   }
   home(){
-    this.appservice.nav.navigateBack('home/dashboard');
+    this.appservice.nav.navigateBack('dashboard');
   }
 
   async fetchUser(){

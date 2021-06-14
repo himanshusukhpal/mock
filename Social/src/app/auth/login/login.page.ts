@@ -25,14 +25,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   Signup(){
-    this.appService.nav.navigateForward('/auth/sign-up');
+    this.appService.nav.navigateForward('../sign-up');
   }
   // async onLogin(form: NgForm){
   //   this.appService.presentLoading('Logging In ...');
   //   this.appService.auth.login(form.value.email,form.value.password).subscribe(resdata=>{
   //     console.log(resdata);
   //        this.appService.dismissLoading();
-  //   this.appService.nav.navigateForward('home/dashboard');
+  //   this.appService.nav.navigateForward('dashboard');
   //       },errorRes=>{
   //         this.appService.dismissLoading();
   //         const code= errorRes.error.error.message;
@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
       .then ( async (res) => {
         //console.log(res);
           this.appService.dismissLoading();
-           this.appService.nav.navigateForward('home/dashboard');
+           this.appService.nav.navigateForward('dashboard');
            this.id=this.appService.auth.userdetails.id;
            console.log(this.id,'id');
            this.appService.store.seToken(this.appService.auth.userToken);

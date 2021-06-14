@@ -127,6 +127,6 @@ export class DashboardPage implements OnInit {
    // this.appService.nav.navigateBack('auth/login');
   }
   profile(){
-    this.appService.nav.navigateForward('auth/profile');
+    this.appService.nav.navigateForward('profile');
   }
 }
