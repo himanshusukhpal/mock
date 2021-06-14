@@ -4,6 +4,18 @@
 
 export const environment = {
   production: false,
+  VERSION: "0.1",
+  UUID: null,
+  DEVICE: null,
+  LOC: {
+    accuracy: null,
+    altitude: null,
+    altitudeAccuracy: null,
+    heading: null,
+    latitude: null,
+    longitude: null,
+    speed: null,
+  },
   firebaseConfig : {
     apiKey: 'AIzaSyDUfHKUO9Vc6BCi4TDDq3kyMKe0aJJWzHo',
     authDomain: 'synans-social-project.firebaseapp.com',
@@ -23,4 +35,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

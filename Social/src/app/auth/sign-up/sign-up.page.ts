@@ -35,10 +35,10 @@ userdetails: User={};
 
   //   this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
   //     console.log(resdata);
-  //        this.appService.dimissLoading();
+  //        this.appService.dismissLoading();
   //   this.appService.nav.navigateForward('auth/profile');
   //       },errorRes=>{
-  //         this.appService.dimissLoading();
+  //         this.appService.dismissLoading();
   //         const code= errorRes.error.error.message;
   //         let message='Can\'t Sign you Up, please try again!';
   //         if (code==='EMAIL_EXISTS'){message='This Email already exists!';}
@@ -67,13 +67,13 @@ userdetails: User={};
 
     }
     ).catch((error) => {
-      this.appService.dimissLoading();
+      this.appService.dismissLoading();
       this.showAlert(error.message);
       form.reset();
     }
     ).finally(()=>{
       console.log('finally');
-      this.appService.dimissLoading();
+      this.appService.dismissLoading();
     }
     );
     console.log('on signup');

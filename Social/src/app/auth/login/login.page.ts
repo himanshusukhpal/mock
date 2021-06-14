@@ -31,10 +31,10 @@ export class LoginPage implements OnInit {
   //   this.appService.presentLoading('Logging In ...');
   //   this.appService.auth.login(form.value.email,form.value.password).subscribe(resdata=>{
   //     console.log(resdata);
-  //        this.appService.dimissLoading();
+  //        this.appService.dismissLoading();
   //   this.appService.nav.navigateForward('home/dashboard');
   //       },errorRes=>{
-  //         this.appService.dimissLoading();
+  //         this.appService.dismissLoading();
   //         const code= errorRes.error.error.message;
   //         let message='Login failed, please try again!';
   //         if (code==='INVALID_PASSWORD'){message='Wrong email or password!';}
@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
     await this.appService.auth.login(form.value.email, form.value.password)
       .then ( async (res) => {
         //console.log(res);
-          this.appService.dimissLoading();
+          this.appService.dismissLoading();
            this.appService.nav.navigateForward('home/dashboard');
            this.id=this.appService.auth.userdetails.id;
            console.log(this.id,'id');
@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
            await this.appService.store.getToken().then(token=>{this.token=token;
           console.log(token,'token1');});
 
-           this.userdata =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token).toPromise();
+           this.userdata = await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token).toPromise();
            console.log(this.userdata);
 
            await this.appService.store.setUser(this.userdata);
@@ -66,16 +66,16 @@ export class LoginPage implements OnInit {
           //console.log('ji');
         }
       ).catch((error) => {
-        this.appService.dimissLoading();
+        this.appService.dismissLoading();
         this.showAlert(error.message);
         form.reset();
       });
       //this.appService.data.email=this.appService.auth.email;
   }
-showAlert(message: string){
-  const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
-  this.appService.alert.presentAlert(alerto);
-}
-
+  showAlert(message: string){
+    const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};
+    this.appService.alert.presentAlert(alerto);
   }
+
+}
 

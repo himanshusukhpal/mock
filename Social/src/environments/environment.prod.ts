@@ -1,5 +1,18 @@
+
 export const environment = {
   production: true,
+  VERSION: "0.1",
+  UUID: null,
+  DEVICE: null,
+  LOC: {
+    accuracy: null,
+    altitude: null,
+    altitudeAccuracy: null,
+    heading: null,
+    latitude: null,
+    longitude: null,
+    speed: null,
+  },
   firebaseConfig : {
     apiKey: 'AIzaSyDUfHKUO9Vc6BCi4TDDq3kyMKe0aJJWzHo',
     authDomain: 'synans-social-project.firebaseapp.com',

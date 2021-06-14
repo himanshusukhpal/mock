@@ -31,7 +31,7 @@ export class AuthPage implements OnInit {
      this.isLoading=true;
    // await this.appService.presentLoading('Logging In ...');
     this.appService.nav.navigateForward('home/dashboard');
-    // await this.appService.dimissLoading();
+    // await this.appService.dismissLoading();
   }
 
   onSwitch(){

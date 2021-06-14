@@ -1,7 +1,10 @@
 /* eslint-disable max-len */
 import { Component } from '@angular/core';
 import { AppService } from './services/app.service';
-import { HttpClient } from '@angular/common/http';
+
+import { Platform } from '@ionic/angular';
+
+import { SplashScreen } from '@capacitor/splash-screen'
 
 @Component({
   selector: 'app-root',
@@ -9,26 +12,48 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
   userDetails: any;
   id: any;
   token: any;
-  constructor(private appService: AppService, private http: HttpClient) {}
-  onProfile(){
-    this.appService.nav.navigateForward('auth/profile');
-  }
-  onHome(){
-    this.appService.nav.navigateForward('home');
-  }
-  async onLogout(){
-    this.appService.auth.signOut();
-    await this.appService.store.getUser().then(res=>{this.userDetails=res;
-    this.id=res.id;});
 
-    console.log(this.userDetails);
-    await this.appService.store.getToken().then(token=>{this.token=token;});
-
-   this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.id+'.json?auth='+this.token,this.userDetails).subscribe(res1=>{this.appService.nav.navigateBack('auth/login');});
-    this.appService.store.removeUser();
-   // this.appService.nav.navigateBack('auth/login');
+  constructor(
+    private platform: Platform,
+    private appService: AppService
+  ) {
+    SplashScreen.show();
+    this.initializeApp();
+    this.checkUser();
   }
+
+  async checkUser() {
+    // let user = await this.appService.store.getUser();
+    // if (user && user['status_code']==="success") {
+    //   this.appService.auth.isLoggedIn = true;
+    //   this.appService.data.userDataSync(user);
+    //   if(!(await this.appService.data.checkStoreVersion())) await this.appService.data.removeUserAppData();
+    //   this.appService.data.userAppDataSync(user);
+    // } else {
+    //   this.appService.nav.navigateBack("login");
+    //   this.appService.auth.logout();
+    // }
+  }
+
+  async initializeApp() {
+    this.platform.ready()
+    .then(() => {
+      this.appService.setStatusBar();
+      this.appService.setContext();
+      // this.appService.data.master_sync();
+      // this.appService.pushNotificationSetup();
+      // this.appService.appExitSetup();
+      // this.appService.initTranslate();
+      SplashScreen.hide();
+    })
+    // .catch(()=>this.appService.analytics.logEvent("app_init_error",{
+    //   SCREEN_NAME: "AppRoot",
+    //   SUCCESS:0,
+    // }));
+  }
+
 }

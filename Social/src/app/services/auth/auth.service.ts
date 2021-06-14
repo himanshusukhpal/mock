@@ -11,26 +11,24 @@ import { User } from 'src/app/models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
-import { AppService } from '../app.service';
-
-
 
 interface AuthResponseData{
-idToken:	string;
-email:	string;
-refreshToken:	string;
-expiresIn:	string;
-localId:	string;
-registered?: boolean;
+  idToken:	string;
+  email:	string;
+  refreshToken:	string;
+  expiresIn:	string;
+  localId:	string;
+  registered?: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   //private _isAuthenticated=false;
-  private _user= new BehaviorSubject<User>(null);
+  private _user = new BehaviorSubject<User>(null);
 
   // get authenticated(){
   //   return this._user.asObservable().pipe(
@@ -44,9 +42,10 @@ export class AuthService {
   userData: any;
   userdetails: User={};
   userToken: string;
-  constructor(private http: HttpClient
-    ,public afstore: AngularFirestore
-    ,public ngFireAuth: AngularFireAuth,
+  constructor(
+    private http: HttpClient,
+    public afstore: AngularFirestore,
+    public ngFireAuth: AngularFireAuth,
     public ngZone: NgZone,
    )
     {
