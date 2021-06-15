@@ -21,7 +21,7 @@ export class EditProfilePage implements OnInit {
   token: string;
   ngOnInit() {
     //console.log(this.appservice.auth.userData
-    console.log(this.appservice.auth.userdetails.id);
+    // console.log(this.appservice.auth.userdetails.id);
     this.callUser();
 
   }
@@ -45,11 +45,11 @@ async callUser(){
     await this.appservice.store.getToken().then(token=>{this.token=token;});
 
     console.log(this.userDetails,'after');
-    this.appservice.store.setUser(this.userDetails);
-    this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json?auth='+this.token,this.userDetails).subscribe(res=>{
-      console.log(res);
-      this.appservice.nav.navigateBack('auth/profile');
-   });
+    // this.appservice.store.setUser(this.userDetails);
+  //   this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json?auth='+this.token,this.userDetails).subscribe(res=>{
+  //     console.log(res);
+  //     this.appservice.nav.navigateBack('auth/profile');
+  //  });
 
 
   //   this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail.json?auth='+this.appservice.auth.userToken)

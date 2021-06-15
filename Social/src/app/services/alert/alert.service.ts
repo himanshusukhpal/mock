@@ -14,10 +14,13 @@ export class AlertService {
   async presentToast(message: string, pos: 'top' | 'bottom' | 'middle' = 'top') {
     const toast = await this.toastCtrl.create({
       message,
-      duration: 1500,
+      duration: 2000,
       position: pos,
       color: 'dark'
     });
+    if(pos==='top') {
+      toast.cssClass = 'topAlertClass';
+    }
     toast.present();
   }
 

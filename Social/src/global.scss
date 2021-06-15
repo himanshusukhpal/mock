@@ -25,7 +25,13 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-buttons {
+  position: absolute;
+}
 
+.topAlertClass {
+  top: 6%;
+}
 
 .main{position: absolute;
 	top: 0;
@@ -37,12 +43,14 @@
 	margin-right: auto;
 }
 
-
-
 .picker-toolbar.sc-ion-picker-md{
   justify-content: flex-start;
 }
 
 .ion-invalid.ion-touched ion-label{
   color: var(--ion-color-danger);
+}
+
+ion-header ion-toolbar {
+  text-align: center;
 }

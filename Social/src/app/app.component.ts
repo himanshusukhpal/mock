@@ -23,7 +23,7 @@ export class AppComponent {
   ) {
     SplashScreen.show();
     this.initializeApp();
-    this.checkUser();
+    this.appService.auth.checkUser();
   }
 
   async checkUser() {
@@ -49,7 +49,7 @@ export class AppComponent {
       // this.appService.appExitSetup();
       // this.appService.initTranslate();
       SplashScreen.hide();
-    })
+    });
     // .catch(()=>this.appService.analytics.logEvent("app_init_error",{
     //   SCREEN_NAME: "AppRoot",
     //   SUCCESS:0,

@@ -2,83 +2,84 @@
 /* eslint-disable object-shorthand */
 import { Component, OnInit } from '@angular/core';
 
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, Validators} from '@angular/forms';
 
 import { AppService } from 'src/app/services/app.service';
-import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/models/user.model';
-
-
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
 })
+
 export class SignUpPage implements OnInit {
 
-fullname: string;
-token: string;
+  signUpSubmit = false;
 
-userdetails: User={};
-  constructor( private appService: AppService, private http: HttpClient){ }
+  signUpForm = this.formBuilder.group({
+    fullname: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
 
-  ngOnInit() {
+  constructor(
+    private appService: AppService,
+    private formBuilder: FormBuilder
+  ) { }
+
+  ngOnInit() { }
+
+  navToLogin = () => this.appService.nav.navigateForward('login');
+
+  get signUpFormError() {
+    return this.signUpForm.controls;
   }
-  login(){
-    this.appService.nav.navigateForward('/auth/login');
+
+  revealPass(password, eye) {
+    if(eye.name==='eye') {
+      password.type='text';
+      eye.name='eye-off';
+    } else if (eye.name==='eye-off') {
+      password.type='password';
+      eye.name='eye';
+    }
   }
-  // async onSignup(form: NgForm){
 
-  //   this.userdetails.push({name:form.value.name,username:form.value.username,email:form.value.email});
-  //   this.appService.presentLoading('Logging In ...');
-
-  //   this.appService.auth.signup(form.value.email,form.value.password).subscribe(resdata=>{
-  //     console.log(resdata);
-  //        this.appService.dismissLoading();
-  //   this.appService.nav.navigateForward('auth/profile');
-  //       },errorRes=>{
-  //         this.appService.dismissLoading();
-  //         const code= errorRes.error.error.message;
-  //         let message='Can\'t Sign you Up, please try again!';
-  //         if (code==='EMAIL_EXISTS'){message='This Email already exists!';}
-  //         this.showAlert(message);
-  //         form.reset();
-  //       });
-
-  // }
-  onSignup(form: NgForm){
+  onSignup() {
+    const form = this.signUpForm;
+    this.signUpSubmit = true;
+    if(form.valid) {
+      this.appService.auth.emailSignUp(form.value);
+    }
     //this.appService.auth..username=form.value.username;
-    this.appService.presentLoading('Logging In ...');
-    this.appService.auth.signup(form.value.email, form.value.password)
-    .then(async (res) => {
-      console.log('then');
-      this.userdetails=this.appService.auth.userdetails;
-      this.userdetails.username=form.value.username;
-      console.log(this.userdetails);
-      this.appService.store.setUser(this.userdetails);
-      this.appService.store.seToken(this.appService.auth.userToken);
-      await this.appService.store.getToken().then(token=>{this.token=token;});
-      this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.userdetails.id+'.json?auth='+this.token,this.userdetails).subscribe(
-        resData=>{
-          console.log(resData);
-          this.appService.nav.navigateForward('auth/profile');
-        });
-
-    }
-    ).catch((error) => {
-      this.appService.dismissLoading();
-      this.showAlert(error.message);
-      form.reset();
-    }
-    ).finally(()=>{
-      console.log('finally');
-      this.appService.dismissLoading();
-    }
-    );
-    console.log('on signup');
-
-}
+    // this.appService.auth.emailSignUp(form.value.email, form.value.password);
+    // .then(async (res) => {
+    //   console.log('then');
+    //   this.userdetails=this.appService.auth.userdetails;
+    //   this.userdetails.username=form.value.username;
+    //   console.log(this.userdetails);
+    //   // this.appService.store.setUser(this.userdetails);
+    //   this.appService.store.seToken(this.appService.auth.userToken);
+    //   await this.appService.store.getToken().then(token=>{this.token=token;});
+    //   this.http.put('https://synans-social-project-default-rtdb.firebaseio.com/users/'+this.userdetails.id+'.json?auth='+this.token,this.userdetails).subscribe(
+    //   resData=>{
+    //     console.log(resData);
+    //     this.appService.nav.navigateForward('auth/profile');
+    //   });
+    // }
+    // ).catch((error) => {
+    //   this.appService.dismissLoading();
+    //   this.showAlert(error.message);
+    //   form.reset();
+    // }
+    // ).finally(()=>{
+    //   console.log('finally');
+    //   this.appService.dismissLoading();
+    // }
+    // );
+    // console.log('on signup');
+  }
 
   showAlert(message: string){
     const alerto={header: 'Authentication Failed!',message: message, buttons: ['Okay']};

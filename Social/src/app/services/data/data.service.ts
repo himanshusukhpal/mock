@@ -1,40 +1,25 @@
 /* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { Activities } from '../../models/acivities.model';
 import { Friends } from '../../models/friends.model';
 import { Locations } from '../../models/location.model';
 import { Card } from '../../models/card.model';
 import { User } from 'src/app/models/user.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+
+import { StorageService } from './../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private _activities: Activities[]=[
-    new Activities('Netflix n Chill','https://image.shutterstock.com/image-photo/netflix-chill-home-editorial-260nw-1402991972.jpg',1),
-    new Activities('House Party','https://i.pinimg.com/originals/63/1b/83/631b83648511a1e90b4c98864226c5ef.jpg',2),
-    new Activities('Workout','https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png',3),
-    new Activities('Cleanup','https://future.ipsos.com/wp-content/uploads/2019/06/gen-pop-hero-june-13-2019.jpg',4),
-    new Activities('Nap','https://us.123rf.com/450wm/decorwithme/decorwithme1809/decorwithme180900245/108770020-sleeping-girl-cartoon-people-character-isolated-illustration-on-white-background-high-quality-compos.jpg?ver=6',5)
-  ];
-
-  private _activities2: Activities[]=[
-    new Activities('Watch a Movie','https://s.abcnews.com/images/Lifestyle/WireAP_4e06c47257e74d629e0eeb949752f7be_16x9_992.jpg',6),
-    new Activities('Clubbing','https://st2.depositphotos.com/1594308/10494/i/600/depositphotos_104945140-stock-photo-people-dancing-at-party.jpg',7),
-    new Activities('Hiking','https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528',8),
-    new Activities('Biking','https://cf.bstatic.com/data/xphoto/1182x887/228/22858255.jpg?size=S',9),
-  ];
-
+  userData: BehaviorSubject<Record<string, unknown>> = new BehaviorSubject<Record<string, unknown>>({});
 
   cards: Card[]=[];
   username: string;
   email: string;
-
-  userdetails: User={};
 
   userRecords: Friends[]= [
     {
@@ -135,9 +120,35 @@ export class DataService {
   activity: number;
   activityName: string;
 
-  constructor() { }
+  private activities: Activities[]=[
+    new Activities('Netflix n Chill','https://image.shutterstock.com/image-photo/netflix-chill-home-editorial-260nw-1402991972.jpg',1),
+    new Activities('House Party','https://i.pinimg.com/originals/63/1b/83/631b83648511a1e90b4c98864226c5ef.jpg',2),
+    new Activities('Workout','https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png',3),
+    new Activities('Cleanup','https://future.ipsos.com/wp-content/uploads/2019/06/gen-pop-hero-june-13-2019.jpg',4),
+    new Activities('Nap','https://us.123rf.com/450wm/decorwithme/decorwithme1809/decorwithme180900245/108770020-sleeping-girl-cartoon-people-character-isolated-illustration-on-white-background-high-quality-compos.jpg?ver=6',5)
+  ];
 
-  getActivities = () => [...this._activities];
-  getActivities2 = () => [...this._activities2];
+  private activities2: Activities[]=[
+    new Activities('Watch a Movie','https://s.abcnews.com/images/Lifestyle/WireAP_4e06c47257e74d629e0eeb949752f7be_16x9_992.jpg',6),
+    new Activities('Clubbing','https://st2.depositphotos.com/1594308/10494/i/600/depositphotos_104945140-stock-photo-people-dancing-at-party.jpg',7),
+    new Activities('Hiking','https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528',8),
+    new Activities('Biking','https://cf.bstatic.com/data/xphoto/1182x887/228/22858255.jpg?size=S',9),
+  ];
+
+  constructor(
+    private store: StorageService
+  ) { }
+
+  getActivities = () => [...this.activities];
+  getActivities2 = () => [...this.activities2];
+
+  async userDataSync(user: Record<string, unknown>) {
+    this.store.setUser(user);
+    this.userData.next(user);
+  }
+
+  async removeEntireData() {
+    this.store.removeUser();
+  }
 
 }
