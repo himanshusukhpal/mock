@@ -12,6 +12,7 @@
     <ion-grid>
       <ion-row style="padding-top: 15vh;">
         <ion-col size-sm="4.5" offset-sm="4">
+
           <ion-card>
             <ion-card-content>
 
@@ -19,25 +20,25 @@
 
                 <ion-item lines="full">
                   <ion-input type="text" formControlName="fullname" placeholder="Full name" required><ion-icon name="person-outline"  ></ion-icon></ion-input>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.fullname.errors?.required">
-                    <p class="error-text">Name is required!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.fullname.errors?.required">
+                    <p class="form-error-text">Name is required!</p>
                   </span>
                 </ion-item>
 
                 <ion-item lines="full">
                   <ion-input type="text" formControlName="username" placeholder="Enter your username" required><ion-icon name="person-circle-outline"></ion-icon></ion-input>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.username.errors?.required">
-                    <p class="error-text">Username is required!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.username.errors?.required">
+                    <p class="form-error-text">Username is required!</p>
                   </span>
                 </ion-item>
 
                 <ion-item lines="full">
                   <ion-input type="email" formControlName="email" placeholder="Enter your email address" required><ion-icon name="mail-outline"></ion-icon></ion-input>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.email.errors?.required">
-                    <p class="error-text">Email address is required!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.email.errors?.required">
+                    <p class="form-error-text">Email address is required!</p>
                   </span>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.email.errors?.pattern">
-                    <p class="error-text">Should be a valid email address!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.email.errors?.pattern">
+                    <p class="form-error-text">Should be a valid email address!</p>
                   </span>
                 </ion-item>
 
@@ -46,11 +47,11 @@
                     <ion-icon name="lock-closed"></ion-icon>
                   </ion-input>
                   <ion-icon #eye id="eye" name="eye" slot="end" (click)="revealPass(password, eye)" ></ion-icon>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.password.errors?.required">
-                    <p class="error-text">Password is required!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.password.errors?.required">
+                    <p class="form-error-text">Password is required!</p>
                   </span>
-                  <span class="error" *ngIf="signUpSubmit && signUpFormError.password.errors?.minlength">
-                    <p class="error-text">Weak Password!</p>
+                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.password.errors?.minlength">
+                    <p class="form-error-text">Weak Password!</p>
                   </span>
                 </ion-item>
 

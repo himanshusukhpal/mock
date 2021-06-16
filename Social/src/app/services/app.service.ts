@@ -1,11 +1,4 @@
-/* eslint-disable object-shorthand */
-/* eslint-disable @typescript-eslint/semi */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/ban-types */
-
+/* eslint-disable curly */
 import { Injectable, Component } from '@angular/core';
 import { NavController, ModalController, LoadingController, Platform, isPlatform } from '@ionic/angular';
 import { formatDate } from '@angular/common';
@@ -23,7 +16,7 @@ import { Device } from '@capacitor/device';
 import { Network } from '@capacitor/network';
 import { StatusBar } from '@capacitor/status-bar';
 import { Geolocation } from '@capacitor/geolocation';
-import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from '@capacitor/push-notifications'
+import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from '@capacitor/push-notifications';
 
 
 @Injectable({
@@ -65,12 +58,12 @@ export class AppService {
 
       // On success, we should be able to receive notifications
       PushNotifications.addListener('registration', (token: Token) => {
-        console.log("token:",token.value)
+        console.log('token:',token.value);
       });
 
       // Some issue with our setup and push will not work
       PushNotifications.addListener('registrationError', (error: any) => {
-        this.alert.presentToast("Push Notifications not registered");
+        this.alert.presentToast('Push Notifications not registered');
         console.log(error);
       });
 
@@ -80,23 +73,23 @@ export class AppService {
           header: notification.title,
           message: notification.body,
           buttons: [{text:'Close',role:'cancel'}]
-        })
+        });
       });
 
       // Method called when tapping on a notification
       PushNotifications.addListener('pushNotificationActionPerformed', (notificationAction: ActionPerformed) => {
         let title = null;
         let body = null;
-        if(notificationAction.notification.title) title = notificationAction.notification.title;
-        else if (notificationAction.notification.data.title) title = notificationAction.notification.data.title;
-        if(notificationAction.notification.body) body = notificationAction.notification.body;
-        else if(notificationAction.notification.data.body) body = notificationAction.notification.data.body;
+        if(notificationAction.notification.title) {title = notificationAction.notification.title;}
+        else if (notificationAction.notification.data.title) {title = notificationAction.notification.data.title;}
+        if(notificationAction.notification.body) {body = notificationAction.notification.body;}
+        else if(notificationAction.notification.data.body) {body = notificationAction.notification.data.body;}
         if(title || body) {
           this.alert.presentAlert({
             header: notificationAction.notification.title,
             message: notificationAction.notification.body,
             buttons: [{text:'Close',role:'cancel'}]
-          })
+          });
         }
       });
 
@@ -111,31 +104,31 @@ export class AppService {
     }
   }
 
-  backbuttonSubscribeMethod(action:string) {
+  backbuttonSubscribeMethod(action: string) {
     switch (action) {
-      case "exit" :
+      case 'exit' :
         let a = 0;
         this.platform.backButton.subscribeWithPriority(0,() => {
-          if (a === 2) App.exitApp();
+          if (a === 2) {App.exitApp();}
           else {
             a++;
-            this.alert.presentToast("Press back button twice to exit","bottom");
+            this.alert.presentToast('Press back button twice to exit','bottom');
           }
         });
       break;
       default :
         this.platform.backButton.subscribeWithPriority(2,() => {
-          let modalExist = document.getElementsByTagName('ion-loading')[0];
-          if(modalExist) this.dismissModal();
-          else this.nav.navigateBack(action);
+          const modalExist = document.getElementsByTagName('ion-loading')[0];
+          if(modalExist) {this.dismissModal();}
+          else {this.nav.navigateBack(action);}
         });
       break;
     }
   }
   backbuttonUnsubscribe = () => this.platform.backButton.unsubscribe();
 
-  connected = async() => (await Network.getStatus()).connected;
-  getCurrentPosition = async() => await Geolocation.getCurrentPosition({enableHighAccuracy:true});
+  connected = async () => (await Network.getStatus()).connected;
+  getCurrentPosition = async () => await Geolocation.getCurrentPosition({enableHighAccuracy:true});
 
   async setContext() {
     environment.UUID = (await Device.getId()).uuid;
@@ -150,53 +143,57 @@ export class AppService {
         environment.LOC.longitude = res.coords.longitude;
         environment.LOC.speed = res.coords.speed;
       }
-    )
+    );
     console.log(environment);
   }
   getAppVer = () => environment.VERSION;
 
-  public toTitleCase(str) {
-    return str.replace(
-      /\w\S*/g,
-      function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-    );
+
+  revealPass(password, eye) {
+    if(eye.name==='eye') {
+      password.type='text';
+      eye.name='eye-off';
+    } else if (eye.name==='eye-off') {
+      password.type='password';
+      eye.name='eye';
+    }
   }
 
-  limitToDecimal = (val,d:number=2) => {
-    let x = Math.pow(10,d);
-    return (Math.round(val*x))/x
-  }
+  toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt: string) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
-  dateCheck(date_tc) {
-    let dateNow = new Date();
-    if(date_tc<dateNow) return false
+  limitToDecimal = (val,d: number=2) => {
+    const x = Math.pow(10,d);
+    return (Math.round(val*x))/x;
+  };
+
+  dateCheck(dateTc) {
+    const dateNow = new Date();
+    if(dateTc<dateNow) return false;
     else return true;
   }
-  changeDate = (date,format:string) => formatDate(date, format, 'en-US');
+  changeDate = (date,format: string) => formatDate(date, format, 'en-US');
 
-  async presentLoading(msg:string) {
+  async presentLoading(msg: string) {
     const loading = await this.load.create({
       cssClass: 'my-custom-class',
       message: msg,
     });
     await loading.present();
   }
-  dismissLoading = async() => setTimeout(async() => await this.load.dismiss());
+  dismissLoading = async () => setTimeout(async () => await this.load.dismiss());
 
-  async presentModal(show_component,input_obj:Object) {
+  async presentModal(showComponent,inputObj: Record<string, unknown>) {
     const modal = await this.modal.create({
-      component: show_component,
+      component: showComponent,
       cssClass: 'modal-class',
-      componentProps: input_obj
+      componentProps: inputObj
     });
     return await modal.present();
   }
   async dismissModal(modalData=null) {
     this.modal.dismiss({
-      'dismissed': true,
-      'data': modalData
+      dismissed: true,
+      data: modalData
     });
   }
 

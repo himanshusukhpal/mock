@@ -1,5 +1,4 @@
 /* eslint-disable curly */
-/* eslint-disable max-len */
 import { Injectable, NgZone } from '@angular/core';
 
 import { NavController, LoadingController } from '@ionic/angular';
@@ -53,14 +52,15 @@ export class AuthService {
     }
   }
 
-  async emailSignUp(form: Record<string,never>) {
+  async emailSignUp(form: Record<string,unknown>) {
     await this.presentLoading('Signing In...');
-    this.calls.emailSignUpCall(form.email, form.password).then(
+    this.calls.emailSignUpCall(form.email.toString(), form.password.toString()).then(
       async (res) => {
         if(res) {
           const uid = res.user.uid;
           const token = await res.user.getIdToken();
           delete form.password;
+          form.id = uid;
           this.calls.userCreateCall(uid,token,form).subscribe(
             async (user: Record<string, unknown>)=> {
               if(user) {
@@ -109,7 +109,8 @@ export class AuthService {
       async (error)=> {
         await this.dismissLoading();
         console.log(error);
-        this.alert.presentToast(error.message.split(' or ')[0],'top');
+        if(error.code==='auth/user-not-found') this.alert.presentToast('User not found','top');
+        else this.alert.presentToast(error.message.split(' or ')[0],'top');
       }
     );
   }

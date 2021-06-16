@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
@@ -11,16 +12,16 @@ export class AlertService {
     private alertCtrl: AlertController
     ) { }
 
-  async presentToast(message: string, pos: 'top' | 'bottom' | 'middle' = 'top') {
+  async presentToast(message: string, pos: 'top' | 'bottom' | 'middle' = 'top', customClass: string = null) {
     const toast = await this.toastCtrl.create({
       message,
       duration: 2000,
       position: pos,
       color: 'dark'
     });
-    if(pos==='top') {
-      toast.cssClass = 'topAlertClass';
-    }
+    if(customClass) toast.cssClass = customClass;
+    else if(pos==='top') toast.cssClass = 'topAlertClass';
+    else if(pos==='bottom') toast.cssClass = 'bottomAlertClass';
     toast.present();
   }
 

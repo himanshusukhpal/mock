@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -9,20 +9,36 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class LoginPage implements OnInit {
 
+  loginSubmit = false;
+
+  loginForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+    password: ['', [Validators.required]]
+  });
+
   constructor(
-    private appService: AppService
+    private appService: AppService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
   }
 
-  navToSignup(){
-    this.appService.nav.navigateForward('sign-up');
+  get loginFormError() {
+    return this.loginForm.controls;
   }
 
-  async onLogin(form: NgForm) {
-    this.appService.auth.emailLogin(form.value.email, form.value.password);
+  revealPass = (password,eye) => this.appService.revealPass(password,eye);
+
+  async onLogin() {
+    this.loginSubmit = true;
+    const form = this.loginForm;
+    if (form.valid) {
+      this.appService.auth.emailLogin(form.value.email, form.value.password);
+    }
   }
+
+  navToSignup = () => this.appService.nav.navigateForward('sign-up');
 
 }
 

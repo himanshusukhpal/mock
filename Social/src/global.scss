@@ -30,7 +30,26 @@ ion-buttons {
 }
 
 .topAlertClass {
-  top: 6%;
+  top: 7%;
+  text-align: center;
+}
+.bottomAlertClass {
+  text-align: center;
+}
+
+.form-error {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 0px;
+}
+.form-error-text {
+  color: rgb(255, 44, 44);
+  padding: 1px;
+  font-size: 0.9em;
+  border-radius: 10px;
+  opacity: 0.8;
+  display: inline-flex;
 }
 
 .main{position: absolute;

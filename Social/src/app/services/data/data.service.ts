@@ -143,8 +143,8 @@ export class DataService {
   getActivities2 = () => [...this.activities2];
 
   async userDataSync(user: Record<string, unknown>) {
-    this.store.setUser(user);
     this.userData.next(user);
+    this.store.setUser(user);
   }
 
   async removeEntireData() {

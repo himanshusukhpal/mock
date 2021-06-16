@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
+
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
+
 import { AppService } from 'src/app/services/app.service';
 
 import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
-import { HttpClient } from '@angular/common/http';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-dashboard',
@@ -63,8 +63,7 @@ export class DashboardPage implements OnInit {
   };
 
   constructor(
-    private appService: AppService,
-    private http: HttpClient
+    private appService: AppService
   ) {
     console.log((this.appService.data.userData.value));
    }
