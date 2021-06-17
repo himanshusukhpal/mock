@@ -6,62 +6,60 @@
 </ion-header>
 
 <ion-content>
-<div class="main">
+<div class="mainContainer">
   <ion-grid>
-    <ion-row >
+    <ion-row>
       <ion-col  size-sm="6" offset-sm="3" class="ion-no-padding">
-  <div class="container">
-   <div class="overylay">
-    <ion-avatar>
-      <!-- <img src="../../../assets/images/Profile.jpeg"> -->
-      <ion-img [src]="profileImageUrl"></ion-img>
-    </ion-avatar>
-   </div>
-  </div>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        {{element1?.username}}
-      </ion-card-title>
 
-    </ion-card-header>
+        <div class="container">
+          <div class="overylay">
+            <ion-avatar>
+              <!-- <img src="../../../assets/images/Profile.jpeg"> -->
+              <ion-img [src]="profileImageUrl"></ion-img>
+            </ion-avatar>
+          </div>
+        </div>
 
-    <ion-card-content>
-      <ion-item lines="none">
-        <ion-icon name="mail"></ion-icon>
-        <ion-label>{{element1?.email}}</ion-label>
-      </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="call"></ion-icon>
-          <ion-label>{{element1?.phone}}</ion-label>
-        </ion-item>
-          <ion-item lines="none">
-            <ion-icon name="locate"></ion-icon>
-            <ion-label>
-              {{element1?.address}}
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-icon name="person-circle-outline"></ion-icon>
-            <ion-label>
-              {{element1?.fname}}
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-icon name="person"></ion-icon>
-            <ion-label>
-              {{element1?.lname}}
-            </ion-label>
-          </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{element1?.username}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-icon name="mail"></ion-icon>
+              <ion-label>{{element1?.email}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="call"></ion-icon>
+              <ion-label>{{element1?.phone}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="locate"></ion-icon>
+              <ion-label>
+                {{element1?.address}}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <ion-label>
+                {{element1?.fname}}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="person"></ion-icon>
+              <ion-label>
+                {{element1?.lname}}
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
 
-  <div class="btn-wrap">
-    <ion-button class="btn"  expand="block" shape="round " fill="solid" (click)="edit()">Edit Profile</ion-button>
-    </div>
-    <div class="btn-wrap">
-      <ion-button class="btn"  expand="block" shape="round " fill="solid" (click)="home()">Go Back to Dashboard</ion-button>
-      </div>
+        <div class="btn-wrap">
+          <ion-button class="btn"  expand="block" shape="round " fill="solid" (click)="edit()">Edit Profile</ion-button>
+        </div>
+
       </ion-col>
     </ion-row>
   </ion-grid>

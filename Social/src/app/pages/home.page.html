@@ -1,50 +1,26 @@
 
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Home</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-menu contentId="main" type="overlay" id="sidenav" side="end">
-  <ion-content>
-    <ion-list color="transparent">
-      <ion-list-header class="ion-text-center">
-        <div id="profile_img_div">
-          <span *ngIf="user['fullname']" >{{ (user["fullname"]).split(" ")[0][0] }}</span>
-        </div>
-        <div id="user_profile_name">{{ user["user_fullname"] }}</div>
-      </ion-list-header>
-      <ion-menu-toggle>
-
-      </ion-menu-toggle>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
 <super-tabs>
-
-  <super-tabs-toolbar slot="top" color="primary" id="main">
-    <super-tab-button>
-      <ion-icon name="chatbubble-ellipses-outline" color="light"></ion-icon>
-      <ion-label color="light">Chat</ion-label>
-    </super-tab-button>
-    <super-tab-button>
-      <ion-icon name="newspaper-outline" color="light"></ion-icon>
-      <ion-label color="light">Activities</ion-label>
-    </super-tab-button>
-    <super-tab-button>
-      <ion-icon name="attach-outline" color="light"></ion-icon>
-      <ion-label color="light">Explore</ion-label>
-    </super-tab-button>
-  </super-tabs-toolbar>
-
   <super-tabs-container>
+
     <super-tab>
       <ion-content>
-        <div class="main">
+        <div class="mainContainer">
+        <h2>Explore</h2>
+        <ion-button (click)="onLogout()">Log out</ion-button>
+        <ion-button (click)="onProfile()">Profile</ion-button>
+        </div>
+      </ion-content>
+    </super-tab>
+
+    <super-tab>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Home</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content id="main">
+        <div class="mainContainer">
           <ion-card align-text-center ion-justify-content-center>
             <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
             <ion-list>
@@ -58,11 +34,36 @@
             </ion-list>
           </ion-card>
         </div>
+        <ion-tabs>
+          <ion-tab-bar slot="bottom">
+            <ion-tab-button>
+              <ion-icon name="calendar"></ion-icon>
+              <ion-label>Schedule</ion-label>
+              <ion-badge>6</ion-badge>
+            </ion-tab-button>
+
+            <ion-tab-button>
+              <ion-icon name="person-circle"></ion-icon>
+              <ion-label>Speakers</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button>
+              <ion-icon name="map"></ion-icon>
+              <ion-label>Map</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button>
+              <ion-icon name="information-circle"></ion-icon>
+              <ion-label>About</ion-label>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
       </ion-content>
     </super-tab>
+
     <super-tab>
       <ion-content>
-        <div class="main">
+        <div class="mainContainer">
           <div *ngIf="cards">
             <ion-card button (click)="onDetail()">
               <ion-card-header class="ion-padding"><h4 style="text-align: center;">{{activity}}</h4></ion-card-header>
@@ -122,15 +123,6 @@
         </div>
       </ion-content>
     </super-tab>
-    <super-tab>
-      <ion-content>
-        <div class="main">
-        <h2>Explore</h2>
-        <ion-button (click)="logout()">Log out</ion-button>
-        <ion-button (click)="profile()">Profile</ion-button>
-        </div>
-      </ion-content>
-    </super-tab>
-  </super-tabs-container>
 
+  </super-tabs-container>
 </super-tabs>

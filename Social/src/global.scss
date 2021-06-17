@@ -52,7 +52,13 @@ ion-buttons {
   display: inline-flex;
 }
 
-.main{position: absolute;
+.topRight {
+  position: absolute;
+  right: 0px;
+}
+
+.mainContainer{
+  position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;

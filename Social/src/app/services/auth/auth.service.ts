@@ -98,7 +98,7 @@ export class AuthService {
               await this.dismissLoading();
               console.log(error);
               if(error.code==='auth/user-not-found') this.alert.presentToast('User not found','top');
-              else this.alert.presentToast(error.message,'top');
+              else this.alert.presentToast(error.message.split(' or ')[0],'top');
             }
           );
         }
@@ -107,6 +107,7 @@ export class AuthService {
         await this.dismissLoading();
         console.log(error);
         if(error.code==='auth/user-not-found') this.alert.presentToast('User not found','top');
+        else if(error.code==='auth/wrong-password') this.alert.presentToast('Incorrect Password');
         else this.alert.presentToast(error.message.split(' or ')[0],'top');
       }
     );

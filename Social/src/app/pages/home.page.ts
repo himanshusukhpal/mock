@@ -122,9 +122,9 @@ export class HomePage implements OnInit{
     this.cards=false;
   }
 
-  logout = () => this.appService.auth.logout();
+  onLogout = () => this.appService.auth.logout();
 
-  profile(){
+  onProfile(){
     this.appService.nav.navigateForward('profile');
   }
 
