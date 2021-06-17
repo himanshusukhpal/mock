@@ -45,11 +45,8 @@ export class AuthService {
 
   async checkUser() {
     const user = await this.store.getUser();
-    if(user && user.id) {
-      this.login(user);
-    } else {
-      this.logout();
-    }
+    if(user && user.id) this.data.userDataSync(user);
+    else this.logout();
   }
 
   async emailSignUp(form: Record<string,unknown>) {
@@ -123,8 +120,8 @@ export class AuthService {
 
   private login(user: Record<string, unknown>) {
     this.isLoggedIn = true;
-    this.nav.navigateForward('dashboard');
     this.data.userDataSync(user);
+    this.nav.navigateForward('home');
   }
 
 }

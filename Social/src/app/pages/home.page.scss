@@ -1,3 +1,31 @@
+
+ion-menu {
+  --max-width:200px !important;
+}
+
+ion-slides {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: block;
+}
+
+#profile_img_div {
+  width:75px;
+  height:80px;
+  line-height:80px;
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: lighter;
+  margin:10px auto;
+  border-radius: 10px;
+  background-color: var(--ion-color-primary);
+}
+#user_profile_name {
+  width: 100%;
+}
+
 #container {
   text-align: center;
 

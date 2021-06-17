@@ -26,19 +26,6 @@ export class AppComponent {
     this.appService.auth.checkUser();
   }
 
-  async checkUser() {
-    // let user = await this.appService.store.getUser();
-    // if (user && user['status_code']==="success") {
-    //   this.appService.auth.isLoggedIn = true;
-    //   this.appService.data.userDataSync(user);
-    //   if(!(await this.appService.data.checkStoreVersion())) await this.appService.data.removeUserAppData();
-    //   this.appService.data.userAppDataSync(user);
-    // } else {
-    //   this.appService.nav.navigateBack("login");
-    //   this.appService.auth.logout();
-    // }
-  }
-
   async initializeApp() {
     this.platform.ready()
     .then(() => {
