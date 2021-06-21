@@ -8,6 +8,7 @@ import { DataService } from './../data/data.service';
 import { CallsService } from '../networking/calls.service';
 import { StorageService } from '../storage/storage.service';
 
+
 interface AuthResponseData{
   idToken:	string;
   email:	string;
@@ -32,7 +33,14 @@ export class AuthService {
     private store: StorageService,
     private nav: NavController,
     private load: LoadingController
+   
   ) { }
+
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
 
   async presentLoading(msg: string) {
     const loading = await this.load.create({
@@ -54,6 +62,7 @@ export class AuthService {
     this.calls.emailSignUpCall(form.email.toString(), form.password.toString()).then(
       async (res) => {
         if(res) {
+          console.log(res);
           const uid = res.user.uid;
           const token = await res.user.getIdToken();
           delete form.password;
@@ -83,6 +92,9 @@ export class AuthService {
     this.calls.emailLoginCall(email, password).then(
       async (res) => {
         if(res) {
+          console.log(res);
+          const refreshToken=res.user.refreshToken;
+          console.log(refreshToken);
           const uid = res.user.uid;
           const token = await res.user.getIdToken();
           this.calls.userDetailCall(uid,token).subscribe(

@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SuperTabsModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ActivityDetailComponent],
+  entryComponents: [ActivityDetailComponent]
 })
 export class HomePageModule {}

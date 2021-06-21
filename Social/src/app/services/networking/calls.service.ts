@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { EndpointsService } from './endpoints.service';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,7 @@ export class CallsService {
   userCreateCall = (userId: string, token: string, user: Record<string, unknown>) => this.http.put( this.ends.getUserCRUDUrl(userId,token) , user );
 
   userDetailCall = (userId: string, token: string) => this.http.get( this.ends.getUserCRUDUrl(userId,token) );
+
+  userCreateCall2 = (userId: string, token: string, user: User) => this.http.put( this.ends.getUserCRUDUrl(userId,token) , user );
 
 }
