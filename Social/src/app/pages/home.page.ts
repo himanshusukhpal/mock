@@ -1,11 +1,9 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../services/app.service';
-
-import { ActivityDetailComponent } from './dashboard/activity-detail/activity-detail.component';
-
 import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
+import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 
 
 @Component({
@@ -65,6 +63,7 @@ export class HomePage implements OnInit{
     initialSlide: 1,
     speed: 400
   };
+  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
 
   constructor(
     private appService: AppService
@@ -87,7 +86,12 @@ export class HomePage implements OnInit{
     this.activity2=this.appService.activityName;
   }
 
-  onAddActivity = () => this.appService.nav.navigateBack('home');
+  onClick(){
+    console.log("click");
+    this.appService.nav.navigateForward('profile');
+  }
+  onAddActivity() {console.log('add');
+    this.appService.nav.navigateBack('activities')};
 
   onDetail = () => this.appService.presentModal( ActivityDetailComponent, {
     exLoc:this.sampleLoc,
