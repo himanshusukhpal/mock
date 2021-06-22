@@ -1,13 +1,70 @@
 
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Dashboard</ion-title>
+    <ion-button slot="start" (click)="back()">
+      <ion-icon name="arrow-back" size="large"></ion-icon>
+    </ion-button>
+    <ion-title>Event Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="EventDetailsForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Event Name</ion-label>
+          <ion-input type="text" formControlName="EventLabel" placeholder="Event Name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label> Date and Time</ion-label>
+          <ion-datetime displayFormat="MMM DD, h:mm A" formControlName="DateandTime" placeholder="Date and Time" required ></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Event Type</ion-label >
+          <ion-select placeholder="Event Type" formControlName="EventType" >
+            <ion-select-option value="a">Abc</ion-select-option>
+            <ion-select-option value="d">Def</ion-select-option>
+          </ion-select>
+        </ion-item>
+    
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <!-- <ion-list>
+    <ion-item>
+      <ion-label position="floating">Location</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Date and Time</ion-label>
+      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
+<ion-card align-text-center ion-justify-content-center>
+
+<ion-card-header class="ion-padding"><h4 style="text-align: center;">Invite Friends</h4>
+</ion-card-header>
+<ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+
+<ion-list>
+<ion-item *ngFor="let data of userRecords | filter:filterTerm">
+
+  <ion-label>{{data.id}}</ion-label>
+  <ion-checkbox color="dark" (ionChange) ="onCheck()"slot="start" [(ngModel)]="data.check"></ion-checkbox>
+  <ion-label>{{data.name}}</ion-label>
+  <ion-label>{{data.email}}</ion-label>
+</ion-item>
+</ion-list>
+<div *ngFor="let data of userRecords">
+<ion-chip *ngIf="data.check==='true'">
+  <ion-label color="primary">{{data.name}}</ion-label>
+</ion-chip>
+</div>
+
+</ion-card> -->
 
 </ion-content>

@@ -14,20 +14,25 @@
             <ion-card-content>
 
               <form [formGroup]="signUpForm" (ngSubmit)="onSignup()">
+                <ion-row>
+                  <ion-col size-sm="6">
+                    <ion-item lines="full">
+                      <ion-input type="text" formControlName="fname" placeholder="First name" required><ion-icon name="person-outline"  ></ion-icon></ion-input>
+                      <span class="form-error" *ngIf="signUpSubmit && signUpFormError.fname.errors?.required">
+                        <p class="form-error-text">Name is required!</p>
+                      </span>
+                    </ion-item>
+                  </ion-col>
 
-                <ion-item lines="full">
-                  <ion-input type="text" formControlName="fname" placeholder="First name" required><ion-icon name="person-outline"  ></ion-icon></ion-input>
-                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.fname.errors?.required">
-                    <p class="form-error-text">Name is required!</p>
-                  </span>
-                </ion-item>
-                <ion-item lines="full">
-                  <ion-input type="text" formControlName="lname" placeholder="Last name" required><ion-icon name="person-outline"  ></ion-icon></ion-input>
-                  <span class="form-error" *ngIf="signUpSubmit && signUpFormError.lname.errors?.required">
-                    <p class="form-error-text">Name is required!</p>
-                  </span>
-                </ion-item>
-
+                  <ion-col size-sm="6">
+                    <ion-item lines="full">
+                      <ion-input type="text" formControlName="lname" placeholder="Last name" required><ion-icon name="person-outline"  ></ion-icon></ion-input>
+                      <span class="form-error" *ngIf="signUpSubmit && signUpFormError.lname.errors?.required">
+                        <p class="form-error-text">Name is required!</p>
+                      </span>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
 
                 <ion-item lines="full">
                   <ion-input type="text" formControlName="username" placeholder="Enter your username" required><ion-icon name="person-circle-outline"></ion-icon></ion-input>

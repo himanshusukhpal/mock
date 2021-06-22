@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
+import { IonSlides } from '@ionic/angular';
 
 
 @Component({
@@ -13,6 +14,12 @@ import { ActivityDetailComponent } from './activity-detail/activity-detail.compo
 })
 
 export class HomePage implements OnInit{
+
+  @ViewChild('slides' ,{ static: true })  slides: IonSlides;
+
+  swipeNext(){
+    this.slides.slideTo(2, 400);
+  }
 
   user = {};
 
@@ -72,6 +79,8 @@ export class HomePage implements OnInit{
     console.log(this.user);
   }
 
+  
+
   ngOnInit() {
 
     this.appService.data.exampleLoc=this.sampleLoc;
@@ -85,6 +94,7 @@ export class HomePage implements OnInit{
     console.log(this.appService.activityName);
     this.activity2=this.appService.activityName;
   }
+  onClick2(){console.log("clicked");}
 
   onClick(){
     console.log("click");
@@ -132,4 +142,7 @@ export class HomePage implements OnInit{
     this.appService.nav.navigateForward('profile');
   }
 
+  hostEventPage(){
+    this.appService.nav.navigateForward('dashboard');
+  }
 }

@@ -40,6 +40,9 @@ async callUser(){
   //this.element1 =await this.http.get('https://synans-social-project-default-rtdb.firebaseio.com/userDetail/'+this.appservice.auth.userdetails.id+'.json').toPromise();
   //console.log(this.userDetails);
 }
+back(){
+  this.appservice.nav.navigateBack('profile');
+}
   async editProfile(form: NgForm){
     //console.log(form.value.fname)
     this.userDetails.fname=form.value.fname;

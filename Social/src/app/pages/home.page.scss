@@ -3,9 +3,6 @@ ion-menu {
   --max-width:200px !important;
 }
 
-ion-slides {
-  height: 100%;
-}
 
 .swiper-slide {
   display: block;
@@ -25,6 +22,7 @@ ion-slides {
 #user_profile_name {
   width: 100%;
 }
+
 
 #container {
   text-align: center;
@@ -85,4 +83,16 @@ ion-grid{
     height: 50%;
     flex-grow: 1;
   }
+}
+
+.profile{
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  border:  4px solid  #0d0e0d;
+}
+
+ion-slides{
+  height: 100%;
+  
 }
