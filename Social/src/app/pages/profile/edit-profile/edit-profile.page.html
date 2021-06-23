@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Edit Profile</ion-title>
-    <ion-button slot="start" (click)="back()">
-      <ion-icon name="arrow-back" size="large"></ion-icon>
-    </ion-button>
+    <ion-buttons  slot="start">
+      <ion-button  (click)="back()"   style=" position: absolute;">
+        <ion-icon name="arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -81,7 +83,12 @@
 
                 <ion-item lines="full">
                   <!-- <ion-label position="floating">Password</ion-label> -->
-                  <ion-input type="email" id="email" ngModel name="email" placeholder="Registration email" #password="ngModel">
+                  <ion-input type="email"
+                   id="email"
+                    ngModel name="email"
+                     placeholder="Registration email" 
+                     #email="ngModel"
+                     value="{{userDetails.email}}">
                    <ion-icon name="mail"></ion-icon>
                   </ion-input>
                 </ion-item>

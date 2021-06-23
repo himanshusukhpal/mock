@@ -5,6 +5,7 @@ import { Friends } from 'src/app/models/friends.model';
 import { Card } from 'src/app/models/card.model';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { IonSlides } from '@ionic/angular';
+import { HostEventComponent } from './host-event/host-event.component';
 
 
 @Component({
@@ -142,7 +143,13 @@ export class HomePage implements OnInit{
     this.appService.nav.navigateForward('profile');
   }
 
-  hostEventPage(){
-    this.appService.nav.navigateForward('dashboard');
+ 
+  hostEventPage = () => this.appService.presentModal( HostEventComponent, {
+    // exLoc:this.sampleLoc,
+    // exDate: this.sampleDateTime,
+    // exRecord: this.sampleRecord,
+    // exReq: this.sampleReq,
+    // activity: this.activity
   }
+  );
 }

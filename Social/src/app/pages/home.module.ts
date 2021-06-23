@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
+import { HostEventComponent } from './host-event/host-event.component';
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { ActivityDetailComponent } from './activity-detail/activity-detail.compo
     IonicModule,
     Ng2SearchPipeModule,
     SuperTabsModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [HomePage, ActivityDetailComponent],
-  entryComponents: [ActivityDetailComponent]
+  declarations: [HomePage, ActivityDetailComponent, HostEventComponent ],
+  entryComponents: [ActivityDetailComponent, HostEventComponent]
 })
 export class HomePageModule {}

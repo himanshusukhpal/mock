@@ -151,4 +151,7 @@ export class DataService {
     this.store.removeUser();
   }
 
+  eventDetails(eventDetails:{}){
+
+  }
 }

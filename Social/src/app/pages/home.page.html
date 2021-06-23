@@ -5,9 +5,8 @@
       <ion-img [src]="profileImageUrl"></ion-img>
     </ion-avatar>
 
-      <ion-button  (click)="swipeNext()" slot="end">
-        <ion-icon name="chatbubbles" size="large"></ion-icon>
-      </ion-button>
+        <ion-icon name="chatbubbles" size="large"  (click)="swipeNext()" slot="end" style="margin-right: 10px;"></ion-icon>
+      
        
     
   </ion-toolbar>
@@ -15,7 +14,7 @@
 
       <ion-content>
         <div class="mainContainer">
-        <ion-slides pager="true" [options]="slideOpts" #slides>
+        <ion-slides [options]="slideOpts" #slides>
         <ion-slide>
           <h2>Explore</h2>
           <ion-button (click)="onLogout()">Log out</ion-button>
