@@ -9,12 +9,19 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./host-event.component.scss'],
 })
 export class HostEventComponent implements OnInit {
+  date=new Date();
   eventDetails:{}
   formSubmit = false;
- 
-  constructor(private appService: AppService, private  formBuilder: FormBuilder) { }
+ token: string
+ params="";
+ eventId: string
+  constructor(private appService: AppService, private  formBuilder: FormBuilder) {
+    //this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   back = async () => {await this.appService.dismissModal();
   console.log("back");}
 
@@ -23,18 +30,24 @@ export class HostEventComponent implements OnInit {
   }
  async onSubmit()
  {
+
   this.formSubmit = true;
+  console.log(this.EventDetailsForm.value.DateandTime);
+    
    if(this.EventDetailsForm.valid){
 
    
    this.eventDetails =this.EventDetailsForm.value;
+   
    await this.appService.store.getUser().then(res=>{
      console.log(res);
      console.log(res.id);
      console.log(res.fullname);
+     this.token=res.token;
      this.eventDetails['HostId']=res.id;
      this.eventDetails['HostName']=res.fullname;
    })
+   this.appService.calls.eventListCall(this.token,this.params,this.eventDetails).subscribe(res=>{this.eventId=(res["name"]);});
    console.log(this.eventDetails,"null");
    this.appService.modal.dismiss();
   }
@@ -42,7 +55,8 @@ export class HostEventComponent implements OnInit {
  }
   EventDetailsForm = this.formBuilder.group({
     EventLabel: ['', [Validators.required]],
-    DateandTime: ['', [Validators.required]],
+    Time: ['', [Validators.required]],
+    Date: ['', [Validators.required]],
     EventType: ['', [Validators.required]],
     EventAddress: ['', [Validators.required]],
     EventPrivacy: ['', [Validators.required]],

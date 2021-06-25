@@ -152,6 +152,6 @@ export class DataService {
   }
 
   eventDetails(eventDetails:{}){
-
+    
   }
 }

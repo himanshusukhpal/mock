@@ -2,10 +2,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { Friends } from 'src/app/models/friends.model';
-import { Card } from 'src/app/models/card.model';
-import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { IonSlides } from '@ionic/angular';
 import { HostEventComponent } from './host-event/host-event.component';
+import { map } from 'rxjs/operators';
+import{IonInfiniteScroll} from '@ionic/angular';
 
 
 @Component({
@@ -21,20 +21,21 @@ export class HomePage implements OnInit{
   swipeNext(){
     this.slides.slideTo(2, 400);
   }
+  p1="https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg"
+  p2="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmidzwDDmYuIWxfbw2TBQtGkGibs4ue3IRcQ&usqp=CAU"
+  p3="https://zone1-ibizaspotlightsl.netdna-ssl.com/sites/default/files/styles/auto_1500_width/public/article-images/135764/slideshow-1583257823.jpg"
 
+  page_number = 1;
+  page_limit = 8;
   user = {};
-
+  url: string;
+  mydata:any=[]
+eventList:any=[];
   token: string;
   id: string;
   userDetails={};
   sampleLoc='Miraj Cinemas';
-  filterTerm: string;
-  buttons=true;
-  cards=true;
-  sampleDateTime: string = new Date().toISOString();
-  activity='Watch a movie!';
-  activity2: string;
-  addedCard: Card[]=[];
+  filterTerm: string; 
   sampleRecord: Friends[]=[
     {
       id: 1,
@@ -66,7 +67,7 @@ export class HomePage implements OnInit{
     }
   ];
 
-  sampleReq=['Wand','Cloak','Philospher Stone'];
+ 
   slideOpts = {
     initialSlide: 1,
     speed: 400
@@ -80,63 +81,64 @@ export class HomePage implements OnInit{
     console.log(this.user);
   }
 
+  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
+ 
+lastkey:""
+
+  async ngOnInit() {
+    await this.getEvent(false,"");
+
+  }
   
 
-  ngOnInit() {
-
-    this.appService.data.exampleLoc=this.sampleLoc;
-    this.appService.data.exampleDate=this.sampleDateTime;
-    this.appService.data.exampleRec=this.sampleRecord;
-    this.appService.data.exampleReq=this.sampleReq;
-    this.addedCard=this.appService.data.cards;
+  async ionViewWillEnter(){
+    await this.getEvent(false,"");
+    
   }
 
-  ionViewWillEnter(){
-    console.log(this.appService.activityName);
-    this.activity2=this.appService.activityName;
-  }
-  onClick2(){console.log("clicked");}
+ async getEvent(isFirstLoad,event){
+  this.url = '?orderBy="$key"&limitToFirst=2';
+    this.token=await this.appService.store.getToken()
+
+     this.appService.calls.getEventListCall(this.token,this.url)
+      .subscribe(async res=>{
+        this.eventList=res; 
+        console.log(res,"res");
+        this.mydata = Object.keys(this.eventList).map(key=>{
+          this.lastkey=this.eventList[key];
+           return this.eventList[key];})
+        // for (let i = 0; i < res.length; i++) {
+        //   this.mydata.push(res[i]);
+        // }
+        console.log(this.mydata,"bb",this.lastkey);
+        if (isFirstLoad)
+          event.target.complete();
+      }, error => {
+        console.log(error);
+      })
+        // this.eventList=res;
+        // console.log(this.eventList,"e");
+        // this.mydata = Object.keys(this.eventList).map(key => {
+        //   console.log(this.eventList[key]);
+        //   return this.eventList[key];
+        // })
+     // })
+    }
+    
+
+  
+  onClick2(){
+    console.log("clicked");}
 
   onClick(){
-    console.log("click");
+    
     this.appService.nav.navigateForward('profile');
   }
-  onAddActivity() {console.log('add');
+  onAddActivity() {
     this.appService.nav.navigateBack('activities')};
 
-  onDetail = () => this.appService.presentModal( ActivityDetailComponent, {
-    exLoc:this.sampleLoc,
-    exDate: this.sampleDateTime,
-    exRecord: this.sampleRecord,
-    exReq: this.sampleReq,
-    activity: this.activity
-  }
-  );
-
-  onDetail2(date: string,location: string,record: Friends[] ,req: Array<string>){
-    console.log(record);
-    console.log(location);
-    console.log(this.activity2);
-    console.log(this.addedCard);
-    this.appService.presentModal( ActivityDetailComponent, {
-      exDate: date,
-      exLoc: location,
-      exRecord: record,
-      exReq :req,
-      act: this.activity2
-    });
-    console.log('In on detail');
-  }
-
-  onAccept() {
-    console.log('In Accept');
-    this.buttons=false;
-  }
-
-  onDecline() {
-    this.cards=false;
-  }
-
+ 
+ 
   onLogout = () => this.appService.auth.logout();
 
   onProfile(){
@@ -144,12 +146,27 @@ export class HomePage implements OnInit{
   }
 
  
-  hostEventPage = () => this.appService.presentModal( HostEventComponent, {
-    // exLoc:this.sampleLoc,
-    // exDate: this.sampleDateTime,
-    // exRecord: this.sampleRecord,
-    // exReq: this.sampleReq,
-    // activity: this.activity
+  hostEventPage = () => {
+    this.appService.presentModal( HostEventComponent,{});
+    
   }
-  );
-}
+
+ async loadMore(event){
+    this.url = '?orderBy="$key"&startAt='+this.lastkey+'&limitToFirst=2';
+    this.token=await this.appService.store.getToken();
+
+     this.appService.calls.getEventListCall(this.token,this.url)
+      .subscribe(async res=>{
+        this.eventList=res; 
+        console.log(res,"res");
+        event.target.complete();
+        this.mydata = Object.keys(this.eventList)
+        .map(key=>{
+          this.lastkey=this.eventList[key];
+           return this.eventList[key];
+          })
+        }, error => {
+          console.log(error);
+        });
+  
+}}

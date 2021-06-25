@@ -9,8 +9,11 @@ export class EndpointsService {
 
   users = 'users';
 
+  events= 'events';
+
   constructor() { }
 
   getUserCRUDUrl = (userId: string, token: string) => this.baseURL + this.users + '/' + userId + '.json?auth=' +token;
 
+  eventDetailUrl= (token: string, params:string)=> this.baseURL+ this.events + '.json'+params;
 }

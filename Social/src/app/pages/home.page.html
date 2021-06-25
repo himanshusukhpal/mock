@@ -23,6 +23,60 @@
         
         
           <ion-slide>
+           
+              <ion-card >
+                <div class="scroll">
+                <ion-item *ngFor="let event of mydata">
+                  <ion-card>
+                  
+                    <ion-row>
+                      <ion-col>
+                        <ion-img src={{p1}}></ion-img>
+                      </ion-col>
+                      <ion-col>
+                        <ion-img src={{p2}}></ion-img>
+                      </ion-col>
+                    </ion-row>
+                  
+                  <ion-card-header><h2 style="text-align: center;"><b>{{event.EventLabel}}</b></h2></ion-card-header>
+                  <ion-row>
+                    <ion-col>
+                      <ion-row>
+                        <ion-col>
+                          <ion-item>
+                            <ion-label>{{event.Date|date:"yyyy-MM-dd"}}</ion-label>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-item>
+                            <ion-label>{{event.Time|date:"HH:mm"}}</ion-label>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label>Distance</ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                 
+               
+                </ion-card>
+                </ion-item>
+                <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)">
+                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+      
+                  </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+                </div>
+              </ion-card>
+            
+         
+            
+          
             <div>
             <ion-tabs>
               <ion-tab-bar slot="bottom">

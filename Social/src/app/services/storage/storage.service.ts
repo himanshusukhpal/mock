@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 /* eslint-disable @typescript-eslint/ban-types */
 import { Injectable } from '@angular/core';
-import { async } from '@angular/core/testing';
 import { Storage } from '@capacitor/storage';
 import { User } from 'src/app/models/user.model';
 
