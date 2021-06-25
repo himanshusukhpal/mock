@@ -24,17 +24,17 @@
         
           <ion-slide>
            
-              <ion-card >
+              <ion-card class="outer" >
                 <div class="scroll">
                 <ion-item *ngFor="let event of mydata">
                   <ion-card>
                   
                     <ion-row>
-                      <ion-col>
-                        <ion-img src={{p1}}></ion-img>
+                      <ion-col >
+                       <div class="img-container"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
                       </ion-col>
-                      <ion-col>
-                        <ion-img src={{p2}}></ion-img>
+                      <ion-col >
+                        <div class="img-container"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
                       </ion-col>
                     </ion-row>
                   
@@ -68,7 +68,6 @@
                 </ion-item>
                 <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)">
                   <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
-      
                   </ion-infinite-scroll-content>
                 </ion-infinite-scroll>
                 </div>

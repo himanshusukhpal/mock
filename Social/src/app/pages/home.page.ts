@@ -17,6 +17,7 @@ import{IonInfiniteScroll} from '@ionic/angular';
 export class HomePage implements OnInit{
 
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
+  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
 
   swipeNext(){
     this.slides.slideTo(2, 400);
@@ -81,23 +82,23 @@ eventList:any=[];
     console.log(this.user);
   }
 
-  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
+  
  
 lastkey:""
 
   async ngOnInit() {
-    await this.getEvent(false,"");
+    await this.getEvent();
 
   }
   
 
   async ionViewWillEnter(){
-    await this.getEvent(false,"");
+    await this.getEvent();
     
   }
 
- async getEvent(isFirstLoad,event){
-  this.url = '?orderBy="$key"&limitToFirst=2';
+ async getEvent(){
+  this.url = '?orderBy="$key"&limitToFirst=3';
     this.token=await this.appService.store.getToken()
 
      this.appService.calls.getEventListCall(this.token,this.url)
@@ -111,8 +112,7 @@ lastkey:""
         //   this.mydata.push(res[i]);
         // }
         console.log(this.mydata,"bb",this.lastkey);
-        if (isFirstLoad)
-          event.target.complete();
+        
       }, error => {
         console.log(error);
       })
@@ -151,10 +151,9 @@ lastkey:""
     
   }
 
- async loadMore(event){
+  loadMore(event){
+   console.log("load");
     this.url = '?orderBy="$key"&startAt='+this.lastkey+'&limitToFirst=2';
-    this.token=await this.appService.store.getToken();
-
      this.appService.calls.getEventListCall(this.token,this.url)
       .subscribe(async res=>{
         this.eventList=res; 

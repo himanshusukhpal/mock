@@ -113,9 +113,10 @@ ion-slides{
 }
 
 
-ion-card{
-  max-height: 100%;
-  
+.outer{
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -125,9 +126,24 @@ ion-item{
 .scroll {
   position: relative;
   overflow: hidden;
+  overflow-y:auto;
 
   ::-webkit-scrollbar {
     display: none;
   }
 }
-
+.p1{
+  background-image:url("https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.p2{
+  background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmidzwDDmYuIWxfbw2TBQtGkGibs4ue3IRcQ&usqp=CAU");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.img-container {
+  min-height: 100px;
+  min-width: 150px;
+  background-size: cover;
+}
