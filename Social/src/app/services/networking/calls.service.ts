@@ -32,4 +32,6 @@ export class CallsService {
   eventListCall =(token:string,params:string, event: any)=>this.http.post(this.ends.eventDetailUrl(token,params), event);
 
   getEventListCall=(token:string,params:string)=>this.http.get<[]>(this.ends.eventDetailUrl(token,params));
+
+  getEventbyId=(id:string)=>this.http.get(this.ends.eventUrl(id));
 }

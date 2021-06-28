@@ -10,6 +10,7 @@ import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { HostEventComponent } from './host-event/host-event.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { HostEventComponent } from './host-event/host-event.component';
     HomePageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [HomePage, ActivityDetailComponent, HostEventComponent ],
-  entryComponents: [ActivityDetailComponent, HostEventComponent]
+  declarations: [HomePage, ActivityDetailComponent, HostEventComponent, EventDetailsComponent ],
+  entryComponents: [ActivityDetailComponent, HostEventComponent, EventDetailsComponent]
 })
 export class HomePageModule {}

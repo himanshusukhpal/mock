@@ -6,6 +6,7 @@ import { IonSlides } from '@ionic/angular';
 import { HostEventComponent } from './host-event/host-event.component';
 import { map } from 'rxjs/operators';
 import{IonInfiniteScroll} from '@ionic/angular';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 @Component({
@@ -99,37 +100,37 @@ lastkey:""
   this.url = '?orderBy="$key"&limitToFirst=4';
     this.token=await this.appService.store.getToken()
 
-     this.appService.calls.getEventListCall(this.token,this.url)
+     this.appService.calls.getEventListCall(this.token,this.url).pipe(
+       map(resData=>{
+         const user=[]
+         for(const key in resData)
+         {
+          // console.log(resData[key]);
+          user.push({eventId:key,...(resData[key] as object)})
+         }
+         console.log(user);
+         return user
+       })
+      
+     )
       .subscribe(async res=>{
         this.eventList=res; 
-        console.log(res,"res");
         this.mydata = Object.keys(this.eventList).map(key=>{
           this.lastkey=this.eventList[key];
-           return this.eventList[key];})
-        // for (let i = 0; i < res.length; i++) {
-        //   this.mydata.push(res[i]);
-        // }
-        console.log(this.mydata,"bb",this.lastkey);
-        
+          this.mydata.push({eventId:key,...this.eventList[key]});
+           return (this.eventList[key]);
+          })
       }, error => {
         console.log(error);
       })
-        // this.eventList=res;
-        // console.log(this.eventList,"e");
-        // this.mydata = Object.keys(this.eventList).map(key => {
-        //   console.log(this.eventList[key]);
-        //   return this.eventList[key];
-        // })
-     // })
+      console.log(this.mydata, "my");
     }
     
 
   
-  onClick2(){
-    console.log("clicked");}
 
   onClick(){
-    
+    console.log(this.mydata);
     this.appService.nav.navigateForward('profile');
   }
   onAddActivity() {
@@ -147,6 +148,13 @@ lastkey:""
   hostEventPage = () => {
     this.appService.presentModal( HostEventComponent,{});
     
+  }
+
+  eventDetails(event){
+    console.log(event.eventId);
+this.appService.data.eventId=event.eventId;
+this.appService.presentModal(EventDetailsComponent,{});
+
   }
 
   loadMore(event){

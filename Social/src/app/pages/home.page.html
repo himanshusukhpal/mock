@@ -26,9 +26,9 @@
            
               <ion-card class="outer"  >
                
-                <div class="scroll" scrollY="true">
+                <div class="scroll" >
                   <!-- <ion-list> -->
-                <ion-item *ngFor="let event of mydata" class="item">
+                <ion-item *ngFor="let event of mydata" class="item" (click)="eventDetails(event)">
                   <ion-card class="inner" align-text-center ion-justify-content-center>
                   
                     <ion-row>

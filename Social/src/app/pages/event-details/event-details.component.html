@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  slot="start">
+      <ion-button  (click)="back()"   style=" position: absolute;">
+        <ion-icon name="close" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title>Event Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <!-- <ion-card-header><h2 style="text-align: center; text-transform: capitalize;">{{eventDetails.EventLabel}}</h2></ion-card-header> -->
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+         <div class="img-container1"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+        </ion-col>
+        <ion-col class="ion-no-padding" >
+          <ion-row >
+            <ion-col  >
+              <div class="img-container2"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+              <div class="img-container2"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+            </ion-col>
+          </ion-row>
+          
+        </ion-col>
+      </ion-row>
+    
+    <ion-card-header><h2 style="text-align: center; text-transform: capitalize;"><b>{{eventDetails.EventLabel}}</b></h2></ion-card-header>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{eventDetails.Date|date:"yyyy-MM-dd"}}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{eventDetails.Time|date:"HH:mm"}}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Distance</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{eventDetails.EventAddress}}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>  
+      </ion-col>
+    </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

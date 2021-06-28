@@ -16,4 +16,6 @@ export class EndpointsService {
   getUserCRUDUrl = (userId: string, token: string) => this.baseURL + this.users + '/' + userId + '.json?auth=' +token;
 
   eventDetailUrl= (token: string, params:string)=> this.baseURL+ this.events + '.json'+params;
+
+  eventUrl=(id:string)=>this.baseURL+this.events+"/"+id+".json"
 }

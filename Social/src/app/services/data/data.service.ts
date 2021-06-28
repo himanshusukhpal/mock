@@ -112,7 +112,7 @@ export class DataService {
     { id:9, address:'Ganga Bairaj Road,Nawabgunj' },
     { id:9,address:'Bithoor Road, Bithoor' },
   ];
-
+  eventId;
   exampleLoc: string;
   exampleRec=[];
   exampleDate: string;
@@ -139,6 +139,7 @@ export class DataService {
     private store: StorageService
   ) { }
 
+  
   getActivities = () => [...this.activities];
   getActivities2 = () => [...this.activities2];
 
@@ -151,7 +152,4 @@ export class DataService {
     this.store.removeUser();
   }
 
-  eventDetails(eventDetails:{}){
-    
-  }
 }
