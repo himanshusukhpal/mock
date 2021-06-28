@@ -17,15 +17,13 @@ import{IonInfiniteScroll} from '@ionic/angular';
 export class HomePage implements OnInit{
 
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
-  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
+
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   swipeNext(){
     this.slides.slideTo(2, 400);
   }
-  p1="https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg"
-  p2="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmidzwDDmYuIWxfbw2TBQtGkGibs4ue3IRcQ&usqp=CAU"
-  p3="https://zone1-ibizaspotlightsl.netdna-ssl.com/sites/default/files/styles/auto_1500_width/public/article-images/135764/slideshow-1583257823.jpg"
-
+ 
   page_number = 1;
   page_limit = 8;
   user = {};
@@ -98,7 +96,7 @@ lastkey:""
   }
 
  async getEvent(){
-  this.url = '?orderBy="$key"&limitToFirst=3';
+  this.url = '?orderBy="$key"&limitToFirst=4';
     this.token=await this.appService.store.getToken()
 
      this.appService.calls.getEventListCall(this.token,this.url)
