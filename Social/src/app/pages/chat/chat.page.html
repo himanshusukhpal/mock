@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Chat</ion-title>
+    <ion-avatar class=profile (click)="onClick()" button slot="end">
+      <ion-img [src]="profileImageUrl"></ion-img>
+    </ion-avatar>
+
+    <ion-buttons  slot="start">
+      <ion-button  (click)="home()"   style=" position: absolute;">
+        <ion-icon name="arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+      
+       
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card align-text-center ion-justify-content-center>
+    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    <ion-list>
+      <ion-item class="noItem" *ngFor="let data of sampleRecord | filter:filterTerm">
+        <ion-avatar>
+          <ion-img src={{data.imageUrl}}></ion-img>
+        </ion-avatar>
+        <br>
+        <ion-label>{{data.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

@@ -92,14 +92,6 @@ ion-grid{
 
 }
 
-ion-slides{
-  height: 100%;
- 
-}
-
-
-
-
 .img-wrapper {
   min-height: 200px;
   width: 100%;
@@ -109,9 +101,8 @@ ion-slides{
 
 
 .outer{
-  max-height: 90%;
-  display: flex;
-  flex-direction: column;
+ align-items: center;
+  box-shadow: none !important;
 }
 .inner{
   align-items: center;
@@ -120,47 +111,46 @@ ion-slides{
   
 }
 
-ion-list {
-  overflow: hidden;
-  overflow-y: auto;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-}
 .item{
-  align-items: center;
-  align-content: center;
+  margin-left: 5px !important;
   display: inline-block;
+  padding: 0px !important;
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+    // here other custom CSS from documentation
+  
 }
 
 .noItem{
   display: block;
 }
-.scroll {
-  
-  position: relative;
-  overflow: hidden;
-  overflow-y:auto;
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
-}
 
 .img-container1 {
  
-  min-height: 110px;
+  min-height: 60px;
   min-width: 150px;
   background-size: cover;
+  border-radius: 1px;
+  border: #000;
  
 }
 .img-container2 {
-  min-height: 50px;
+  min-height: 30px;
   min-width: 150px;
   background-size: cover;
+  border-radius: 1px;
+  border: #000;
  
 }
 
 ion-label{
   text-transform: capitalize;
+ // padding-right: -16px;
+  //width: 100%;
+}
+
+ion-col{
+  text-transform: capitalize;
+  text-align: center;
 }

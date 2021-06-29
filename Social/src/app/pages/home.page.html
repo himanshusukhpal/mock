@@ -14,149 +14,116 @@
 
       <ion-content>
         <div class="mainContainer">
-        <ion-slides [options]="slideOpts" #slides>
-        <ion-slide>
-          <h2>Explore</h2>
-          <ion-button (click)="onLogout()">Log out</ion-button>
-          <ion-button (click)="onProfile()">Profile</ion-button>
-        </ion-slide>
-        
-        
-          <ion-slide>
            
               <ion-card class="outer"  >
-               
-                <div class="scroll" >
-                  <!-- <ion-list> -->
-                <ion-item *ngFor="let event of mydata" class="item" (click)="eventDetails(event)">
+              
+                <ion-item *ngFor="let event of mydata" class="item" (click)="eventDetails(event)" >
                   <ion-card class="inner" align-text-center ion-justify-content-center>
                   
                     <ion-row>
-                      <ion-col>
+                      <ion-col class="ion-no-padding">
                        <div class="img-container1"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
                       </ion-col>
                       <ion-col class="ion-no-padding" >
                         <ion-row >
-                          <ion-col  >
-                            <div class="img-container2"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+                          <ion-col class="ion-no-padding" >
+                            <div class="img-container2"  [style.background-image]="'url(https://www.breathehr.com/hubfs/policy%20for%20social%20events%20people%20dancing-min.png)'"></div>
                           </ion-col>
                         </ion-row>
                         <ion-row>
-                          <ion-col >
-                            <div class="img-container2"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+                          <ion-col class="ion-no-padding">
+                            <div class="img-container2"  [style.background-image]="'url(https://www.marthascatering.com/uploads/images/Events/Social-Events/Events-Social-15-8.jpg)'"></div>
                           </ion-col>
                         </ion-row>
                         
                       </ion-col>
                     </ion-row>
                   
-                  <ion-card-header><h2 style="text-align: center; text-transform: capitalize;"><b>{{event.EventLabel}}</b></h2></ion-card-header>
+               
+                  <ion-grid>
                   <ion-row>
-                    <ion-col>
+                    <ion-col size="8">
                       <ion-row>
                         <ion-col>
-                          <ion-item>
-                            <ion-label>{{event.Date|date:"yyyy-MM-dd"}}</ion-label>
-                          </ion-item>
+                         <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.EventLabel}}</b></h3></ion-text>
                         </ion-col>
                       </ion-row>
                       <ion-row>
                         <ion-col>
-                          <ion-item>
-                            <ion-label>{{event.Time|date:"HH:mm"}}</ion-label>
-                          </ion-item>
+                          <ion-text>{{event.Date|date:"yyyy-MM-dd"}}</ion-text>
+                         
+                        </ion-col>
+                        <ion-col>
+                          <ion-text>{{event.Time|date:"HH:mm"}}</ion-text>
+                         
                         </ion-col>
                       </ion-row>
                     </ion-col>
-                    <ion-col>
+                    <ion-col size="4">
                       <ion-row>
                         <ion-col>
-                          <ion-item>
-                            <ion-label>Distance</ion-label>
-                          </ion-item>
+                          <ion-text color="success">{{event.EventType}}</ion-text>
                         </ion-col>
                       </ion-row>
-
                       <ion-row>
-                        <ion-col>
-                          <ion-item>
-                            <ion-label>{{event.EventAddress}}</ion-label>
-                          </ion-item>
-                        </ion-col>
-                      </ion-row>  
+                      <ion-col>
+                        <ion-text color="danger">Distance</ion-text>
+                      </ion-col>
+                    </ion-row>
                     </ion-col>
                   </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>
+                        {{event.EventAddress}}
+                      </ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
                 </ion-card>
                 </ion-item>
-                  <!-- </ion-list> -->
-                </div>  
+
+                  <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+                    </ion-infinite-scroll-content>
+                  </ion-infinite-scroll>
+                
               </ion-card>
-            
-                <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
-                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
-                  </ion-infinite-scroll-content>
-                </ion-infinite-scroll>
-             
-              
-          
-            <div>
-            <ion-tabs>
-              <ion-tab-bar slot="bottom">
-                <ion-tab-button>
-                  <ion-icon name="calendar"></ion-icon>
-                  <ion-label>Schedule</ion-label>
-                  <ion-badge>6</ion-badge>
-                </ion-tab-button>
-    
-                <ion-tab-button>
-                  <ion-icon name="person-circle"></ion-icon>
-                  <ion-label>Speakers</ion-label>
-                </ion-tab-button>
-    
-                <ion-tab-button (click)="hostEventPage()">
-                  <ion-icon name="add-circle" size="large"></ion-icon>
-                  
-                </ion-tab-button>
-    
-                <ion-tab-button>
-                  <ion-icon name="map"></ion-icon>
-                  <ion-label>Map</ion-label>
-                </ion-tab-button>
-    
-                <ion-tab-button>
-                  <ion-icon name="information-circle"></ion-icon>
-                  <ion-label>About</ion-label>
-                </ion-tab-button>
-              </ion-tab-bar>
-            </ion-tabs>
-            </div>
-          </ion-slide>
-        
-        
+
          
-        <ion-slide>
-          <ion-card align-text-center ion-justify-content-center>
-            <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
-            <ion-list>
-              <ion-item class="noItem" *ngFor="let data of sampleRecord | filter:filterTerm">
-                <ion-avatar>
-                  <ion-img src={{data.imageUrl}}></ion-img>
-                </ion-avatar>
-                <br>
-                <ion-label>{{data.name}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-card>
-        </ion-slide>
-</ion-slides>
-        </div>
-
+            </div>  
       </ion-content>
+<ion-footer>
+      
+        <ion-tabs>
+          <ion-tab-bar slot="bottom">
+            <ion-tab-button>
+              <ion-icon name="calendar"></ion-icon>
+              <ion-label>Schedule</ion-label>
+              <ion-badge>6</ion-badge>
+            </ion-tab-button>
 
-<!-- <ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide>
+            <ion-tab-button>
+              <ion-icon name="person-circle"></ion-icon>
+              <ion-label>Speakers</ion-label>
+            </ion-tab-button>
 
-    </ion-slide>
-  </ion-slides>
-</ion-content> -->
+            <ion-tab-button (click)="hostEventPage()">
+              <ion-icon name="add-circle" size="large"></ion-icon>
+              
+            </ion-tab-button>
+
+            <ion-tab-button>
+              <ion-icon name="map"></ion-icon>
+              <ion-label>Map</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button (click)="onLogout()">
+              <ion-icon name="information-circle"></ion-icon>
+              <ion-label>About</ion-label>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+      </ion-footer>
+
+
