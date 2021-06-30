@@ -101,23 +101,19 @@ ion-grid{
 
 
 .outer{
- align-items: center;
+
   box-shadow: none !important;
 }
 .inner{
-  align-items: center;
-  align-content: center;
-  
+  margin-left: 5px !important;
   
 }
 
 .item{
-  margin-left: 5px !important;
-  display: inline-block;
+
   padding: 0px !important;
     --padding-end: 0px;
     --inner-padding-end: 0px;
-    // here other custom CSS from documentation
   
 }
 
@@ -127,20 +123,19 @@ ion-grid{
 
 
 .img-container1 {
- 
-  min-height: 60px;
-  min-width: 150px;
+ //display: inline-block;
+  min-height: 100%;
+  min-width: 170px;
   background-size: cover;
   border-radius: 1px;
   border: #000;
  
 }
 .img-container2 {
-  min-height: 30px;
-  min-width: 150px;
+ // display: inline-block;
+  min-height: 40px;
+  min-width: 170px;
   background-size: cover;
-  border-radius: 1px;
-  border: #000;
  
 }
 
@@ -153,4 +148,9 @@ ion-label{
 ion-col{
   text-transform: capitalize;
   text-align: center;
+}
+
+ion-footer{
+  
+  display: inline-block;
 }

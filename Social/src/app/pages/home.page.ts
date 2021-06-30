@@ -24,12 +24,13 @@ export class HomePage implements OnInit{
   swipeNext(){
     this.appService.nav.navigateForward('home/chat');
   }
- 
+ isFinished=false;
   page_number = 1;
   page_limit = 8;
   user = {};
   url: string;
   mydata:any=[]
+  mydata1:any=[]
 eventList:any=[];
   token: string;
   id: string;
@@ -85,6 +86,7 @@ lastkey:""
      )
       .subscribe(async res=>{
         this.eventList=res; 
+        console.log(this.eventList.length,"l");
         this.mydata = Object.keys(this.eventList).map(key=>{
           this.lastkey=this.eventList[key].eventId;
           this.mydata.push({eventId:key,...this.eventList[key]});
@@ -130,7 +132,7 @@ this.appService.presentModal(EventDetailsComponent,{});
   loadMore(event){
    console.log("load");
    console.log(this.lastkey)
-    this.url = '?orderBy="$key"&startAt="'+this.lastkey+'"&limitToFirst=2';
+    this.url = '?orderBy="$key"&startAt="'+this.lastkey+'"&limitToFirst=4';
     this.appService.calls.getEventListCall(this.token,this.url).pipe(
       map(resData=>{
         const user=[]
@@ -145,11 +147,26 @@ this.appService.presentModal(EventDetailsComponent,{});
      
     ).subscribe(async res=>{
       this.eventList=res; 
-      this.mydata = Object.keys(this.eventList).map(key=>{
+     
+      event.target.complete();
+      
+      
+      this.mydata1 = Object.keys(this.eventList).map(key=>{
+         if(this.lastkey!=this.eventList[key].eventId)
+         {
         this.lastkey=this.eventList[key].eventId;
-        this.mydata.push({eventId:key,...this.eventList[key]});
+        this.mydata1.push({eventId:key,...this.eventList[key]});
+         }
          return (this.eventList[key]);
+         
+        }
+        )
+        this.mydata=this.mydata.concat(this.mydata1);
+        this.mydata.filter((item,index)=>{
+          return this.mydata.indexOf(item)===index;
         })
+        console.log(this.mydata1,"d1");
+        console.log(this.mydata,"d")
         }, error => {
           console.log(error);
         });

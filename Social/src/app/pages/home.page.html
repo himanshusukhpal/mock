@@ -17,7 +17,7 @@
            
               <ion-card class="outer"  >
               
-                <ion-item *ngFor="let event of mydata" class="item" (click)="eventDetails(event)" >
+                <ion-item *ngFor="let event of mydata" class="item" (click)="eventDetails(event)" lines="none" >
                   <ion-card class="inner" align-text-center ion-justify-content-center>
                   
                     <ion-row>
@@ -72,58 +72,51 @@
                     </ion-row>
                     </ion-col>
                   </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>
-                        {{event.EventAddress}}
-                      </ion-text>
-                    </ion-col>
-                  </ion-row>
                 </ion-grid>
                 </ion-card>
                 </ion-item>
 
-                  <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)">
-                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
-                    </ion-infinite-scroll-content>
-                  </ion-infinite-scroll>
-                
+                 
+                <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)" *ngIf="!isFinished">
+                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+                  </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
               </ion-card>
 
-         
-            </div>  
-      </ion-content>
-<ion-footer>
-      
-        <ion-tabs>
-          <ion-tab-bar slot="bottom">
-            <ion-tab-button>
-              <ion-icon name="calendar"></ion-icon>
-              <ion-label>Schedule</ion-label>
-              <ion-badge>6</ion-badge>
-            </ion-tab-button>
-
-            <ion-tab-button>
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Speakers</ion-label>
-            </ion-tab-button>
-
-            <ion-tab-button (click)="hostEventPage()">
-              <ion-icon name="add-circle" size="large"></ion-icon>
+            </div> 
+            
               
-            </ion-tab-button>
+      </ion-content>
 
-            <ion-tab-button>
-              <ion-icon name="map"></ion-icon>
-              <ion-label>Map</ion-label>
-            </ion-tab-button>
+      
+<ion-toolbar>
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button>
+            <ion-icon name="calendar"></ion-icon>
+            <ion-label>Schedule</ion-label>
+            <ion-badge>6</ion-badge>
+          </ion-tab-button>
 
-            <ion-tab-button (click)="onLogout()">
-              <ion-icon name="information-circle"></ion-icon>
-              <ion-label>About</ion-label>
-            </ion-tab-button>
-          </ion-tab-bar>
-        </ion-tabs>
-      </ion-footer>
+          <ion-tab-button>
+            <ion-icon name="person-circle"></ion-icon>
+            <ion-label>Speakers</ion-label>
+          </ion-tab-button>
 
+          <ion-tab-button (click)="hostEventPage()">
+            <ion-icon name="add-circle" size="large"></ion-icon>
+            
+          </ion-tab-button>
 
+          <ion-tab-button>
+            <ion-icon name="map"></ion-icon>
+            <ion-label>Map</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button (click)="onLogout()">
+            <ion-icon name="information-circle"></ion-icon>
+            <ion-label>About</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-toolbar>
