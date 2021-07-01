@@ -36,7 +36,7 @@
     "@capacitor/status-bar": "^1.0.0",
     "@capacitor/storage": "^1.0.0",
     "@ionic-super-tabs/angular": "^7.0.8",
-    "@ionic/angular": "^5.5.2",
+    "@ionic/angular": "^6.0.0-beta.0",
     "css-what": "^5.0.1",
     "firebase": "^8.6.1",
     "glob-parent": "^6.0.0",
