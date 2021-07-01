@@ -76,6 +76,7 @@ img{
 }
 ion-grid{
   height: 100%;
+  padding-bottom: 0px;
   
   
   ion-row{
@@ -110,7 +111,7 @@ ion-grid{
 }
 
 .item{
-
+justify-content: center;
   padding: 0px !important;
     --padding-end: 0px;
     --inner-padding-end: 0px;
@@ -131,9 +132,14 @@ ion-grid{
   border: #000;
  
 }
+
+.item-native{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
 .img-container2 {
  // display: inline-block;
-  min-height: 40px;
+  min-height: 60px;
   min-width: 170px;
   background-size: cover;
  

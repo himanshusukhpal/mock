@@ -152,21 +152,19 @@ this.appService.presentModal(EventDetailsComponent,{});
       
       
       this.mydata1 = Object.keys(this.eventList).map(key=>{
-         if(this.lastkey!=this.eventList[key].eventId)
-         {
-        this.lastkey=this.eventList[key].eventId;
-        this.mydata1.push({eventId:key,...this.eventList[key]});
-         }
-         return (this.eventList[key]);
-         
+          this.lastkey=this.eventList[key].eventId;
+          this.mydata1.push({eventId:key,...this.eventList[key]}); 
+         return (this.eventList[key]); 
         }
-        )
-        this.mydata=this.mydata.concat(this.mydata1);
-        this.mydata.filter((item,index)=>{
-          return this.mydata.indexOf(item)===index;
-        })
-        console.log(this.mydata1,"d1");
-        console.log(this.mydata,"d")
+        ) 
+      this.mydata=this.mydata.concat(this.mydata1);
+      var obj = {};
+      var len=this.mydata.length;
+      for ( var i=0; i < len; i++ )
+      obj[this.mydata[i]['eventId']] = this.mydata[i];
+      this.mydata = new Array();
+      for ( var key in obj )
+      this.mydata.push(obj[key]);  
         }, error => {
           console.log(error);
         });
