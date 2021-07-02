@@ -133,17 +133,17 @@ export class AppService {
   async setContext() {
     environment.UUID = (await Device.getId()).uuid;
     environment.DEVICE = await Device.getInfo();
-    this.getCurrentPosition().then(
-      res=> {
-        environment.LOC.accuracy = res.coords.accuracy;
-        environment.LOC.altitude = res.coords.altitude;
-        environment.LOC.altitudeAccuracy = res.coords.altitudeAccuracy;
-        environment.LOC.heading = res.coords.heading;
-        environment.LOC.latitude = res.coords.latitude;
-        environment.LOC.longitude = res.coords.longitude;
-        environment.LOC.speed = res.coords.speed;
-      }
-    );
+    // this.getCurrentPosition().then(
+    //   res=> {
+    //     environment.LOC.accuracy = res.coords.accuracy;
+    //     environment.LOC.altitude = res.coords.altitude;
+    //     environment.LOC.altitudeAccuracy = res.coords.altitudeAccuracy;
+    //     environment.LOC.heading = res.coords.heading;
+    //     environment.LOC.latitude = res.coords.latitude;
+    //     environment.LOC.longitude = res.coords.longitude;
+    //     environment.LOC.speed = res.coords.speed;
+    //   }
+    // );
     console.log(environment);
   }
   getAppVer = () => environment.VERSION;
