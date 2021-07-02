@@ -35,7 +35,7 @@ ion-buttons {
 }
 
 .topAlertClass {
-  top: 7%;
+  top: 7% !important;
   text-align: center;
 }
 .bottomAlertClass {
@@ -62,15 +62,14 @@ ion-buttons {
   right: 0px;
 }
 
+.centerContainer {
+  top: 50%;
+  transform: translateY(50%);
+  text-align: center;
+}
 .mainContainer{
-  position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+  margin: 20px;
 	max-width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .picker-toolbar.sc-ion-picker-md{
