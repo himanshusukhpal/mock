@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -15,7 +16,12 @@ export class EndpointsService {
 
   getUserCRUDUrl = (userId: string, token: string) => this.baseURL + this.users + '/' + userId + '.json?auth=' +token;
 
-  eventDetailUrl= (token: string, params:string)=> this.baseURL+ this.events + '.json'+params;
+  eventDetailUrl = (id: string) => this.baseURL + this.events + '/'+ id + '.json';
 
-  eventUrl=(id:string)=>this.baseURL+this.events+"/"+id+".json"
+  startEventsListUrl = (limit: number) => this.baseURL + this.events + `.json?orderBy="$key"&limitToFirst=${limit}`;
+
+  loadMoreEventsUrl = (startAfter: string, limit: number)=> this.baseURL + this.events + `.json?orderBy="$key"&startAt="${startAfter}"&limit=${limit}`;
+
+  addEventUrl= ()=> this.baseURL + this.events + `.json`;
+
 }

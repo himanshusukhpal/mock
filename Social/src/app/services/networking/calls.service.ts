@@ -29,9 +29,12 @@ export class CallsService {
 
   userCreateCall2 = (userId: string, token: string, user: User) => this.http.put( this.ends.getUserCRUDUrl(userId,token) , user );
 
-  eventListCall =(token:string,params:string, event: any)=>this.http.post(this.ends.eventDetailUrl(token,params), event);
+  startEventsListCall = (limit: number) => this.http.get(this.ends.startEventsListUrl(limit));
 
-  getEventListCall=(token:string,params:string)=>this.http.get<[]>(this.ends.eventDetailUrl(token,params));
+  loadMoreEventsCall = (startAfter: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAfter, limit));
 
-  getEventbyId=(id:string)=>this.http.get(this.ends.eventUrl(id));
+  getEventbyId = (id: string) => this.http.get(this.ends.eventDetailUrl(id));
+
+  addNewEventCall = (token: string, params: string, event: any) => this.http.post(this.ends.addEventUrl(), event);
+
 }

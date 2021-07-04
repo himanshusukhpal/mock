@@ -20,8 +20,8 @@ export class ActivitiesPage implements OnInit {
   ngOnInit() {
     this.x=this.appService.activity;
     console.log(this.x);
-    this.loadedActivities=this.appService.data.getActivities();
-    this.loadedActivities2=this.appService.data.getActivities2();
+    // this.loadedActivities=this.appService.data.getActivities();
+    // this.loadedActivities2=this.appService.data.getActivities2();
     console.log(this.loadedActivities);
   }
 

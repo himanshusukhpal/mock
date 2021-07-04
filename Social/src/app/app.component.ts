@@ -4,7 +4,7 @@ import { AppService } from './services/app.service';
 
 import { Platform } from '@ionic/angular';
 
-import { SplashScreen } from '@capacitor/splash-screen'
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -23,24 +23,17 @@ export class AppComponent {
   ) {
     SplashScreen.show();
     this.initializeApp();
-    this.appService.auth.checkUser();
+    SplashScreen.hide();
   }
 
-  async initializeApp() {
+  initializeApp() {
     this.platform.ready()
     .then(() => {
       this.appService.setStatusBar();
       this.appService.setContext();
-      // this.appService.data.master_sync();
-      // this.appService.pushNotificationSetup();
-      // this.appService.appExitSetup();
-      // this.appService.initTranslate();
-      SplashScreen.hide();
+      this.appService.auth.checkUser();
+      this.appService.data.userAppDataSync();
     });
-    // .catch(()=>this.appService.analytics.logEvent("app_init_error",{
-    //   SCREEN_NAME: "AppRoot",
-    //   SUCCESS:0,
-    // }));
   }
 
 }

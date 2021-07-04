@@ -6,7 +6,7 @@
         <ion-icon name="close" size="large"></ion-icon>
       </ion-button>
     </ion-buttons>
-    
+
     <ion-title>Host Event</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,71 +14,63 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="EventDetailsForm"  >
+      <form [formGroup]="eventDetailsForm"  >
         <ion-item>
           <ion-label position="floating">Event Name</ion-label>
-          <ion-input type="text" formControlName="EventLabel" placeholder="Event Name" required></ion-input>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.EventLabel.errors?.required">
+          <ion-input type="text" formControlName="eventLabel" placeholder="Event Name" required></ion-input>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventLabel.errors?.required">
             <p class="form-error-text">Event Name is required!</p>
           </span>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating"> Date </ion-label>
-          <ion-datetime 
-          displayFormat="MMM DD, YYYY"
-          pickerFormat="MMMM DD YYYY" 
-           
-           formControlName="Date" 
-           placeholder="Date" 
-           required >
+          <ion-datetime
+            displayFormat="MMM DD, YYYY"
+            pickerFormat="MMMM DD YYYY"
+            formControlName="date"
+            placeholder="Date"
+            required >
           </ion-datetime>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.Date.errors?.required">
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.date.errors?.required">
             <p class="form-error-text">Date and Time is required!</p>
           </span>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating"> Time </ion-label>
-          <ion-datetime 
-          displayFormat="HH: mm"
-          pickerFormat="HH :mm" 
-           
-           formControlName="Time" 
-           placeholder="Time" 
-           required >
-          </ion-datetime>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.Time.errors?.required">
+          <ion-select></ion-select>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.time.errors?.required">
             <p class="form-error-text">Date and Time is required!</p>
           </span>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Event Type</ion-label >
-          <ion-select placeholder="Event Type" formControlName="EventType" >
+          <ion-select placeholder="Event Type" formControlName="eventType" >
             <ion-select-option value="abc">Abc</ion-select-option>
             <ion-select-option value="def">Def</ion-select-option>
           </ion-select>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.EventType.errors?.required">
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventType.errors?.required">
             <p class="form-error-text">Event Type is required!</p>
           </span>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating"> Event Address</ion-label>
-          <ion-input type="text"  formControlName="EventAddress" placeholder="Event Address" required></ion-input>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.EventAddress.errors?.required">
+          <ion-input type="text"  formControlName="eventAddress" placeholder="Event Address" required></ion-input>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventAddress.errors?.required">
             <p class="form-error-text">Event Address is required!</p>
           </span>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating"> Event Privacy</ion-label>
-          <ion-select placeholder="Event Type" formControlName="EventPrivacy" >
+          <ion-select placeholder="Event Type" formControlName="eventPrivacy" >
             <ion-select-option value="Open">Open</ion-select-option>
             <ion-select-option value="Closed">Closed</ion-select-option>
           </ion-select>
-          <span class="form-error" *ngIf="formSubmit && EventDetailsFormError.EventPrivacy.errors?.required">
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventPrivacy.errors?.required">
             <p class="form-error-text">Event Privacy is required!</p>
           </span>
         </ion-item>
@@ -90,7 +82,7 @@
     </ion-card-content>
   </ion-card>
 
-  
+
   <!-- <ion-list>
     <ion-item>
       <ion-label position="floating">Location</ion-label>

@@ -25,12 +25,12 @@ export class StorageService {
   getToken= async ()=> JSON.parse(await this.get('token'));
   removeToken = async () => await this.remove('token');
 
-  setEventList=async(setKey: string, setValue:string)=>await Storage.set({key:setKey,value:setValue});
+  setEventList=async (setKey: string, setValue:string)=>await Storage.set({key:setKey,value:setValue});
   getEventList = async (getKey: string) => (await Storage.get({ key: getKey })).value;
   removeEventList = async (remKey: string) => await Storage.remove({ key: remKey });
 
   setEvent = async (event: Record<any, unknown>,id:string) => await this.set(id,JSON.stringify(event));
-  getEvent = async (id:string) => JSON.parse(await this.get(id));
-  removeEvent = async (id:string) => await this.remove(id);
+  getEvent = async (id: string) => JSON.parse(await this.get(id));
+  removeEvent = async (id: string) => await this.remove(id);
 
 }

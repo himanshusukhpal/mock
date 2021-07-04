@@ -51,9 +51,9 @@ export class FriendsPage implements OnInit {
   ngOnInit() {
     this.id=this.appService.activity;
     console.log(this.id);
-    this.displayList=this.appService.data.userRecords;
+    // this.displayList=this.appService.data.userRecords;
     console.log(this.display);
-    this.location=this.appService.data.location;
+    // this.location=this.appService.data.location;
     console.log(this.location);
   }
  onConfirm(){
@@ -72,10 +72,10 @@ export class FriendsPage implements OnInit {
    console.log(this.myLocation);
    console.log(this.display);
 
-   this.appService.data.cards.push(this.element);
-   console.log(this.element);
-   console.log(this.appService.data.cards);
-   this.appService.nav.navigateForward('dashboard');
+  //  this.appService.data.cards.push(this.element);
+  //  console.log(this.element);
+  //  console.log(this.appService.data.cards);
+  //  this.appService.nav.navigateForward('dashboard');
  }
 
 }

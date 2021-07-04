@@ -1,11 +1,10 @@
+/* eslint-disable curly */
 /* eslint-disable max-len */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
-import { Friends } from 'src/app/models/friends.model';
 import { IonSlides } from '@ionic/angular';
 import { HostEventComponent } from './host-event/host-event.component';
-import { map } from 'rxjs/operators';
-import{IonInfiniteScroll} from '@ionic/angular';
+import { IonInfiniteScroll } from '@ionic/angular';
 import { EventDetailsComponent } from './event-details/event-details.component';
 
 
@@ -19,154 +18,61 @@ export class HomePage implements OnInit{
 
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
 
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
-  swipeNext(){
-    this.appService.nav.navigateForward('home/chat');
-  }
- isFinished=false;
-  page_number = 1;
-  page_limit = 8;
-  user = {};
-  url: string;
-  mydata:any=[]
-  mydata1:any=[]
-eventList:any=[];
-  token: string;
-  id: string;
-  userDetails={};
-  sampleLoc='Miraj Cinemas';
-  
-
- 
-  slideOpts = {
-    initialSlide: 1,
-    speed: 400
-  };
   profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
+
+  user = {};
+  eventBlocks = [];
 
   constructor(
     private appService: AppService
   ) {
     this.appService.data.userData.subscribe(res=>this.user=res);
+    this.appService.data.eventsList.subscribe(res=>this.eventBlocks.splice(0,this.eventBlocks.length,res));
     console.log(this.user);
+    console.log(this.eventBlocks);
   }
 
-  
- 
-lastkey:""
+  ngOnInit() { }
 
-  async ngOnInit() {
-    await this.getEvent();
+  ionViewWillEnter() { }
 
-  }
-  
-
-  async ionViewWillEnter(){
-    await this.getEvent();
-    
-  }
-
- async getEvent(){
-  this.url = '?orderBy="$key"&limitToFirst=4';
-    this.token=await this.appService.store.getToken()
-
-     this.appService.calls.getEventListCall(this.token,this.url).pipe(
-       map(resData=>{
-         const user=[]
-         for(const key in resData)
-         {
-          // console.log(resData[key]);
-          user.push({eventId:key,...(resData[key] as object)})
-         }
-         console.log(user);
-         return user
-       })
-      
-     )
-      .subscribe(async res=>{
-        this.eventList=res; 
-        console.log(this.eventList.length,"l");
-        this.mydata = Object.keys(this.eventList).map(key=>{
-          this.lastkey=this.eventList[key].eventId;
-          this.mydata.push({eventId:key,...this.eventList[key]});
-           return (this.eventList[key]);
-          })
-      }, error => {
-        console.log(error);
-      })
-      console.log(this.mydata, "my");
-    }
-    
-
-  
+  swipeNext = () => this.appService.nav.navigateForward('home/chat');
 
   onClick(){
-    console.log(this.mydata);
     this.appService.nav.navigateForward('profile');
-  }
-  onAddActivity() {
-    this.appService.nav.navigateBack('activities')};
-
- 
- 
-  onLogout = () => this.appService.auth.logout();
-
-  onProfile(){
-    this.appService.nav.navigateForward('profile');
-  }
-
- 
-  hostEventPage = () => {
-    this.appService.presentModal( HostEventComponent,{});
-    
   }
 
   eventDetails(event){
-    console.log(event.eventId);
-this.appService.data.eventId=event.eventId;
-this.appService.presentModal(EventDetailsComponent,{});
-
+    this.appService.data.openEvent.next(event.value);
+    this.appService.presentModal(EventDetailsComponent,{});
   }
 
-  loadMore(event){
-   console.log("load");
-   console.log(this.lastkey)
-    this.url = '?orderBy="$key"&startAt="'+this.lastkey+'"&limitToFirst=4';
-    this.appService.calls.getEventListCall(this.token,this.url).pipe(
-      map(resData=>{
-        const user=[]
-        for(const key in resData)
-        {
-         // console.log(resData[key]);
-         user.push({eventId:key,...(resData[key] as object)})
+  loadMore(event) {
+    setTimeout(() => {
+      const lastKey = Object.keys(this.eventBlocks[this.eventBlocks.length-1]).pop();
+      this.appService.calls.loadMoreEventsCall(lastKey,5).subscribe(
+        res => {
+          delete res[(Object.keys(res).shift())];
+          if(Object.keys(res).length) this.eventBlocks.push(res);
+          console.log(this.eventBlocks);
         }
-        console.log(user);
-        return user
-      })
-     
-    ).subscribe(async res=>{
-      this.eventList=res; 
-     
+      );
       event.target.complete();
-      
-      
-      this.mydata1 = Object.keys(this.eventList).map(key=>{
-          this.lastkey=this.eventList[key].eventId;
-          this.mydata1.push({eventId:key,...this.eventList[key]}); 
-         return (this.eventList[key]); 
-        }
-        ) 
-      this.mydata=this.mydata.concat(this.mydata1);
-      var obj = {};
-      var len=this.mydata.length;
-      for ( var i=0; i < len; i++ )
-      obj[this.mydata[i]['eventId']] = this.mydata[i];
-      this.mydata = new Array();
-      for ( var key in obj )
-      this.mydata.push(obj[key]);  
-        }, error => {
-          console.log(error);
-        });
-  
-}}
+
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      // if (data.length == 1000) {
+      //   event.target.disabled = true;
+      // }
+    }, 1000);
+  }
+
+  onAddActivity = () => this.appService.nav.navigateBack('activities');
+
+  onLogout = () => this.appService.auth.logout();
+
+  onProfile = () => this.appService.nav.navigateForward('profile');
+
+  hostEventPage = () => this.appService.presentModal( HostEventComponent,{});
+
+}

@@ -33,14 +33,7 @@ export class AuthService {
     private store: StorageService,
     private nav: NavController,
     private load: LoadingController
-   
   ) { }
-
-  private tokenExpired(token: string) {
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
-  }
-
 
   async presentLoading(msg: string) {
     const loading = await this.load.create({
@@ -131,9 +124,15 @@ export class AuthService {
     this.data.removeEntireData();
   }
 
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date()).getTime() / 1000)) >= expiry;
+  }
+
   private login(user: Record<string, unknown>) {
     this.isLoggedIn = true;
     this.data.userDataSync(user);
+    this.data.userAppDataSync();
     this.nav.navigateForward('home');
   }
 
