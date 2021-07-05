@@ -39,22 +39,22 @@
               <ion-col size="8">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value.EventLabel}}</b></h3></ion-text>
+                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value['EventLabel']}}</b></h3></ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <ion-text>{{event.value.Date|date:"yyyy-MM-dd"}}</ion-text>
+                    <ion-text>{{event.value['Date']|date:"yyyy-MM-dd"}}</ion-text>
                   </ion-col>
                   <ion-col>
-                    <ion-text>{{event.value.Time|date:"HH:mm"}}</ion-text>
+                    <ion-text>{{event.value['Time']|date:"HH:mm"}}</ion-text>
                   </ion-col>
                 </ion-row>
               </ion-col>
               <ion-col size="4">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="success">{{event.value.EventType}}</ion-text>
+                    <ion-text color="success">{{event.value['EventType']}}</ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>

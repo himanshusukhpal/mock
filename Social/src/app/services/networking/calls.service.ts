@@ -31,7 +31,7 @@ export class CallsService {
 
   startEventsListCall = (limit: number) => this.http.get(this.ends.startEventsListUrl(limit));
 
-  loadMoreEventsCall = (startAfter: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAfter, limit));
+  loadMoreEventsCall = (startAt: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAt, limit));
 
   getEventbyId = (id: string) => this.http.get(this.ends.eventDetailUrl(id));
 
