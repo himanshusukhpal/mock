@@ -18,11 +18,7 @@ export class MyEventsPage implements OnInit {
         console.log(res);
         this.myEvents.splice(0,this.myEvents.length,res)});
         
-      console.log(this.myEvents);
-      
-
-
-      
+      console.log(this.myEvents); 
 
   }
 
