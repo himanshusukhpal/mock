@@ -21,6 +21,8 @@ export class AppComponent {
     private platform: Platform,
     private appService: AppService
   ) {
+    this.appService.store.getUser().then(res=>{this.id=res.id;
+      console.log(this.id);})
     SplashScreen.show();
     this.initializeApp();
     SplashScreen.hide();
@@ -33,6 +35,7 @@ export class AppComponent {
       this.appService.setContext();
       this.appService.auth.checkUser();
       this.appService.data.userAppDataSync();
+      
     });
   }
 

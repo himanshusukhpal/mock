@@ -19,24 +19,34 @@ export class HomePage implements OnInit{
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
 
   profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
-
+status=false;
   user = {};
   eventBlocks = [];
-
+  hostId;
+  userName;
+  userId
   constructor(
     private appService: AppService
   ) {
-    this.appService.data.userData.subscribe(res=>this.user=res);
-    this.appService.data.eventsList.subscribe(res=>this.eventBlocks.splice(0,this.eventBlocks.length,res));
-    console.log(this.user);
+    this.appService.data.userData.subscribe(res=>{
+      this.user=res;
+      this.hostId=res.id;
+      this.userName=res.fname;
+      console.log(res,"n")
+    });
+    this.appService.data.eventsList.subscribe(res=>{
+      this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
     console.log(this.eventBlocks);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    
+  }
 
-  ionViewWillEnter() { }
+  ionViewWillEnter() { 
+  }
 
-  swipeNext = () => this.appService.nav.navigateForward('home/chat');
+ 
 
   onClick(){
     this.appService.nav.navigateForward('profile');
@@ -58,14 +68,18 @@ export class HomePage implements OnInit{
         }
       );
       event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      // if (data.length == 1000) {
-      //   event.target.disabled = true;
-      // }
     }, 1000);
   }
+interested(event,$event){
+  console.log(this.userName,)
+this.appService.calls.addGuestsToEventCall(event.key,{guestName :this.userName, guestId:this.hostId})
+.subscribe(res=>{console.log(res)})
+$event.target.disabled=true
+}
+
+close(){}
+
+  swipeNext = () => this.appService.nav.navigateForward('home/chat');
 
   onAddActivity = () => this.appService.nav.navigateBack('activities');
 
@@ -74,5 +88,7 @@ export class HomePage implements OnInit{
   onProfile = () => this.appService.nav.navigateForward('profile');
 
   hostEventPage = () => this.appService.presentModal( HostEventComponent,{});
+
+  myEvents = () => {this.appService.nav.navigateForward('home/my-events'); }
 
 }

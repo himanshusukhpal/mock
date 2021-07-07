@@ -24,6 +24,7 @@ export class HostEventComponent implements OnInit {
     eventType: ['', [Validators.required]],
     eventAddress: ['', [Validators.required]],
     eventPrivacy: ['', [Validators.required]],
+    eventStatus: ['', [Validators.required]],
   });
 
  constructor(

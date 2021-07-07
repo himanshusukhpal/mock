@@ -39,22 +39,22 @@
               <ion-col size="8">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value.EventLabel}}</b></h3></ion-text>
+                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value['EventLabel']}}</b></h3></ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <ion-text>{{event.value.Date|date:"yyyy-MM-dd"}}</ion-text>
+                    <ion-text>{{event.value['Date']|date:"yyyy-MM-dd"}}</ion-text>
                   </ion-col>
                   <ion-col>
-                    <ion-text>{{event.value.Time|date:"HH:mm"}}</ion-text>
+                    <ion-text>{{event.value['Time']|date:"HH:mm"}}</ion-text>
                   </ion-col>
                 </ion-row>
               </ion-col>
               <ion-col size="4">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="success">{{event.value.EventType}}</ion-text>
+                    <ion-text color="success">{{event.value['EventType']}}</ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -64,8 +64,16 @@
               </ion-row>
               </ion-col>
             </ion-row>
+            <ion-row *ngIf="event.value['HostId']===hostId">
+              <ion-col>
+                <ion-button color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,$event)" [disabled]="status">
+                  Interested 
+                </ion-button>
+              </ion-col>
+              
+            </ion-row>
           </ion-grid>
-
+          
         </ion-card>
       </ion-item>
     </ng-template>
@@ -83,10 +91,10 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button>
+      <ion-tab-button (click)="myEvents()">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
+        <ion-label>My Events</ion-label>
+        <ion-badge>9+</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button>

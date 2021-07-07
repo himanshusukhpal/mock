@@ -75,6 +75,19 @@
           </span>
         </ion-item>
 
+        <ion-item>
+          <ion-label position="floating"> Event Status</ion-label>
+          <ion-select placeholder="Event Status" formControlName="eventStatus" >
+            <ion-select-option value="Open">Open</ion-select-option>
+            <ion-select-option value="Completed">Completed</ion-select-option>
+            <ion-select-option value="Cancelled">Cancelled</ion-select-option>
+          </ion-select>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventStatus.errors?.required">
+            <p class="form-error-text">Event Status is required!</p>
+          </span>
+        </ion-item>
+
+
         <div class="sign-btn-wrap">
           <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>
         </div>

@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  slot="start">
+      <ion-button  (click)="home()"   style=" position: absolute;">
+        <ion-icon name="arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>My Events</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="mainContainer">
+
+    <ng-template ngFor let-events [ngForOf]="myEvents">
+      <ion-item *ngFor="let event of events | keyvalue" class="item" lines="none" >
+        <ion-card class="inner" align-text-center ion-justify-content-center>
+
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <div class="img-container1"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
+            </ion-col>
+            <ion-col class="ion-no-padding" >
+              <ion-row >
+                <ion-col class="ion-no-padding" >
+                  <div class="img-container2"  [style.background-image]="'url(https://www.breathehr.com/hubfs/policy%20for%20social%20events%20people%20dancing-min.png)'"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-no-padding">
+                  <div class="img-container2"  [style.background-image]="'url(https://www.marthascatering.com/uploads/images/Events/Social-Events/Events-Social-15-8.jpg)'"></div>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="8">
+                <ion-row>
+                  <ion-col>
+                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value['EventLabel']}}</b></h3></ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-text>{{event.value['Date']|date:"yyyy-MM-dd"}}</ion-text>
+                  </ion-col>
+                  <ion-col>
+                    <ion-text>{{event.value['Time']|date:"HH:mm"}}</ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row>
+                  <ion-col>
+                    <ion-text color="success">{{event.value['EventType']}}</ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                <ion-col>
+                  <ion-text color="danger">Distance</ion-text>
+                </ion-col>
+              </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text><h3><b>Guest List</b></h3></ion-text>
+              </ion-col>
+              <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+              <ion-list>
+                <ion-item  *ngFor="let guest of event.value['guestList'] | filter:filterTerm">
+                  <ion-text>{{guest.value['guestName']}}</ion-text>
+                </ion-item>
+              </ion-list>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card>
+      </ion-item>
+    </ng-template>
+
+    <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
+
+</ion-content>
+
+

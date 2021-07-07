@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },  {
+    path: 'my-events',
+    loadChildren: () => import('./my-events/my-events.module').then( m => m.MyEventsPageModule)
   }
+
 ];
 
 @NgModule({

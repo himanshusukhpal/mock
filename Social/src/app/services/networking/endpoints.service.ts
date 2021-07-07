@@ -20,8 +20,14 @@ export class EndpointsService {
 
   startEventsListUrl = (limit: number) => this.baseURL + this.events + `.json?orderBy="$key"&limitToFirst=${limit}`;
 
+  myEventsListUrl =(hostId: string, limit: number) => this.baseURL + this.events + `.json?orderBy="HostId"&equalTo=${hostId}&limitToFirst=${limit}`;
+  
   loadMoreEventsUrl = (startAfter: string, limit: number)=> this.baseURL + this.events + `.json?orderBy="$key"&startAt="${startAfter}"&limit=${limit}`;
 
+  loadMoreMyEventsUrl = (hostId:string, startAfter: string, limit: number)=> this.baseURL + this.events + `.json?orderBy="HostId"&equalTo=${hostId}&startAt="${startAfter}"&limit=${limit}`;
+
   addEventUrl= ()=> this.baseURL + this.events + `.json`;
+
+  addGuestsToEventUrl=(key: string)=>this.baseURL + this.events + '/' + key + '/guestList.json'
 
 }
