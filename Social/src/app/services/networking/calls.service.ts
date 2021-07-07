@@ -31,9 +31,13 @@ export class CallsService {
 
   startEventsListCall = (limit: number) => this.http.get(this.ends.startEventsListUrl(limit));
 
+<<<<<<< HEAD
   myEventsListCall = (hostId: string, limit:number) => this.http.get(this.ends.myEventsListUrl(hostId,limit));
 
   loadMoreEventsCall = (startAfter: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAfter, limit));
+=======
+  loadMoreEventsCall = (startAt: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAt, limit));
+>>>>>>> 39dd4123ec9f1e010483fa17aa74bbde596f5fa9
 
   loadMoreMyEventsCall = (hostId: string, startAfter: string, limit: number) => this.http.get(this.ends.loadMoreMyEventsUrl(hostId, startAfter, limit));
 
