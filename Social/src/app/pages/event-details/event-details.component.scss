@@ -11,3 +11,10 @@
     background-size: cover;
    
   }
+
+  ion-img  {
+    width:75% !important;
+    height : 75% !important;
+    max-width: 75px !important;  //any size
+    max-height: 75px !important; //any size
+    }

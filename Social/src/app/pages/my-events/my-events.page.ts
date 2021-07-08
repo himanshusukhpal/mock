@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
+import { EventDetailsComponent } from '../event-details/event-details.component';
 
 @Component({
   selector: 'app-my-events',
@@ -40,6 +41,11 @@ export class MyEventsPage implements OnInit {
       //   event.target.disabled = true;
       // }
     }, 1000);
+  }
+
+  eventDetails(event){
+    this.appService.data.openEvent.next(event.value);
+    this.appService.presentModal(EventDetailsComponent,{});
   }
 
   home=()=>{this.appService.nav.navigateBack("home")}

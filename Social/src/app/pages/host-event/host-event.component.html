@@ -30,6 +30,8 @@
             pickerFormat="MMMM DD YYYY"
             formControlName="date"
             placeholder="Date"
+            min={{test}}
+            max=2121
             required >
           </ion-datetime>
           <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.date.errors?.required">

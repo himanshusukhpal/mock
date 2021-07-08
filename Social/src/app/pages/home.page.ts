@@ -6,12 +6,14 @@ import { IonSlides } from '@ionic/angular';
 import { HostEventComponent } from './host-event/host-event.component';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  
 })
 
 export class HomePage implements OnInit{
@@ -24,7 +26,9 @@ status=false;
   eventBlocks = [];
   hostId;
   userName;
+  bool:any=[]
   userId
+  requestStatus: string
   constructor(
     private appService: AppService
   ) {
@@ -32,7 +36,7 @@ status=false;
       this.user=res;
       this.hostId=res.id;
       this.userName=res.fname;
-      console.log(res,"n")
+     
     });
     this.appService.data.eventsList.subscribe(res=>{
       this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
@@ -70,14 +74,17 @@ status=false;
       event.target.complete();
     }, 1000);
   }
-interested(event,$event){
-  console.log(this.userName,)
-this.appService.calls.addGuestsToEventCall(event.key,{guestName :this.userName, guestId:this.hostId})
-.subscribe(res=>{console.log(res)})
-$event.target.disabled=true
+  interested(event,index){
+    this.bool[index]=false;
+    this.requestStatus="pending";
+    console.log(this.userName,)
+    this.appService.calls.addGuestsToEventCall(event.key,{guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus})
+    .subscribe(res=>{console.log(res)})
+
 }
 
-close(){}
+
+  close(){}
 
   swipeNext = () => this.appService.nav.navigateForward('home/chat');
 

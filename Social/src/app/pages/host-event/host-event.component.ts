@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { AppService } from 'src/app/services/app.service';
   selector: 'app-host-event',
   templateUrl: './host-event.component.html',
   styleUrls: ['./host-event.component.scss'],
+  providers:[DatePipe]
 })
 
 export class HostEventComponent implements OnInit {
@@ -26,13 +28,18 @@ export class HostEventComponent implements OnInit {
     eventPrivacy: ['', [Validators.required]],
     eventStatus: ['', [Validators.required]],
   });
+  test: string; myDate = new Date();
+   
 
  constructor(
+   private datePipe:DatePipe,
     private appService: AppService,
     private  formBuilder: FormBuilder
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  }
 
   get eventDetailsFormError() {
     return this.eventDetailsForm.controls;

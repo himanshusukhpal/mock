@@ -15,7 +15,7 @@
   <div class="mainContainer">
 
     <ng-template ngFor let-events [ngForOf]="myEvents">
-      <ion-item *ngFor="let event of events | keyvalue" class="item" lines="none" >
+      <ion-item *ngFor="let event of events | keyvalue" (click)="eventDetails(event)" class="item" lines="none" >
         <ion-card class="inner" align-text-center ion-justify-content-center>
 
           <ion-row>
@@ -66,17 +66,7 @@
               </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-text><h3><b>Guest List</b></h3></ion-text>
-              </ion-col>
-              <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
-              <ion-list>
-                <ion-item  *ngFor="let guest of event.value['guestList'] | filter:filterTerm">
-                  <ion-text>{{guest.value['guestName']}}</ion-text>
-                </ion-item>
-              </ion-list>
-            </ion-row>
+           
           </ion-grid>
 
         </ion-card>

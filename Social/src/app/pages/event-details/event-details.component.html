@@ -68,6 +68,36 @@
         </ion-row>  
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text style="text-align: center;"><h3><b>Guest List</b></h3></ion-text>
+      </ion-col>
+      <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+      <ion-list>
+        <ion-item  *ngFor="let guest of goodResponse | filter : filterTerm">
+          <ion-row>
+            <ion-col>
+              <ion-avatar class="ion-no-padding">
+                <ion-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU"></ion-img>
+              </ion-avatar>
+            </ion-col>
+              <ion-col class="ion-no-padding">
+                <ion-text style="text-transform: capitalize; text-align: center;">{{guest.guestName}}</ion-text>
+              </ion-col>
+             <ion-col>
+              <ion-button fill="outline" color="success">
+                <ion-icon name="checkmark" size="large"></ion-icon>
+              </ion-button>
+             </ion-col>
+             <ion-col>
+             <ion-button fill="outline" color="danger">
+                <ion-icon name="close" size="large"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>  
+        </ion-item>
+      </ion-list>
+    </ion-row>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -13,8 +13,8 @@
   <div class="mainContainer">
 
     <ng-template ngFor let-events [ngForOf]="eventBlocks">
-      <ion-item *ngFor="let event of events | keyvalue" class="item" (click)="eventDetails(event)" lines="none" >
-        <ion-card class="inner" align-text-center ion-justify-content-center>
+      <ion-item *ngFor="let event of events | keyvalue; let i =index" class="item" (click)="eventDetails(event)" lines="none" >
+        <ion-card class="inner" >
 
           <ion-row>
             <ion-col class="ion-no-padding">
@@ -64,13 +64,12 @@
               </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="event.value['HostId']===hostId">
+            <ion-row *ngIf="event.value['HostId']!==hostId && bool[i]!==false" >
               <ion-col>
-                <ion-button color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,$event)" [disabled]="status">
+                <ion-button color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,i)" >
                   Interested 
                 </ion-button>
-              </ion-col>
-              
+              </ion-col>  
             </ion-row>
           </ion-grid>
           
