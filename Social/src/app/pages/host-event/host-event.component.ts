@@ -13,6 +13,7 @@ import { AppService } from 'src/app/services/app.service';
 
 export class HostEventComponent implements OnInit {
 
+  eventTypeList=[]
   date=new Date();
   eventDetails: Record<string, any>;
   formSubmit = false;
@@ -35,7 +36,7 @@ export class HostEventComponent implements OnInit {
    private datePipe:DatePipe,
     private appService: AppService,
     private  formBuilder: FormBuilder
-  ) { }
+  ) {this.eventTypeList=appService.data.eventType}
 
   ngOnInit() { 
     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
