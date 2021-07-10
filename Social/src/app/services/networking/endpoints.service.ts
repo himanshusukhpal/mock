@@ -28,6 +28,6 @@ export class EndpointsService {
 
   addEventUrl= ()=> this.baseURL + this.events + `.json`;
 
-  addGuestsToEventUrl=(key: string)=>this.baseURL + this.events + '/' + key + '/guestList.json'
+  addGuestsToEventUrl=(key: string, id: string)=>this.baseURL + this.events + '/' + key + '/guestList/'+ id+'.json'
 
 }

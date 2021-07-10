@@ -7,6 +7,7 @@ import { HostEventComponent } from './host-event/host-event.component';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { DatePipe } from '@angular/common';
+import { async } from 'rxjs';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class HomePage implements OnInit{
   profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
 status=false;
   user = {};
+  guestList:{}
+  eventsArr=[]
   eventBlocks = [];
   hostId;
   userName;
@@ -39,11 +42,21 @@ status=false;
      
     });
     this.appService.data.eventsList.subscribe(res=>{
+     
+      Object.keys(res).forEach(k=>{ 
+        this.guestList=res[k].guestList;
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
+        //Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})
+        this.eventsArr.push(res[k].guestList)    
+      })
+      console.log(this.eventsArr)
       this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
-    console.log(this.eventBlocks);
+    console.log(this.eventBlocks,"e");
+    
   }
 
   ngOnInit() { 
+    
     
   }
 
@@ -66,6 +79,12 @@ status=false;
       const lastKey = Object.keys(this.eventBlocks[this.eventBlocks.length-1]).pop();
       this.appService.calls.loadMoreEventsCall(lastKey,5).subscribe(
         res => {
+          Object.keys(res).forEach(k=>{ 
+            this.guestList=res[k].guestList;
+            if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
+           
+            this.eventsArr.push(res[k].guestList)    
+          })
           delete res[(Object.keys(res).shift())];
           if(Object.keys(res).length) this.eventBlocks.push(res);
           console.log(this.eventBlocks);
@@ -78,7 +97,8 @@ status=false;
     this.bool[index]=false;
     this.requestStatus="pending";
     console.log(this.userName,)
-    this.appService.calls.addGuestsToEventCall(event.key,{guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus})
+    const guestDetails={guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus}
+    this.appService.calls.addGuestsToEventCall(event.key, this.hostId,guestDetails)
     .subscribe(res=>{console.log(res)})
 
 }

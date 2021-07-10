@@ -41,6 +41,6 @@ export class CallsService {
 
   addNewEventCall = (token: string, params: string, event: any) => this.http.post(this.ends.addEventUrl(), event);
 
-  addGuestsToEventCall = (key: string,  guests: {}) => this.http.post(this.ends.addGuestsToEventUrl(key), guests);
+  addGuestsToEventCall = (key: string,id: string,  guests: {}) => this.http.put(this.ends.addGuestsToEventUrl(key,id), guests);
 
 }

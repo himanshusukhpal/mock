@@ -39,38 +39,44 @@
               <ion-col size="8">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value['EventLabel']}}</b></h3></ion-text>
+                    <ion-text color="primary" size="large"><h3 style="margin: 0px;"><b> {{event.value['eventLabel']}}</b></h3></ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <ion-text>{{event.value['Date']|date:"yyyy-MM-dd"}}</ion-text>
+                    <ion-text>{{event.value['date']|date:"yyyy-MM-dd"}}</ion-text>
                   </ion-col>
                   <ion-col>
-                    <ion-text>{{event.value['Time']|date:"HH:mm"}}</ion-text>
+                    <ion-text>{{event.value['date']|date:"HH:mm"}}</ion-text>
                   </ion-col>
                 </ion-row>
               </ion-col>
               <ion-col size="4">
                 <ion-row>
                   <ion-col>
-                    <ion-text color="success">{{event.value['EventType']}}</ion-text>
+                    <ion-text color="success">{{event.value['eventType']}}</ion-text>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                 <ion-col>
+                  
                   <ion-text color="danger">Distance</ion-text>
                 </ion-col>
               </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="event.value['HostId']!==hostId && bool[i]!==false" >
+
+            
+            <ion-row *ngIf="event.value['HostId']!==hostId">
               <ion-col>
-                <ion-button color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,i)" >
+               
+                <ion-button *ngIf="event.value['show']!=='true'"color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,i)" >
                   Interested 
                 </ion-button>
+                <ion-text *ngIf="event.value['show']==='true'" color="success">Already sent request to join this event!</ion-text>
               </ion-col>  
             </ion-row>
+            
           </ion-grid>
           
         </ion-card>
@@ -91,29 +97,29 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button (click)="myEvents()">
-        <ion-icon name="calendar"></ion-icon>
+        <ion-icon name="list" size="large"></ion-icon>
         <ion-label>My Events</ion-label>
         <ion-badge>9+</ion-badge>
       </ion-tab-button>
 
-      <ion-tab-button>
+      <!-- <ion-tab-button>
         <ion-icon name="person-circle"></ion-icon>
         <ion-label>Speakers</ion-label>
-      </ion-tab-button>
+      </ion-tab-button> -->
 
       <ion-tab-button (click)="hostEventPage()">
         <ion-icon name="add-circle" size="large"></ion-icon>
 
       </ion-tab-button>
 
-      <ion-tab-button>
+      <!-- <ion-tab-button>
         <ion-icon name="map"></ion-icon>
         <ion-label>Map</ion-label>
-      </ion-tab-button>
+      </ion-tab-button> -->
 
       <ion-tab-button (click)="onLogout()">
-        <ion-icon name="information-circle"></ion-icon>
-        <ion-label>About</ion-label>
+        <ion-icon name="log-out"size="large"></ion-icon>
+        <ion-label>Log Out</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

@@ -21,7 +21,7 @@ export class HostEventComponent implements OnInit {
   eventId: string;
   eventDetailsForm = this.formBuilder.group({
     eventLabel: ['', [Validators.required]],
-    time: ['', [Validators.required]],
+    // time: ['', [Validators.required]],
     date: ['', [Validators.required]],
     eventType: ['', [Validators.required]],
     eventAddress: ['', [Validators.required]],

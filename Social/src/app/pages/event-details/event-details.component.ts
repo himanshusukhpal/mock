@@ -12,7 +12,9 @@ export class EventDetailsComponent implements OnInit {
   eventDetails;
   filterTerm:string
   goodResponse=[];
+  evilResponseProps=[];
   userId;
+  show=false;
   constructor(
     private appService: AppService
   ) {
@@ -24,14 +26,15 @@ export class EventDetailsComponent implements OnInit {
     this.appService.data.userData.subscribe(res=>{this.userId=res.id})
     console.log(this.userId,this.eventDetails.HostId)
     if(this.userId===this.eventDetails.HostId){
-      let evilResponseProps = Object.keys(this.eventDetails.guestList);
-
-      for (const prop of evilResponseProps) { 
+      this.show=true;
+      if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);
+      }   
+      for (const prop of this.evilResponseProps) { 
         this.goodResponse.push(this.eventDetails.guestList[prop])
       }
       console.log(this.goodResponse)
     }
-
+console.log(this.show)
     
    }
 
