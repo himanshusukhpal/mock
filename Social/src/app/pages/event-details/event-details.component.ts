@@ -8,17 +8,23 @@ import { AppService } from 'src/app/services/app.service';
 })
 
 export class EventDetailsComponent implements OnInit {
-
+  status;
+  hostId
   eventDetails;
   filterTerm:string
   goodResponse=[];
   evilResponseProps=[];
   userId;
   show=false;
+  eventId:string
   constructor(
     private appService: AppService
   ) {
-    this.appService.data.openEvent.subscribe(res=> this.eventDetails=res);
+    this.eventId=appService.data.eventId;
+    this.appService.data.openEvent.subscribe(res=>{
+      console.log(res);
+      this.hostId=res.HostId;
+       this.eventDetails=res});
     
   }
 
@@ -27,16 +33,32 @@ export class EventDetailsComponent implements OnInit {
     console.log(this.userId,this.eventDetails.HostId)
     if(this.userId===this.eventDetails.HostId){
       this.show=true;
-      if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);
+      if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
       }   
       for (const prop of this.evilResponseProps) { 
         this.goodResponse.push(this.eventDetails.guestList[prop])
       }
-      console.log(this.goodResponse)
+      console.log(this.goodResponse,"a")
     }
-console.log(this.show)
     
    }
 
   back = async () => await this.appService.dismissModal();
+
+  accept= (guest)=>{
+    
+    guest.requestStatus="accept"
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
+  }
+
+    reject= (guest)=>{
+    
+    guest.requestStatus="reject"
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
+  }
+
+  option= (guest)=>{
+    console.log(guest.requestStatus)
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
+  }
 }

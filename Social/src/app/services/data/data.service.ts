@@ -18,7 +18,7 @@ export class DataService {
   myeventsList: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   openEvent: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   eventType=["Birthday Party","Marriage Anniversary","House Party","Reunions","Weddings","Others"]
-    
+  eventId:string
 
  
   constructor(
