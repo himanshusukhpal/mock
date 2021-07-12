@@ -67,35 +67,62 @@
       </ion-col>
         </ion-row> 
     </ion-card>   
-    <ion-card *ngIf="!show">       
+    <ion-card *ngIf="show">       
       <ion-row>
         <ion-col>
-          <ion-text style="text-align: center;"><h3><b>Guest List</b></h3></ion-text>
+          <ion-text style="text-align: center;" *ngIf="show"><h3><b>Guest List</b></h3></ion-text>
         </ion-col>
       </ion-row>
-      <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true" ></ion-searchbar>
+      <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true" *ngIf="show" ></ion-searchbar>
       <ion-list>
         <ion-item  *ngFor="let guest of goodResponse | filter : filterTerm">
           <ion-row>
-            <ion-col class="ion-no-padding" >
+            <ion-col class="ion-no-padding" size="3" >
               <ion-avatar style="align-self: center;">
                 <ion-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU"></ion-img>
               </ion-avatar>
             </ion-col>
-              <ion-col class="ion-no-padding">
-                <ion-text style="text-transform: capitalize; text-align: center;"><h3>{{guest.guestName}}</h3></ion-text>
+              <ion-col class="ion-no-padding" size="3">
+                <ion-text style="text-transform: capitalize; text-align: center;"><h3><br>{{guest.guestName}}</h3></ion-text>
               </ion-col>
-             <ion-col>
-              <ion-button fill="outline" color="success">
-                <ion-icon name="checkmark" size="large"></ion-icon>
-              </ion-button>
-             </ion-col>
-             <ion-col>
-             <ion-button fill="outline" color="danger">
-                <ion-icon name="close" size="large"></ion-icon>
-              </ion-button>
+              <ion-col *ngIf="guest.requestStatus==='pending'" size="6">
+                <ion-col >
+                  <ion-button fill="outline" color="success" (click)="accept(guest)">
+                    <ion-icon name="checkmark" size="large"></ion-icon>
+                  </ion-button>
+                 </ion-col>
+                 <ion-col>
+                 <ion-button fill="outline" color="danger" (click)="reject(guest)">
+                    <ion-icon name="close" size="large"></ion-icon>
+                  </ion-button>
+                </ion-col> 
+                </ion-col>
+
+                
               
+            <ion-col *ngIf="guest.requestStatus==='reject'" size="6">
+             <ion-item style="justify-content: center;">
+             
+                <ion-select value={{status}} [(ngModel)]="guest.requestStatus" (ionChange)="option(guest)">
+                  <ion-select-option  value={{guest.requestStatus}}>{{guest.requestStatus}}</ion-select-option>
+                  <ion-select-option value="accept">accept</ion-select-option>
+                </ion-select>
+              </ion-item>
+
             </ion-col>
+
+            <ion-col *ngIf="guest.requestStatus==='accept'">
+              
+                <ion-select value={{guest.requestStatus}}  [(ngModel)]="guest.requestStatus" (ionChange)="option(guest)">
+                  <ion-select-option  value={{guest.requestStatus}}>{{guest.requestStatus}}</ion-select-option>
+                  <ion-select-option value="reject">reject</ion-select-option>
+                </ion-select>
+              
+
+            </ion-col>
+            <div>
+
+            </div>
           </ion-row>  
           
         </ion-item>

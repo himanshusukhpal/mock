@@ -43,4 +43,5 @@ export class CallsService {
 
   addGuestsToEventCall = (key: string,id: string,  guests: {}) => this.http.put(this.ends.addGuestsToEventUrl(key,id), guests);
 
+  updateRequestStatusCall = (key: string,id: string,  guest:{}) => this.http.put(this.ends.updateRequestStatusUrl(key,id), guest);
 }

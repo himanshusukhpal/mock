@@ -70,6 +70,8 @@ status=false;
   }
 
   eventDetails(event){
+    console.log(event.key)
+    this.appService.data.eventId=event.key;
     this.appService.data.openEvent.next(event.value);
     this.appService.presentModal(EventDetailsComponent,{});
   }

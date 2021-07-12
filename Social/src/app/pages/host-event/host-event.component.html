@@ -50,7 +50,7 @@
         <ion-item>
           <ion-label position="floating">Event Type</ion-label >
           <ion-select placeholder="Event Type" formControlName="eventType">
-            <ion-select-option  *ngFor="let type of eventTypeList"value="abc">{{type}}</ion-select-option>
+            <ion-select-option  *ngFor="let type of eventTypeList">{{type}}</ion-select-option>
             
           </ion-select>
           <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventType.errors?.required">
