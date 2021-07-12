@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
-import { combineAll } from 'rxjs/operators';
+import { PopoverController } from '@ionic/angular';
+import { PopoverComponent } from '../popover/popover.component';
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +16,7 @@ import { combineAll } from 'rxjs/operators';
 })
 export class ProfilePage implements OnInit{
 
-  constructor(private appservice: AppService, private http: HttpClient) { }
-  //element=this.appservice.data.fetchedUser.asObservable();
+  constructor(private appservice: AppService, private http: HttpClient, private pc: PopoverController) { }
   element1: User={};
   getdata ={};
   id;
@@ -30,6 +30,7 @@ export class ProfilePage implements OnInit{
      });
 //this.fetchUser();
   }
+
   async ionViewWillEnter(){
   //   this.appservice.store.getUser().then(res=>{this.getdata=res;
   //     console.log(res);});
@@ -81,6 +82,16 @@ export class ProfilePage implements OnInit{
 
     //console.log(this.element);
 
+  }
+
+  async popover(){
+    const popover = await this.pc.create({  
+      component: PopoverComponent,  
+     // event: ev,  
+      animated: true,  
+      showBackdrop: true  
+  });  
+  return await popover.present();  
   }
 
 }

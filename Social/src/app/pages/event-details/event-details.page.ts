@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 
+
 @Component({
   selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.scss'],
+  templateUrl: './event-details.page.html',
+  styleUrls: ['./event-details.page.scss'],
 })
+export class EventDetailsPage implements OnInit {
 
-export class EventDetailsComponent implements OnInit {
   status;
   hostId
   eventDetails;
@@ -17,16 +18,14 @@ export class EventDetailsComponent implements OnInit {
   userId;
   show=false;
   eventId:string
-  constructor(
-    private appService: AppService
-  ) {
+  constructor(private appService: AppService) {
     this.eventId=appService.data.eventId;
     this.appService.data.openEvent.subscribe(res=>{
       console.log(res);
       this.hostId=res.HostId;
        this.eventDetails=res});
     
-  }
+   }
 
   ngOnInit() {
     this.appService.data.userData.subscribe(res=>{this.userId=res.id})
@@ -40,10 +39,8 @@ export class EventDetailsComponent implements OnInit {
       }
       console.log(this.goodResponse,"a")
     }
-    
-   }
-
-  back = async () => await this.appService.dismissModal();
+  }
+  back =  () => this.appService.nav.navigateBack('home');
 
   accept= (guest)=>{
     
@@ -62,3 +59,9 @@ export class EventDetailsComponent implements OnInit {
    this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
   }
 }
+
+
+
+  
+
+ 

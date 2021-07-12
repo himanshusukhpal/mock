@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons  slot="start">
       <ion-button  (click)="back()"   style=" position: absolute;">
-        <ion-icon name="close" size="large"></ion-icon>
+        <ion-icon name="arrow-back" size="large"></ion-icon>
       </ion-button>
     </ion-buttons>
     
@@ -113,7 +113,7 @@
 
             <ion-col *ngIf="guest.requestStatus==='accept'">
               
-                <ion-select value={{guest.requestStatus}}  [(ngModel)]="guest.requestStatus" (ionChange)="option(guest)">
+                <ion-select value={{guest.requestStatus}} [(ngModel)]="guest.requestStatus" (ionChange)="option(guest)">
                   <ion-select-option  value={{guest.requestStatus}}>{{guest.requestStatus}}</ion-select-option>
                   <ion-select-option value="reject">reject</ion-select-option>
                 </ion-select>

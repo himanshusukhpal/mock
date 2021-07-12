@@ -1,17 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-host-event',
-  templateUrl: './host-event.component.html',
-  styleUrls: ['./host-event.component.scss'],
-  providers:[DatePipe]
-})
+  templateUrl: './host-event.page.html',
+  styleUrls: ['./host-event.page.scss'],
 
-export class HostEventComponent implements OnInit {
+})
+export class HostEventPage implements OnInit {
 
   eventTypeList=[]
   date=new Date();
@@ -22,7 +20,6 @@ export class HostEventComponent implements OnInit {
   eventId: string;
   eventDetailsForm = this.formBuilder.group({
     eventLabel: ['', [Validators.required]],
-    // time: ['', [Validators.required]],
     date: ['', [Validators.required]],
     eventType: ['', [Validators.required]],
     eventAddress: ['', [Validators.required]],
@@ -65,6 +62,6 @@ export class HostEventComponent implements OnInit {
     }
   }
 
-  back = async () => await this.appService.dismissModal();
+  back =  () => this.appService.nav.navigateBack('home');
 
 }

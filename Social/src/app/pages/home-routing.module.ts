@@ -21,6 +21,14 @@ const routes: Routes = [
   },  {
     path: 'my-events',
     loadChildren: () => import('./my-events/my-events.module').then( m => m.MyEventsPageModule)
+  },
+  {
+    path: 'event-details',
+    loadChildren: () => import('./event-details/event-details.module').then( m => m.EventDetailsPageModule)
+  },
+  {
+    path: 'host-event',
+    loadChildren: () => import('./host-event/host-event.module').then( m => m.HostEventPageModule)
   }
 
 ];

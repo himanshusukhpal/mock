@@ -96,10 +96,9 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button (click)="myEvents()">
-        <ion-icon name="list" size="large"></ion-icon>
-        <ion-label>My Events</ion-label>
-        <ion-badge>9+</ion-badge>
+      <ion-tab-button (click)="onClick()">
+        <ion-img [src]="profileImageUrl" class="icon"></ion-img>
+        <ion-label>Profile</ion-label>
       </ion-tab-button>
 
       <!-- <ion-tab-button>
@@ -117,9 +116,10 @@
         <ion-label>Map</ion-label>
       </ion-tab-button> -->
 
-      <ion-tab-button (click)="onLogout()">
-        <ion-icon name="log-out"size="large"></ion-icon>
-        <ion-label>Log Out</ion-label>
+      <ion-tab-button (click)="myEvents()">
+        <ion-icon name="list" size="large"></ion-icon>
+        <ion-label>My Events</ion-label>
+        <ion-badge>9+</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

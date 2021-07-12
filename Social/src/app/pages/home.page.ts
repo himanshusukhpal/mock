@@ -3,11 +3,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { IonSlides } from '@ionic/angular';
-import { HostEventComponent } from './host-event/host-event.component';
-import { IonInfiniteScroll } from '@ionic/angular';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { DatePipe } from '@angular/common';
-import { async } from 'rxjs';
+
 
 
 @Component({
@@ -73,7 +69,8 @@ status=false;
     console.log(event.key)
     this.appService.data.eventId=event.key;
     this.appService.data.openEvent.next(event.value);
-    this.appService.presentModal(EventDetailsComponent,{});
+    this.appService.nav.navigateForward('home/event-details');
+   // this.appService.presentModal(EventDetailsComponent,{});
   }
 
   loadMore(event) {
@@ -116,7 +113,7 @@ status=false;
 
   onProfile = () => this.appService.nav.navigateForward('profile');
 
-  hostEventPage = () => this.appService.presentModal( HostEventComponent,{});
+  hostEventPage = () => this.appService.nav.navigateForward('home/host-event')
 
   myEvents = () => {this.appService.nav.navigateForward('home/my-events'); }
 

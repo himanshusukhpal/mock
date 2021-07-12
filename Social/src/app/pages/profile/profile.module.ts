@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
+import { PopoverComponent } from '../popover/popover.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ProfilePage } from './profile.page';
     IonicModule,
     ProfilePageRoutingModule
   ],
-  declarations: [ProfilePage]
+  entryComponents:[PopoverComponent],
+  declarations: [ProfilePage, PopoverComponent]
 })
 export class ProfilePageModule {}
