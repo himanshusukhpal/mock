@@ -22,6 +22,13 @@ export class MyEventsPage implements OnInit {
       console.log(this.myEvents); 
 
   }
+  ionViewWillEnter(){
+    this.appService.data.myeventsList.subscribe(res=>{
+      console.log(res);
+      this.myEvents.splice(0,this.myEvents.length,res)});
+      
+    console.log(this.myEvents); 
+  }
 
   loadMore(event) {
     setTimeout(() => {

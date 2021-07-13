@@ -57,6 +57,23 @@ status=false;
   }
 
   ionViewWillEnter() { 
+    this.appService.data.userData.subscribe(res=>{
+      this.user=res;
+      this.hostId=res.id;
+      this.userName=res.fname;
+     
+    });
+    this.appService.data.eventsList.subscribe(res=>{
+     
+      Object.keys(res).forEach(k=>{ 
+        this.guestList=res[k].guestList;
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
+        //Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})
+        this.eventsArr.push(res[k].guestList)    
+      })
+      console.log(this.eventsArr)
+      this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
+    console.log(this.eventBlocks,"e");
   }
 
  

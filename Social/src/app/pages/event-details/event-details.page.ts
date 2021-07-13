@@ -19,6 +19,7 @@ export class EventDetailsPage implements OnInit {
   show=false;
   eventId:string
   constructor(private appService: AppService) {
+    
     this.eventId=appService.data.eventId;
     this.appService.data.openEvent.subscribe(res=>{
       console.log(res);
@@ -28,6 +29,7 @@ export class EventDetailsPage implements OnInit {
    }
 
   ngOnInit() {
+    
     this.appService.data.userData.subscribe(res=>{this.userId=res.id})
     console.log(this.userId,this.eventDetails.HostId)
     if(this.userId===this.eventDetails.HostId){
@@ -40,6 +42,25 @@ export class EventDetailsPage implements OnInit {
       console.log(this.goodResponse,"a")
     }
   }
+  // ionViewWillEnter(){
+  //   this.eventId=this.appService.data.eventId;
+  //   this.appService.data.openEvent.subscribe(res=>{
+  //     console.log(res);
+  //     this.hostId=res.HostId;
+  //      this.eventDetails=res});
+  //   console.log("i")
+  //   this.appService.data.userData.subscribe(res=>{this.userId=res.id})
+  //   console.log(this.userId,this.eventDetails.HostId)
+  //   if(this.userId===this.eventDetails.HostId){
+  //     this.show=true;
+  //     if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
+  //     }   
+  //     for (const prop of this.evilResponseProps) { 
+  //       this.goodResponse.push(this.eventDetails.guestList[prop])
+  //     }
+  //     console.log(this.goodResponse,"a")
+  //   }
+  // }
   back =  () => this.appService.nav.navigateBack('home');
 
   accept= (guest)=>{

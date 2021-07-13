@@ -45,8 +45,8 @@ export class HostEventPage implements OnInit {
 
   async onSubmit() {
     this.formSubmit = true;
-    console.log(this.eventDetailsForm.value.DateandTime);
     if(this.eventDetailsForm.valid){
+      console.log("aa")
     this.eventDetails =this.eventDetailsForm.value;
     await this.appService.store.getUser().then(res=>{
       console.log(res);
@@ -58,7 +58,7 @@ export class HostEventPage implements OnInit {
     });
     this.appService.calls.addNewEventCall(this.token,this.params,this.eventDetails).subscribe(res=>{this.eventId=(res["name"]);});
     console.log(this.eventDetails,'null');
-    this.appService.modal.dismiss();
+    this.appService.nav.navigateBack('home')
     }
   }
 
