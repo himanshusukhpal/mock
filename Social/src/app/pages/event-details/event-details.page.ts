@@ -30,6 +30,19 @@ export class EventDetailsPage implements OnInit {
 
   ngOnInit() {
     
+    // this.appService.data.userData.subscribe(res=>{this.userId=res.id})
+    // console.log(this.userId,this.eventDetails.HostId)
+    // if(this.userId===this.eventDetails.HostId){
+    //   this.show=true;
+    //   if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
+    //   }   
+    //   for (const prop of this.evilResponseProps) { 
+    //     this.goodResponse.push(this.eventDetails.guestList[prop])
+    //   }
+    //   console.log(this.goodResponse,"a")
+    // }
+  }
+  ionViewDidEnter(){
     this.appService.data.userData.subscribe(res=>{this.userId=res.id})
     console.log(this.userId,this.eventDetails.HostId)
     if(this.userId===this.eventDetails.HostId){
@@ -42,6 +55,7 @@ export class EventDetailsPage implements OnInit {
       console.log(this.goodResponse,"a")
     }
   }
+  
   // ionViewWillEnter(){
   //   this.eventId=this.appService.data.eventId;
   //   this.appService.data.openEvent.subscribe(res=>{

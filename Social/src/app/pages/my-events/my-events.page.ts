@@ -22,7 +22,8 @@ export class MyEventsPage implements OnInit {
       console.log(this.myEvents); 
 
   }
-  ionViewWillEnter(){
+  ionViewDidEnter(){
+    console.log("will enter")
     this.appService.data.myeventsList.subscribe(res=>{
       console.log(res);
       this.myEvents.splice(0,this.myEvents.length,res)});

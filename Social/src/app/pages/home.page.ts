@@ -56,7 +56,7 @@ status=false;
     
   }
 
-  ionViewWillEnter() { 
+  ionViewDidEnter() { 
     this.appService.data.userData.subscribe(res=>{
       this.user=res;
       this.hostId=res.id;
