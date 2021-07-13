@@ -109,13 +109,14 @@ status=false;
       event.target.complete();
     }, 1000);
   }
-  interested(event,index){
-    this.bool[index]=false;
+  interested(event){
+    
     this.requestStatus="pending";
-    console.log(this.userName,)
+   
     const guestDetails={guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus}
     this.appService.calls.addGuestsToEventCall(event.key, this.hostId,guestDetails)
     .subscribe(res=>{console.log(res)})
+    this.ionViewDidEnter()
 
 }
 

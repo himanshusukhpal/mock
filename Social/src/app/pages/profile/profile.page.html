@@ -2,21 +2,9 @@
 <ion-header class="ion-no-border" >
   <ion-toolbar color="primary">
     
-    <ion-icon name="arrow-back" size="large" (click)="home()" slot="start"></ion-icon>
+    <ion-icon name="arrow-back" size="large" (click)="home()" slot="start" style="margin-left: 10px;"></ion-icon>
     <ion-title>Profile</ion-title>
-    <ion-icon name="menu" size="large"  (click)="popover()" slot="end" style="margin-right: 10px;"></ion-icon>
-
-    <!-- <ion-buttons slot="start">
-      <ion-button (click)="home()">
-        <ion-icon name="arrow-back" size="large"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="popover()">
-        <ion-icon name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Profile</ion-title> -->
+    <ion-icon ios="ellipsis-horizontal" md="ellipsis-horizontal" size="large"  (click)="popover($event)" slot="end" style="margin-right: 10px;"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -29,12 +17,10 @@
           <div class="container">
             <div class="overylay">
               <ion-avatar>
-                <!-- <img src="../../../assets/images/Profile.jpeg"> -->
                 <ion-img [src]="profileImageUrl"></ion-img>
               </ion-avatar>
             </div>
           </div>
-
           <ion-card>
             <ion-card-header>
               <ion-card-title>

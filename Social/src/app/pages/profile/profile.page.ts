@@ -84,10 +84,10 @@ export class ProfilePage implements OnInit{
 
   }
 
-  async popover(){
+  async popover(ev:any){
     const popover = await this.pc.create({  
       component: PopoverComponent,  
-     // event: ev,  
+      event: ev,  
       animated: true,  
       showBackdrop: true  
   });  

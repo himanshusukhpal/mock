@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-avatar class="profile" (click)="onClick()" slot="start">
-      <ion-img [src]="profileImageUrl"></ion-img>
-    </ion-avatar>
     <ion-title>Home</ion-title>
     <ion-icon name="chatbubbles" size="large"  (click)="swipeNext()" slot="end" style="margin-right: 10px;"></ion-icon>
   </ion-toolbar>
@@ -13,10 +10,10 @@
   <div class="mainContainer">
 
     <ng-template ngFor let-events [ngForOf]="eventBlocks">
-      <ion-item *ngFor="let event of events | keyvalue; let i =index" class="item" (click)="eventDetails(event)" lines="none" >
+      <ion-item *ngFor="let event of events | keyvalue; let i =index" class="item"  lines="none" >
         <ion-card class="inner" >
-
-          <ion-row>
+          
+          <ion-row (click)="eventDetails(event)">
             <ion-col class="ion-no-padding">
               <div class="img-container1"  [style.background-image]="'url(https://i.pinimg.com/originals/31/78/95/317895e71b1c8e53e9450ab269608c04.jpg)'"></div>
             </ion-col>
@@ -35,7 +32,7 @@
           </ion-row>
 
           <ion-grid>
-            <ion-row>
+            <ion-row (click)="eventDetails(event)">
               <ion-col size="8">
                 <ion-row>
                   <ion-col>
@@ -70,7 +67,7 @@
             <ion-row *ngIf="event.value['HostId']!==hostId">
               <ion-col>
                
-                <ion-button *ngIf="event.value['show']!=='true'"color="primary" expand="block" shape="round " fill="solid" (click)="interested(event,i)" >
+                <ion-button *ngIf="event.value['show']!=='true'"color="primary" expand="block" shape="round " fill="solid" (click)="interested(event)" >
                   Interested 
                 </ion-button>
                 <ion-text *ngIf="event.value['show']==='true'" color="success">Already sent request to join this event!</ion-text>

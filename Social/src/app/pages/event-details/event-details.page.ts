@@ -20,7 +20,7 @@ export class EventDetailsPage implements OnInit {
   eventId:string
   constructor(private appService: AppService) {
     
-    this.eventId=appService.data.eventId;
+    this.eventId=this.appService.data.eventId;
     this.appService.data.openEvent.subscribe(res=>{
       console.log(res);
       this.hostId=res.HostId;
@@ -43,6 +43,7 @@ export class EventDetailsPage implements OnInit {
     // }
   }
   ionViewDidEnter(){
+   
     this.appService.data.userData.subscribe(res=>{this.userId=res.id})
     console.log(this.userId,this.eventDetails.HostId)
     if(this.userId===this.eventDetails.HostId){
