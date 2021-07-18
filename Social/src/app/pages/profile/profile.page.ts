@@ -32,22 +32,17 @@ export class ProfilePage implements OnInit{
   }
 
   async ionViewWillEnter(){
-  //   this.appservice.store.getUser().then(res=>{this.getdata=res;
-  //     console.log(res);});
-  //  // this.id=this.getdata.uid;
-  //   console.log(this.id);
-  //this.id =await this.appservice.store.getUser();
-  //console.log(this.id.uid,'id');
-
-  //   this.id=res.uid;});
-  // console.log(this.id);
+  // this.appservice.data.userData.subscribe(res=>{
+  //   this.profileImageUrl=res.profilePicUrl
+  //   this.element1=res
+  // })
     console.log('In view');
-   // console.log(this.element);
-    this.fetchUser();
-    //console.log(this.element);
+   
+   this.fetchUser();
+    
   }
 
-  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
+  profileImageUrl;
 
   edit(){
     //console.log(this.locate);
@@ -59,28 +54,10 @@ export class ProfilePage implements OnInit{
   }
 
   async fetchUser(){
-    //console.log(this.appservice.auth.userdetails.id);
     console.log(this.id,'this');
     this.element1 =await this.appservice.store.getUser();
+    this.profileImageUrl=this.element1.profileImageUrl
     console.log('ELement: ',this.element1);
-     // this.element1=(users);
-     // console.log(this.element1);
-    // .pipe(map(resData=>
-    //   {//console.log(resData.email);
-    //     const user=[];
-    //     for (const key in resData){
-    //       console.log(this.email);
-    //       if(resData[key].email===this.appservice.auth.email)
-    //       {user.push({userID:key,email:resData[key].email, ...resData[key]});}
-
-    //     }
-    //     //console.log('User',user);
-    //    // this.element=user[0];
-    //    // console.log(this.element);
-    //     return user;
-    //   }))
-
-    //console.log(this.element);
 
   }
 

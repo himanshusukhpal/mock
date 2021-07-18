@@ -12,8 +12,15 @@
 <ion-content>
   <div class="mainContainer">
     <ion-grid>
-      <ion-row style="padding-top: 15vh;">
+      <ion-row >
         <ion-col size-sm="6" offset-sm="3">
+            <div class="container">
+              <div class="overylay">
+                <ion-avatar (click)="popover($event)">
+                  <ion-img [src]="profileImageUrl"></ion-img>
+                </ion-avatar>
+              </div>
+            </div>
           <ion-card>
             <ion-card-content>
               <form #f="ngForm" (ngSubmit)="editProfile(f)">

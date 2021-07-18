@@ -18,7 +18,8 @@ export class DataService {
   myeventsList: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   openEvent: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   eventType=["Birthday Party","Marriage Anniversary","House Party","Reunions","Weddings","Others"]
-  eventId:string
+  eventId:string;
+  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU'
 
  
   constructor(

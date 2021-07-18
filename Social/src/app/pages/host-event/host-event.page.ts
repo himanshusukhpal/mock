@@ -46,12 +46,13 @@ export class HostEventPage implements OnInit {
   async onSubmit() {
     this.formSubmit = true;
     if(this.eventDetailsForm.valid){
+      console.log(this.eventDetailsForm.get['date'].value,"date")
+      this.eventDetailsForm.controls['date'].setValue(new Date(this.eventDetailsForm.get['date'].value));
+     // let newDate = new Date(dateString);
       console.log("aa")
     this.eventDetails =this.eventDetailsForm.value;
     await this.appService.store.getUser().then(res=>{
-      console.log(res);
-      console.log(res.id);
-      console.log(res.fullname);
+     
       this.token=res.token;
       this.eventDetails.HostId=res.id;
       this.eventDetails.HostName=res.fullname;

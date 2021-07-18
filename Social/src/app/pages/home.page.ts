@@ -17,7 +17,7 @@ export class HomePage implements OnInit{
 
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
 
-  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
+  profileImageUrl
 status=false;
   user = {};
   guestList:{}
@@ -41,8 +41,7 @@ status=false;
      
       Object.keys(res).forEach(k=>{ 
         this.guestList=res[k].guestList;
-        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
-        //Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
         this.eventsArr.push(res[k].guestList)    
       })
       console.log(this.eventsArr)
@@ -61,19 +60,20 @@ status=false;
       this.user=res;
       this.hostId=res.id;
       this.userName=res.fname;
+      this.profileImageUrl=res.profileImageUrl
      
     });
     this.appService.data.eventsList.subscribe(res=>{
      
       Object.keys(res).forEach(k=>{ 
         this.guestList=res[k].guestList;
-        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
-        //Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
         this.eventsArr.push(res[k].guestList)    
       })
       console.log(this.eventsArr)
       this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
     console.log(this.eventBlocks,"e");
+    
   }
 
  
@@ -87,7 +87,6 @@ status=false;
     this.appService.data.eventId=event.key;
     this.appService.data.openEvent.next(event.value);
     this.appService.nav.navigateForward('home/event-details');
-   // this.appService.presentModal(EventDetailsComponent,{});
   }
 
   loadMore(event) {
@@ -97,7 +96,7 @@ status=false;
         res => {
           Object.keys(res).forEach(k=>{ 
             this.guestList=res[k].guestList;
-            if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
+            if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
            
             this.eventsArr.push(res[k].guestList)    
           })
@@ -109,19 +108,15 @@ status=false;
       event.target.complete();
     }, 1000);
   }
-  interested(event){
-    
+
+
+  interested(event){  
     this.requestStatus="pending";
-   
     const guestDetails={guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus}
     this.appService.calls.addGuestsToEventCall(event.key, this.hostId,guestDetails)
     .subscribe(res=>{console.log(res)})
     this.ionViewDidEnter()
-
-}
-
-
-  close(){}
+} 
 
   swipeNext = () => this.appService.nav.navigateForward('home/chat');
 
@@ -134,5 +129,7 @@ status=false;
   hostEventPage = () => this.appService.nav.navigateForward('home/host-event')
 
   myEvents = () => {this.appService.nav.navigateForward('home/my-events'); }
+
+  
 
 }
