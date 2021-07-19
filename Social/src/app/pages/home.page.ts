@@ -60,9 +60,10 @@ status=false;
       this.user=res;
       this.hostId=res.id;
       this.userName=res.fname;
-      this.profileImageUrl=res.profileImageUrl
+      //this.profileImageUrl=res.profileImageUrl
      
     });
+    this.appService.store.getUser().then(res=>{this.profileImageUrl=res.profileImageUrl})
     this.appService.data.eventsList.subscribe(res=>{
      
       Object.keys(res).forEach(k=>{ 

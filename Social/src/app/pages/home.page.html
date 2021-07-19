@@ -94,8 +94,11 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button (click)="onClick()">
-        <ion-img [src]="profileImageUrl" class="icon"></ion-img>
-        <ion-label>Profile</ion-label>
+        <ion-avatar>
+          <ion-img [src]="profileImageUrl" class="icon"></ion-img>
+        </ion-avatar>
+        
+        
       </ion-tab-button>
 
 
