@@ -22,6 +22,7 @@
             <p class="form-error-text">Event Name is required!</p>
           </span>
         </ion-item>
+        
 
         <ion-item>
           <ion-label position="floating"> Date and Time </ion-label>
@@ -41,7 +42,7 @@
 
         <ion-item>
           <ion-label position="floating">Event Type</ion-label >
-          <ion-select placeholder="Event Type" formControlName="eventType">
+          <ion-select  formControlName="eventType">
             <ion-select-option  *ngFor="let type of eventTypeList">{{type}}</ion-select-option>
             
           </ion-select>
@@ -60,7 +61,7 @@
 
         <ion-item>
           <ion-label position="floating"> Event Privacy</ion-label>
-          <ion-select placeholder="Event Type" formControlName="eventPrivacy" >
+          <ion-select  formControlName="eventPrivacy" >
             <ion-select-option value="Open">Open</ion-select-option>
             <ion-select-option value="Closed">Closed</ion-select-option>
           </ion-select>
@@ -71,7 +72,8 @@
 
         <ion-item>
           <ion-label position="floating"> Event Status</ion-label>
-          <ion-select placeholder="Event Status" formControlName="eventStatus" >
+          
+          <ion-select  formControlName="eventStatus" >
             <ion-select-option value="Open">Open</ion-select-option>
             <ion-select-option value="Completed">Completed</ion-select-option>
             <ion-select-option value="Cancelled">Cancelled</ion-select-option>
@@ -81,6 +83,20 @@
           </span>
         </ion-item>
 
+        <ion-item>
+          <ion-label position= "floating"><h2 color="danger">Add Pictures</h2></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+       
+      
+        <ion-slides pager="true" [options]="slideOpts" #slideWithNav
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav)">
+          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic(s)">
+            <img [src]="s.link">
+          </ion-slide>
+        </ion-slides>
+  
+
 
         <div class="sign-btn-wrap">
           <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>
@@ -88,39 +104,5 @@
       </form>
     </ion-card-content>
   </ion-card>
-
-
-  <!-- <ion-list>
-    <ion-item>
-      <ion-label position="floating">Location</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Start Date and Time</ion-label>
-      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-    </ion-item>
-  </ion-list>
-<ion-card align-text-center ion-justify-content-center>
-
-<ion-card-header class="ion-padding"><h4 style="text-align: center;">Invite Friends</h4>
-</ion-card-header>
-<ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
-
-<ion-list>
-<ion-item *ngFor="let data of userRecords | filter:filterTerm">
-
-  <ion-label>{{data.id}}</ion-label>
-  <ion-checkbox color="dark" (ionChange) ="onCheck()"slot="start" [(ngModel)]="data.check"></ion-checkbox>
-  <ion-label>{{data.name}}</ion-label>
-  <ion-label>{{data.email}}</ion-label>
-</ion-item>
-</ion-list>
-<div *ngFor="let data of userRecords">
-<ion-chip *ngIf="data.check==='true'">
-  <ion-label color="primary">{{data.name}}</ion-label>
-</ion-chip>
-</div>
-
-</ion-card> -->
 
 </ion-content>

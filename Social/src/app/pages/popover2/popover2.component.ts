@@ -21,6 +21,7 @@ export class Popover2Component implements OnInit {
       resultType: CameraResultType.Uri
     });
     var imageUrl = image.webPath;
+    console.log(image.webPath)
     this.appService.data.profileImageUrl=imageUrl
   this.pc.dismiss(imageUrl);
   
