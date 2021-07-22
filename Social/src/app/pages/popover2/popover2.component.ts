@@ -18,10 +18,10 @@ export class Popover2Component implements OnInit {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.DataUrl
     });
-    var imageUrl = image.webPath;
-    console.log(image.webPath)
+    var imageUrl = image.dataUrl;
+    console.log(image.dataUrl)
     this.appService.data.profileImageUrl=imageUrl
   this.pc.dismiss(imageUrl);
   

@@ -91,13 +91,11 @@
       
         <ion-slides pager="true" [options]="slideOpts" #slideWithNav
           (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav)">
-          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic(s)">
+          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic()">
             <img [src]="s.link">
           </ion-slide>
         </ion-slides>
-  
-
-
+        
         <div class="sign-btn-wrap">
           <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>
         </div>

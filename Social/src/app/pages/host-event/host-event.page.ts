@@ -5,6 +5,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { IonSlides } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from 'swiper/core';
+
 
 @Component({
   selector: 'app-host-event',
@@ -14,7 +21,13 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class HostEventPage implements OnInit {
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
-
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView: 2,
+    loop: true,
+    spaceBetween: 10
+  };
+  sliderTwo:any;
   eventTypeList=[]
   date=new Date();
   eventDetails: Record<string, any>;
@@ -29,56 +42,54 @@ export class HostEventPage implements OnInit {
     eventAddress: ['', [Validators.required]],
     eventPrivacy: ['', [Validators.required]],
     eventStatus: ['', [Validators.required]],
+    
   });
   test: string; myDate = new Date();
+  eventPics=[]
+    
 
-  slideOpts = {
-    initialSlide: 1,
-    slidesPerView: 2,
-    loop: true,
-    spaceBetween: 10
-  };
-
-sliderTwo:any;
  constructor(
    private datePipe:DatePipe,
     private appService: AppService,
     private  formBuilder: FormBuilder,
     private domSanitizer: DomSanitizer
-  ) {this.eventTypeList=appService.data.eventType
+  ) {
+    this.eventTypeList=appService.data.eventType ;
     this.sliderTwo =
     {
       isBeginningSlide: true,
       isEndSlide: false,
-      slidesItems: [
-        {
-          id: 324,
-          link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
-        },
-        {
-          id: 321,
-          link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
-        },
-        {
-          id: 435,
-          link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
-        },
-        {
-          id: 524,
-          link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
-        },
-        {
-          id: 235,
-          link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
-        }
-      ]
-    };}
+  slidesItems: [
+    {
+      id: 324,
+      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+    },
+    {
+      id: 321,
+      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+    },
+    {
+      id: 435,
+      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+    },
+    {
+      id: 524,
+      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+    },
+    {
+      id: 235,
+      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+    }
+  ]
+
+  }
+}
 
 
   ngOnInit() { 
     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
- slideNext(object, slideView) {
+  slideNext(object, slideView) {
     slideView.slideNext(500).then(() => {
       this.checkIfNavDisabled(object, slideView);
     });
@@ -111,17 +122,18 @@ sliderTwo:any;
     });
   }
 
-  addPic= async (s) => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
-    }).then(image=>{
-      var imageUrl=this.domSanitizer.bypassSecurityTrustResourceUrl(image && image.webPath)
-      s.link=imageUrl
-    })
-  }
+ 
 
+  addPic= async () =>{ const image = await Camera.getPhoto({
+    quality: 90,
+    allowEditing: true,
+    resultType: CameraResultType.DataUrl
+  });
+  var imageUrl = image.dataUrl;
+  console.log(image.dataUrl)
+  this.eventPics.push(imageUrl)
+
+  }
   get eventDetailsFormError() {
     return this.eventDetailsForm.controls;
   }
@@ -130,13 +142,11 @@ sliderTwo:any;
   async onSubmit() {
     this.formSubmit = true;
     if(this.eventDetailsForm.valid){
+      console.log(this.eventDetailsForm.get['eventPics'].value,"eventDetails")
       console.log(this.eventDetailsForm.get['date'].value,"date")
       this.eventDetailsForm.controls['date'].setValue(new Date(this.eventDetailsForm.get['date'].value));
-     // let newDate = new Date(dateString);
-      console.log("aa")
     this.eventDetails =this.eventDetailsForm.value;
     await this.appService.store.getUser().then(res=>{
-     
       this.token=res.token;
       this.eventDetails.HostId=res.id;
       this.eventDetails.HostName=res.fullname;
@@ -148,5 +158,7 @@ sliderTwo:any;
   }
 
   back =  () => this.appService.nav.navigateBack('home');
+
+  onSwiper=(event)=> console.log(event)
 
 }

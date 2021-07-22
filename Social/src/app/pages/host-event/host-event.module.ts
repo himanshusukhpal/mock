@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { IonicModule } from '@ionic/angular';
 
 import { HostEventPageRoutingModule } from './host-event-routing.module';
-
+import { SwiperModule } from 'swiper/angular';
 import { HostEventPage } from './host-event.page';
 
 @NgModule({
@@ -14,7 +14,9 @@ import { HostEventPage } from './host-event.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    HostEventPageRoutingModule
+    HostEventPageRoutingModule,
+
+
   ],
   providers:[DatePipe],
   declarations: [HostEventPage]
