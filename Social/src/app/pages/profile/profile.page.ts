@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-profile',
@@ -16,11 +17,10 @@ import { PopoverComponent } from '../popover/popover.component';
 })
 export class ProfilePage implements OnInit{
 
-  constructor(private appservice: AppService, private http: HttpClient, private pc: PopoverController) { }
+  constructor(private appservice: AppService, private http: HttpClient, private pc: PopoverController, private storage: AngularFireStorage) { }
   element1: User={};
   getdata ={};
   id;
-
   ngOnInit() {
     console.log('in init');
     this.appservice.store.getUser().then(res=>{console.log(res.uid);

@@ -34,7 +34,11 @@ export class EditProfilePage implements OnInit {
       animated: true,  
       showBackdrop: true  
   });  
-  popover.onDidDismiss().then(res=>{this.profileImageUrl=res['data']})
+  popover.onDidDismiss().then(res=>{
+    this.profileImageUrl=res['data']
+    console.log(this.profileImageUrl,"pic")
+  }
+    )
   return await popover.present(); 
  
   }

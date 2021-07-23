@@ -72,7 +72,6 @@
 
         <ion-item>
           <ion-label position="floating"> Event Status</ion-label>
-          
           <ion-select  formControlName="eventStatus" >
             <ion-select-option value="Open">Open</ion-select-option>
             <ion-select-option value="Completed">Completed</ion-select-option>
@@ -89,12 +88,12 @@
         </ion-item>
        
       
-        <ion-slides pager="true" [options]="slideOpts" #slideWithNav
+        <!-- <ion-slides pager="true" [options]="slideOpts" #slideWithNav
           (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav)">
-          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic()">
+          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic(s)">
             <img [src]="s.link">
           </ion-slide>
-        </ion-slides>
+        </ion-slides> -->
         
         <div class="sign-btn-wrap">
           <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>

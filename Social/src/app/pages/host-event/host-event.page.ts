@@ -124,13 +124,14 @@ export class HostEventPage implements OnInit {
 
  
 
-  addPic= async () =>{ const image = await Camera.getPhoto({
+  addPic= async (s) =>{ const image = await Camera.getPhoto({
     quality: 90,
     allowEditing: true,
     resultType: CameraResultType.DataUrl
   });
   var imageUrl = image.dataUrl;
   console.log(image.dataUrl)
+  s.link=imageUrl
   this.eventPics.push(imageUrl)
 
   }
@@ -151,7 +152,9 @@ export class HostEventPage implements OnInit {
       this.eventDetails.HostId=res.id;
       this.eventDetails.HostName=res.fullname;
     });
-    this.appService.calls.addNewEventCall(this.token,this.params,this.eventDetails).subscribe(res=>{this.eventId=(res["name"]);});
+    this.appService.calls.addNewEventCall(this.token,this.params,this.eventDetails).subscribe(res=>{this.eventId=(res["name"]);
+  console.log(res)
+  });
     console.log(this.eventDetails,'null');
     this.appService.nav.navigateBack('home')
     }

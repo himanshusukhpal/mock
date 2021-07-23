@@ -14,6 +14,11 @@
     "build:prod": "cross-env NODE_ENV=production ng build --configuration production",
     "render": "npm run build:prod && ionic cap sync --no-build"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~12.0.4",
