@@ -20,4 +20,10 @@ export class PopoverComponent implements OnInit {
     this.appService.auth.logout();
     this.pc.dismiss();
   }
+
+  addEvent(){
+    this.appService.nav.navigateForward('home/host-event')
+  }
+
+  myEvent = () => {this.appService.nav.navigateForward('home/my-events'); }
 }

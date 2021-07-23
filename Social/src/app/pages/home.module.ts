@@ -10,9 +10,6 @@ import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 
-
-
-
 @NgModule({
   imports: [
     CommonModule,

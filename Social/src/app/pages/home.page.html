@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Home</ion-title>
+    <ion-avatar slot='start' (click)="onClick()" >
+      <ion-img [src]="profileImageUrl" class="icon"></ion-img>
+    </ion-avatar>
     <ion-icon name="chatbubbles" size="large"  (click)="swipeNext()" slot="end" style="margin-right: 10px;"></ion-icon>
   </ion-toolbar>
 </ion-header>
@@ -90,7 +93,7 @@
 </ion-content>
 
 
-<ion-toolbar>
+<!-- <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button (click)="onClick()">
@@ -115,4 +118,4 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-</ion-toolbar>
+</ion-toolbar> -->
