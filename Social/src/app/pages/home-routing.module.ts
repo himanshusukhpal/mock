@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
-  },  {
+  },
+  {
     path: 'my-events',
     loadChildren: () => import('./my-events/my-events.module').then( m => m.MyEventsPageModule)
   },
@@ -29,7 +30,15 @@ const routes: Routes = [
   {
     path: 'host-event',
     loadChildren: () => import('./host-event/host-event.module').then( m => m.HostEventPageModule)
+  },
+  {
+    path: 'account-details',
+    loadChildren: () => import('./account-details/account-details.module').then( m => m.AccountDetailsPageModule)
+  },  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   }
+
 
 ];
 

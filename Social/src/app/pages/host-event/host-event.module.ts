@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HostEventPageRoutingModule } from './host-event-routing.module';
 import { SwiperModule } from 'swiper/angular';
 import { HostEventPage } from './host-event.page';
+import { ModalPageModule } from '../modal/modal.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,6 @@ import { HostEventPage } from './host-event.page';
     ReactiveFormsModule,
     IonicModule,
     HostEventPageRoutingModule,
-
-
   ],
   providers:[DatePipe],
   declarations: [HostEventPage]

@@ -5,12 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { IonSlides } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from 'swiper/core';
+import { ModalPage } from '../modal/modal.page';
 
 
 @Component({
@@ -44,7 +39,8 @@ export class HostEventPage implements OnInit {
     eventStatus: ['', [Validators.required]],
     
   });
-  test: string; myDate = new Date();
+  test: string;
+  myDate = new Date();
   eventPics=[]
     
 
@@ -163,5 +159,10 @@ export class HostEventPage implements OnInit {
   back =  () => this.appService.nav.navigateBack('home');
 
   onSwiper=(event)=> console.log(event)
+
+  open =(event)=>{this.appService.presentModal(ModalPage,event);}
+
+  
+
 
 }

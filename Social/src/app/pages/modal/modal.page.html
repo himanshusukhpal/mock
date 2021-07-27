@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-button slot="end" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Date and Time</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-datetime
+  displayFormat="MMM DD, YYYY"
+  pickerFormat="MMMM DD YYYY"
+  [(ngModel)]="myDate"
+  placeholder="Date"
+  min={{test}}
+  max=2121
+  required >
+</ion-datetime>
+
+</ion-content>

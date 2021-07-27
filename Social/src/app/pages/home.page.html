@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Home</ion-title>
-    <ion-avatar slot='start' (click)="onClick()" >
+    <ion-avatar (click)="onProfile()" button slot="start">
       <ion-img [src]="profileImageUrl" class="icon"></ion-img>
     </ion-avatar>
     <ion-icon name="chatbubbles" size="large"  (click)="swipeNext()" slot="end" style="margin-right: 10px;"></ion-icon>

@@ -23,22 +23,12 @@
           </span>
         </ion-item>
         
+        
+        
+        
 
-        <ion-item>
-          <ion-label position="floating"> Date and Time </ion-label>
-          <ion-datetime
-            displayFormat="MMM DD, YYYY"
-            pickerFormat="MMMM DD YYYY"
-            formControlName="date"
-            placeholder="Date"
-            min={{test}}
-            max=2121
-            required >
-          </ion-datetime>
-          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.date.errors?.required">
-            <p class="form-error-text">Date and Time is required!</p>
-          </span>
-        </ion-item>
+          
+        
 
         <ion-item>
           <ion-label position="floating">Event Type</ion-label >
@@ -86,17 +76,26 @@
           <ion-label position= "floating"><h2 color="danger">Add Pictures</h2></ion-label>
           <ion-input></ion-input>
         </ion-item>
-       
+
+        
       
-        <!-- <ion-slides pager="true" [options]="slideOpts" #slideWithNav
+        <ion-slides pager="true" [options]="slideOpts" #slideWithNav
           (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav)">
           <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic(s)">
             <img [src]="s.link">
           </ion-slide>
-        </ion-slides> -->
-        
+        </ion-slides>
+        <div class="sign-btn-wrap">
+          <ion-button class="sign-btn"  expand="block" shape="round " fill="solid" (click)="open($event)">Select Date and Time
+            <ion-icon name="calendar"></ion-icon>
+          </ion-button>
+          <!-- <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.date.errors?.required">
+            <p class="form-error-text">Date and Time is required!</p>
+          </span> -->
+        </div>
         <div class="sign-btn-wrap">
           <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>
+          
         </div>
       </form>
     </ion-card-content>

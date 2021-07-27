@@ -12,18 +12,16 @@ export class PopoverComponent implements OnInit {
   constructor(private pc: PopoverController, private appService: AppService) { }
 
   ngOnInit() {}
-  close() {
-    this.pc.dismiss();
-  }
+ 
   logOut()
   {
     this.appService.auth.logout();
     this.pc.dismiss();
   }
 
-  addEvent(){
-    this.appService.nav.navigateForward('home/host-event')
-  }
+  addEvent=()=>{this.appService.nav.navigateForward('home/host-event') ;this.pc.dismiss();}
 
-  myEvent = () => {this.appService.nav.navigateForward('home/my-events'); }
+  account=()=>{this.appService.nav.navigateForward('home/account-details'); this.pc.dismiss();}
+
+  myEvent = () => {this.appService.nav.navigateForward('home/my-events'); this.pc.dismiss(); }
 }

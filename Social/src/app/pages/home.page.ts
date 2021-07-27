@@ -124,13 +124,13 @@ status=false;
   onAddActivity = () => this.appService.nav.navigateBack('activities');
 
   onLogout = () => this.appService.auth.logout();
-
-  onProfile = () => this.appService.nav.navigateForward('profile');
+  
+  onProfile = () => {console.log("click")
+    this.appService.nav.navigateForward('profile')};
 
   hostEventPage = () => this.appService.nav.navigateForward('home/host-event')
 
   myEvents = () => {this.appService.nav.navigateForward('home/my-events'); }
 
-  
 
 }
