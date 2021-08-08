@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: AccountDetailsPage
+  },  {
+    path: 'edit-account-details',
+    loadChildren: () => import('./edit-account-details/edit-account-details.module').then( m => m.EditAccountDetailsPageModule)
   }
+
 ];
 
 @NgModule({

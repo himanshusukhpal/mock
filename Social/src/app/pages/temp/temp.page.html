@@ -1,14 +1,8 @@
 
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Profile</ion-title>
-    <ion-icon ios="ellipsis-horizontal" md="ellipsis-horizontal" size="large"  (click)="popover($event)" slot="end" style="margin-right: 10px;"></ion-icon>
-  <ion-buttons  slot="start">
-    <ion-button  (click)="back()"   style=" position: absolute;">
-      <ion-icon name="arrow-back" size="large"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -17,7 +11,8 @@
 
     <ion-card class="myCard">
     <swiper
-    [slidesPerView]="1"
+    [slidesPerView]="3"
+    [spaceBetween]="50"
     (swiper)="onSwiper($event)"
     (slideChange)="onSlideChange()"
     [navigation]="true"
@@ -48,7 +43,7 @@
 
       </ion-img>
     </ng-template>
-   
+    
   </swiper>
 </ion-card>
   <div class="myOverlay">

@@ -1,47 +1,121 @@
-@import '~swiper/swiper-bundle';
+// @import '~swiper/swiper-bundle';
 
-ion-img{
-    width:100%;
-    height:100%;
-  }
+// ion-img{
+//     width:100%;
+//     height:100%;
+//   }
   
-  .myCard{
-    position:relative;
+//   .myCard{
+//     position:relative;
   
-  }
-  .div{
-      position: relative;
-  }
-  .myOverlay{
-      width: 100%;
-      height: auto;
-      position: absolute;
-      z-index: 99;
-      bottom: 0px;
-      opacity: 0.5;
-      background: #000;
-      color: #fff;
+//   }
+//   .div{
+//       position: relative;
+//   }
+//   .myOverlay{
+//       width: 100%;
+//       height: auto;
+//       position: absolute;
+//       z-index: 99;
+//       bottom: 0px;
+//       opacity: 0.5;
+//       background: #000;
+//       color: #fff;
   
-  }
-  ion-item{
-    opacity: 0.5;
-    background:#000;
-    color: #fff
-  }
-  h1,h3{
-      font-size: x-large;
-     margin-left: 15px;
-     color: rgb(180, 180, 207);
-     z-index: 100;
-  }
-  h2{
-    font-size: x-large;
-    margin-left: 15px;
-    color: rgb(43, 112, 47);
-    text-align: center;
-    z-index: 100;
-  }
+//   }
+//   ion-item{
+//     opacity: 0.5;
+//     background:#000;
+//     color: #fff
+//   }
+//   h1,h3{
+//       font-size: x-large;
+//      margin-left: 15px;
+//      color: rgb(180, 180, 207);
+//      z-index: 100;
+//   }
+//   h2{
+//     font-size: x-large;
+//     margin-left: 15px;
+//     color: rgb(43, 112, 47);
+//     text-align: center;
+//     z-index: 100;
+//   }
  
-  ion-text{
-    margin-left: 10px;
-  }
+//   ion-text{
+//     margin-left: 10px;
+//   }
+
+ion-content{
+  --ion-background-color:#ffffff;
+}
+
+
+ion-title{
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  color:#fff;
+}
+
+.container{
+  //position: relative;
+  width: 100%;
+  height: 200px;
+  background-color:#90f3f3;
+  padding: 0px;
+}
+
+.overylay{
+  position: relative;
+  text-align: center;
+  top:60%;
+}
+
+ion-avatar{
+   height: 100px;
+   width: 100px;
+   margin: auto;
+   border:  4px solid  #54b168;
+}
+
+ion-card{
+   margin-top: 40px;
+   --ion-background-color: transparent !important;
+    //box-shadow: none;
+    text-align: center;
+}
+
+ion-item{
+   --ion-item-background: #90f3f3;
+   text-align: center;
+   color:#1c1c1d;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-style: italic;
+   font-weight: 400;
+   font-size: 15px;
+   border-radius: 5px;
+   height: 35px;
+   --min-height:35px;
+   margin-bottom: 15px;
+}
+
+ion-label{
+   text-align: center;
+   padding: 0px;
+   margin: 0px;
+}
+.btn-wrap{
+  text-align: center;
+  padding-top: 20px;
+ .btn{
+   --ion-primary-color:#215AB7;
+   --background-activated:#E1EAF9;
+   --background-focused:#E1EAF9;
+   --background-hover:#647B9D;
+   color:#F4F6FA;
+   border-radius: 25px;
+   --background:#215AB7;
+   background-color: #215AB7;
+ }
+}

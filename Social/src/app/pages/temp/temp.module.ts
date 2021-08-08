@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePageRoutingModule } from './profile-routing.module';
+import { TempPageRoutingModule } from './temp-routing.module';
 
-import { ProfilePage } from './profile.page';
-
+import { TempPage } from './temp.page';
 import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
@@ -15,9 +14,9 @@ import { SwiperModule } from 'swiper/angular';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfilePageRoutingModule,
+    TempPageRoutingModule,
     SwiperModule
   ],
-  declarations: [ProfilePage]
+  declarations: [TempPage]
 })
-export class ProfilePageModule {}
+export class TempPageModule {}

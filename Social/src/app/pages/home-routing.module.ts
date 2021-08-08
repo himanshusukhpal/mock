@@ -34,10 +34,16 @@ const routes: Routes = [
   {
     path: 'account-details',
     loadChildren: () => import('./account-details/account-details.module').then( m => m.AccountDetailsPageModule)
-  },  {
+  },
+  {
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'temp',
+    loadChildren: () => import('./temp/temp.module').then( m => m.TempPageModule)
   }
+
 
 
 ];

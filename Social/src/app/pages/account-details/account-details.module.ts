@@ -8,6 +8,8 @@ import { IonicModule, IonicSwiper } from '@ionic/angular';
 import { AccountDetailsPageRoutingModule } from './account-details-routing.module';
 
 import { AccountDetailsPage } from './account-details.page';
+import { PopoverComponent } from '../popover/popover.component';
+import { Popover2Component } from '../popover2/popover2.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { AccountDetailsPage } from './account-details.page';
     SwiperModule,
     
   ],
-  declarations: [AccountDetailsPage]
+  entryComponents:[PopoverComponent,Popover2Component ],
+  declarations: [AccountDetailsPage, PopoverComponent, Popover2Component]
 })
 export class AccountDetailsPageModule {}
