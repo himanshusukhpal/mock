@@ -1,0 +1,104 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  slot="start">
+      <ion-button  (click)="back()"   style=" position: absolute;">
+        <ion-icon name="close" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Host Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="eventDetailsForm"  >
+        <ion-item>
+          <ion-label position="floating">Event Name</ion-label>
+          <ion-input type="text" formControlName="eventLabel" placeholder="Event Name" required></ion-input>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventLabel.errors?.required">
+            <p class="form-error-text">Event Name is required!</p>
+          </span>
+        </ion-item>
+        
+        
+        
+        
+
+          
+        
+
+        <ion-item>
+          <ion-label position="floating">Event Type</ion-label >
+          <ion-select  formControlName="eventType">
+            <ion-select-option  *ngFor="let type of eventTypeList">{{type}}</ion-select-option>
+            
+          </ion-select>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventType.errors?.required">
+            <p class="form-error-text">Event Type is required!</p>
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"> Event Address</ion-label>
+          <ion-input type="text"  formControlName="eventAddress" placeholder="Event Address" required></ion-input>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventAddress.errors?.required">
+            <p class="form-error-text">Event Address is required!</p>
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"> Event Privacy</ion-label>
+          <ion-select  formControlName="eventPrivacy" >
+            <ion-select-option value="Open">Open</ion-select-option>
+            <ion-select-option value="Closed">Closed</ion-select-option>
+          </ion-select>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventPrivacy.errors?.required">
+            <p class="form-error-text">Event Privacy is required!</p>
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"> Event Status</ion-label>
+          <ion-select  formControlName="eventStatus" >
+            <ion-select-option value="Open">Open</ion-select-option>
+            <ion-select-option value="Completed">Completed</ion-select-option>
+            <ion-select-option value="Cancelled">Cancelled</ion-select-option>
+          </ion-select>
+          <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.eventStatus.errors?.required">
+            <p class="form-error-text">Event Status is required!</p>
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position= "floating"><h2 color="danger">Add Pictures</h2></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+
+        
+      
+        <ion-slides pager="true" [options]="slideOpts" #slideWithNav
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav)">
+          <ion-slide *ngFor="let s of sliderTwo.slidesItems" (click)="addPic(s)">
+            <img [src]="s.link">
+          </ion-slide>
+        </ion-slides>
+        <div class="sign-btn-wrap">
+          <ion-button class="sign-btn"  expand="block" shape="round " fill="solid" (click)="open($event)">Select Date and Time
+            <ion-icon name="calendar"></ion-icon>
+          </ion-button>
+          <!-- <span class="form-error" *ngIf="formSubmit && eventDetailsFormError.date.errors?.required">
+            <p class="form-error-text">Date and Time is required!</p>
+          </span> -->
+        </div>
+        <div class="sign-btn-wrap">
+          <ion-button  shape="round" type="button" expand="block" fill="solid" class="sign-btn" (click)= "onSubmit()">Confirm</ion-button>
+          
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,76 +1,79 @@
 
-<ion-header class="ion-no-border" >
+<ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button (click)="home()" style=" position: absolute;">
-        <ion-icon name="arrow-back" size="large"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-title>Profile</ion-title>
-  </ion-toolbar>
+    <ion-icon ios="ellipsis-horizontal" md="ellipsis-horizontal" size="large"  (click)="popover($event)" slot="end" style="margin-right: 10px;"></ion-icon>
+  <ion-buttons  slot="start">
+    <ion-button  (click)="back()"   style=" position: absolute;">
+      <ion-icon name="arrow-back" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="mainContainer">
-    <ion-grid>
-      <ion-row>
-        <ion-col  size-sm="6" offset-sm="3" class="ion-no-padding">
+    <div class="div">
 
-          <div class="container">
-            <div class="overylay">
-              <ion-avatar>
-                <!-- <img src="../../../assets/images/Profile.jpeg"> -->
-                <ion-img [src]="profileImageUrl"></ion-img>
-              </ion-avatar>
-            </div>
-          </div>
+    <ion-card class="myCard">
+    <swiper
+    [slidesPerView]="1"
+    (swiper)="onSwiper($event)"
+    (slideChange)="onSlideChange()"
+    [navigation]="true"
+    [pagination]="{ clickable: true }"
+    [scrollbar]="{ draggable: true }"
+  >
+    <ng-template swiperSlide>
+      
+        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"> </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://thumbs.dreamstime.com/b/profile-picture-vector-perfect-social-media-other-web-use-125320944.jpg">
 
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>
-                {{element1?.username}}
-              </ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-item lines="none">
-                <ion-icon name="mail"></ion-icon>
-                <ion-label>{{element1?.email}}</ion-label>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-icon name="call"></ion-icon>
-                <ion-label>{{element1?.phone}}</ion-label>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-icon name="locate"></ion-icon>
-                <ion-label>
-                  {{element1?.address}}
-                </ion-label>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-icon name="person-circle-outline"></ion-icon>
-                <ion-label>
-                  {{element1?.fname}}
-                </ion-label>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-icon name="person"></ion-icon>
-                <ion-label>
-                  {{element1?.lname}}
-                </ion-label>
-              </ion-item>
-            </ion-card-content>
-          </ion-card>
+      </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
 
-          <div class="btn-wrap">
-            <ion-button class="btn"  expand="block" shape="round " fill="solid" (click)="edit()">Edit Profile</ion-button>
-          </div>
+      </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
 
-          <div class="btn-wrap">
-            <ion-button class="btn"  expand="block" shape="round " fill="solid" (click)="home()">Back to Home</ion-button>
-          </div>
+    </ion-img>
+  </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      </ion-img>
+    </ng-template>
+   
+  </swiper>
+</ion-card>
+  <div class="myOverlay">
+  <h1><b> UserName</b></h1>
+  <br>
+  <h3>
+    Age
+  </h3> 
+</div>
+</div>
+<br>
+  <ion-header><h2>
+    About</h2>
+    <ion-text color="dark">asdfghjkl</ion-text>
+  </ion-header>
+<br>
+<ion-header>
+  <h2>Interests</h2>
+  <ion-chip color="success">
+    <ion-label>Dogs</ion-label>
+  </ion-chip>
+</ion-header>
+
+
   </div>
+  
 </ion-content>
+

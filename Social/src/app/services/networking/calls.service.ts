@@ -35,12 +35,13 @@ export class CallsService {
 
   loadMoreEventsCall = (startAfter: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAfter, limit));
 
-  loadMoreMyEventsCall = (hostId: string, startAfter: string, limit: number) => this.http.get(this.ends.loadMoreMyEventsUrl(hostId, startAfter, limit));
+  //loadMoreMyEventsCall = (hostId: string, startAfter: string, limit: number) => this.http.get(this.ends.loadMoreMyEventsUrl(hostId, startAfter, limit));
 
   getEventbyId = (id: string) => this.http.get(this.ends.eventDetailUrl(id));
 
-  addNewEventCall = (token: string, params: string, event: any) => this.http.post(this.ends.addEventUrl(), event);
+  addNewEventCall = (token: string, params: string, event: any) => this.http.post(this.ends.addEventUrl(token), event);
 
   addGuestsToEventCall = (key: string,id: string,  guests: {}) => this.http.put(this.ends.addGuestsToEventUrl(key,id), guests);
 
+  updateRequestStatusCall = (key: string,id: string,  guest:{}) => this.http.put(this.ends.updateRequestStatusUrl(key,id), guest);
 }

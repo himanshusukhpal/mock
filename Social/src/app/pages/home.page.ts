@@ -3,11 +3,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { IonSlides } from '@ionic/angular';
-import { HostEventComponent } from './host-event/host-event.component';
-import { IonInfiniteScroll } from '@ionic/angular';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { DatePipe } from '@angular/common';
-import { async } from 'rxjs';
+
 
 
 @Component({
@@ -21,7 +17,7 @@ export class HomePage implements OnInit{
 
   @ViewChild('slides' ,{ static: true })  slides: IonSlides;
 
-  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
+  profileImageUrl
 status=false;
   user = {};
   guestList:{}
@@ -45,8 +41,7 @@ status=false;
      
       Object.keys(res).forEach(k=>{ 
         this.guestList=res[k].guestList;
-        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
-        //Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
         this.eventsArr.push(res[k].guestList)    
       })
       console.log(this.eventsArr)
@@ -60,7 +55,26 @@ status=false;
     
   }
 
-  ionViewWillEnter() { 
+  ionViewDidEnter() { 
+    this.appService.data.userData.subscribe(res=>{
+      this.user=res;
+      this.hostId=res.id;
+      this.userName=res.fname;
+      //this.profileImageUrl=res.profileImageUrl
+     
+    });
+    this.appService.store.getUser().then(res=>{this.profileImageUrl=res.profileImageUrl})
+    this.appService.data.eventsList.subscribe(res=>{
+     
+      Object.keys(res).forEach(k=>{ 
+        this.guestList=res[k].guestList;
+        if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
+        this.eventsArr.push(res[k].guestList)    
+      })
+      console.log(this.eventsArr)
+      this.eventBlocks.splice(0,this.eventBlocks.length,res)}); 
+    console.log(this.eventBlocks,"e");
+    
   }
 
  
@@ -70,8 +84,10 @@ status=false;
   }
 
   eventDetails(event){
+    console.log(event.key)
+    this.appService.data.eventId=event.key;
     this.appService.data.openEvent.next(event.value);
-    this.appService.presentModal(EventDetailsComponent,{});
+    this.appService.nav.navigateForward('home/event-details');
   }
 
   loadMore(event) {
@@ -81,7 +97,7 @@ status=false;
         res => {
           Object.keys(res).forEach(k=>{ 
             this.guestList=res[k].guestList;
-            if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";console.log(res,"a")}})}
+            if(this.guestList){ Object.keys(this.guestList).forEach(key=>{if(key===this.hostId){res[k].show="true";}})}
            
             this.eventsArr.push(res[k].guestList)    
           })
@@ -93,29 +109,28 @@ status=false;
       event.target.complete();
     }, 1000);
   }
-  interested(event,index){
-    this.bool[index]=false;
+
+
+  interested(event){  
     this.requestStatus="pending";
-    console.log(this.userName,)
     const guestDetails={guestName :this.userName, guestId:this.hostId, requestStatus:this.requestStatus}
     this.appService.calls.addGuestsToEventCall(event.key, this.hostId,guestDetails)
     .subscribe(res=>{console.log(res)})
-
-}
-
-
-  close(){}
+    this.ionViewDidEnter()
+} 
 
   swipeNext = () => this.appService.nav.navigateForward('home/chat');
 
   onAddActivity = () => this.appService.nav.navigateBack('activities');
 
   onLogout = () => this.appService.auth.logout();
+  
+  onProfile = () => {console.log("click")
+    this.appService.nav.navigateForward('profile')};
 
-  onProfile = () => this.appService.nav.navigateForward('profile');
-
-  hostEventPage = () => this.appService.presentModal( HostEventComponent,{});
+  hostEventPage = () => this.appService.nav.navigateForward('home/host-event')
 
   myEvents = () => {this.appService.nav.navigateForward('home/my-events'); }
+
 
 }

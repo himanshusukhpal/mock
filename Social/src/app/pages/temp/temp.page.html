@@ -1,0 +1,74 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mainContainer">
+    <div class="div">
+
+    <ion-card class="myCard">
+    <swiper
+    [slidesPerView]="3"
+    [spaceBetween]="50"
+    (swiper)="onSwiper($event)"
+    (slideChange)="onSlideChange()"
+    [navigation]="true"
+    [pagination]="{ clickable: true }"
+    [scrollbar]="{ draggable: true }"
+  >
+    <ng-template swiperSlide>
+      
+        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"> </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://thumbs.dreamstime.com/b/profile-picture-vector-perfect-social-media-other-web-use-125320944.jpg">
+
+      </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
+
+      </ion-img>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
+
+    </ion-img>
+  </ng-template>
+    <ng-template swiperSlide>
+      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
+
+      </ion-img>
+    </ng-template>
+    
+  </swiper>
+</ion-card>
+  <div class="myOverlay">
+  <h1><b> UserName</b></h1>
+  <br>
+  <h3>
+    Age
+  </h3> 
+</div>
+</div>
+<br>
+  <ion-header><h2>
+    About</h2>
+    <ion-text color="dark">asdfghjkl</ion-text>
+  </ion-header>
+<br>
+<ion-header>
+  <h2>Interests</h2>
+  <ion-chip color="success">
+    <ion-label>Dogs</ion-label>
+  </ion-chip>
+</ion-header>
+
+
+  </div>
+  
+</ion-content>
+

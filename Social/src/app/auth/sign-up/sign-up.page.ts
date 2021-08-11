@@ -15,6 +15,7 @@ import { AppService } from 'src/app/services/app.service';
 export class SignUpPage implements OnInit {
 
   signUpSubmit = false;
+  defaultPic="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
 
   signUpForm = this.formBuilder.group({
     fname: ['', [Validators.required]],
@@ -41,6 +42,8 @@ export class SignUpPage implements OnInit {
     const form = this.signUpForm;
     this.signUpSubmit = true;
     if(form.valid) {
+      form.value['profileImageUrl']="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+      console.log(form.value)
       this.appService.auth.emailSignUp(form.value);
     }
   }

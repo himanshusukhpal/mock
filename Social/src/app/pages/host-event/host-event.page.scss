@@ -1,0 +1,27 @@
+
+ .sign-btn-wrap{
+    text-align: center;
+    padding-top: 20px;
+    .sign-btn{
+      --ion-primary-color:#215AB7;
+      --background-activated:#E1EAF9;
+      --background-focused:#E1EAF9;
+      --background-hover:#647B9D;
+      color:#F4F6FA;
+      border-radius: 25px;
+      --background:#215AB7;
+      background-color: #215AB7;
+    }
+  }
+ ion-slides{
+   height: 50%;
+ }
+
+ .center-button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

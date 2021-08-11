@@ -81,7 +81,7 @@ export class AuthService {
   }
 
   async emailLogin(email: string, password: string) {
-    await this.presentLoading('Loggin In...');
+    await this.presentLoading('Logging In...');
     this.calls.emailLoginCall(email, password).then(
       async (res) => {
         if(res) {

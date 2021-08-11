@@ -1,0 +1,47 @@
+@import '~swiper/swiper-bundle';
+
+ion-img{
+    width:100%;
+    height:100%;
+  }
+  
+  .myCard{
+    position:relative;
+  
+  }
+  .div{
+      position: relative;
+  }
+  .myOverlay{
+      width: 100%;
+      height: auto;
+      position: absolute;
+      z-index: 99;
+      bottom: 0px;
+      opacity: 0.5;
+      background: #000;
+      color: #fff;
+  
+  }
+  ion-item{
+    opacity: 0.5;
+    background:#000;
+    color: #fff
+  }
+  h1,h3{
+      font-size: x-large;
+     margin-left: 15px;
+     color: rgb(180, 180, 207);
+     z-index: 100;
+  }
+  h2{
+    font-size: x-large;
+    margin-left: 15px;
+    color: rgb(43, 112, 47);
+    text-align: center;
+    z-index: 100;
+  }
+ 
+  ion-text{
+    margin-left: 10px;
+  }

@@ -18,10 +18,33 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
-  },  {
+  },
+  {
     path: 'my-events',
     loadChildren: () => import('./my-events/my-events.module').then( m => m.MyEventsPageModule)
+  },
+  {
+    path: 'event-details',
+    loadChildren: () => import('./event-details/event-details.module').then( m => m.EventDetailsPageModule)
+  },
+  {
+    path: 'host-event',
+    loadChildren: () => import('./host-event/host-event.module').then( m => m.HostEventPageModule)
+  },
+  {
+    path: 'account-details',
+    loadChildren: () => import('./account-details/account-details.module').then( m => m.AccountDetailsPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'temp',
+    loadChildren: () => import('./temp/temp.module').then( m => m.TempPageModule)
   }
+
+
 
 ];
 
