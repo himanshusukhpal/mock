@@ -8,7 +8,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 
-import { SwiperModule } from 'swiper/angular';
+//import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { SwiperModule } from 'swiper/angular';
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    SwiperModule
+   // SwiperModule
   ],
   declarations: [ProfilePage]
 })

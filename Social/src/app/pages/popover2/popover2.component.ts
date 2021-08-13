@@ -31,13 +31,6 @@ export class Popover2Component implements OnInit {
     //console.log(image.dataUrl)
     this.appService.data.profileImageUrl=imageUrl
     this.uploadPic(imageUrl)
-    
-    // this.storage.ref(this.userId).putString(imageUrl,'data_url').then(snapshot=>{console.log("Uploaded")})
-    
-    // this.storage.refFromURL(`gs://synans-social-project.appspot.com/${this.userId}/profilePics`).getDownloadURL().toPromise().then(res=>{var imageString=res;
-    // this.pc.dismiss(imageString);})
-    
-    
 
   }
 

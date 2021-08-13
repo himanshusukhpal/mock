@@ -10,23 +10,36 @@
   </ion-buttons>
 </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div class="mainContainer">
     <div class="div">
-
     <ion-card class="myCard">
-    <swiper
+    <!-- <swiper
     [slidesPerView]="1"
     (swiper)="onSwiper($event)"
     (slideChange)="onSlideChange()"
     [navigation]="true"
     [pagination]="{ clickable: true }"
     [scrollbar]="{ draggable: true }"
-  >
-    <ng-template swiperSlide>
+  > -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" (click)="popover2($event)"> </ion-img>
+      </div>
+      <div class="swiper-slide">
+        <ion-img src="https://thumbs.dreamstime.com/b/profile-picture-vector-perfect-social-media-other-web-use-125320944.jpg"></ion-img>
+      </div>
+      <div class="swiper-slide">
+        <ion-img src="https://static.thenounproject.com/png/3322766-200.png"></ion-img>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    
+  </div>
+    <!-- <ng-template swiperSlide>
       
-        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"> </ion-img>
+        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" (click)="popover2($event)"> </ion-img>
     </ng-template>
     <ng-template swiperSlide>
       <ion-img src="https://thumbs.dreamstime.com/b/profile-picture-vector-perfect-social-media-other-web-use-125320944.jpg">
@@ -49,14 +62,11 @@
       </ion-img>
     </ng-template>
    
-  </swiper>
+  </swiper> -->
 </ion-card>
   <div class="myOverlay">
   <h1><b> UserName</b></h1>
-  <br>
-  <h3>
-    Age
-  </h3> 
+  <br><h3>Age</h3> 
 </div>
 </div>
 <br>
@@ -71,8 +81,6 @@
     <ion-label>Dogs</ion-label>
   </ion-chip>
 </ion-header>
-
-
   </div>
   
 </ion-content>
