@@ -50,10 +50,9 @@ export class HomePage implements OnInit{
 
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-
-  }
+  changeDate = (date,format: string) => this.appService.changeDate(date, format);
 
   ionViewDidEnter() {
     this.appService.data.userData.subscribe(res=>{

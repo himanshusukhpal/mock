@@ -19,15 +19,15 @@
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-// @import "~@ionic/angular/css/padding.css";
-// @import "~@ionic/angular/css/float-elements.css";
-// @import "~@ionic/angular/css/text-alignment.css";
-// @import "~@ionic/angular/css/text-transformation.css";
-// @import "~@ionic/angular/css/flex-utils.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
+// @import 'tailwindcss/utilities';
 
 
 ion-buttons {
@@ -62,15 +62,23 @@ ion-buttons {
   right: 0px;
 }
 
-.centerContainer {
+.centerContainerVertically {
+  position: absolute;
   top: 50%;
-  transform: translateY(50%);
-  text-align: center;
+  transform: translateY(-50%);
+}
+.centerContainerHorizontally {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .mainContainer{
   margin: 20px 0;
   align-content: center;
   align-items: center;
+  width: 85%;
+  max-width: 550px;
+  white-space: nowrap;
 }
 
 .picker-toolbar.sc-ion-picker-md{
@@ -83,4 +91,10 @@ ion-buttons {
 
 ion-header ion-toolbar {
   text-align: center;
+}
+
+@media screen and (max-width:465px) {
+  .mainContainer{
+    width: 95%;
+  }
 }
