@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  VERSION: "0.1",
+  VERSION: '0.1',
   UUID: null,
   DEVICE: null,
   LOC: {

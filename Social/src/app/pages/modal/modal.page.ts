@@ -7,16 +7,16 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
-  myDate:any;
+  myDate: any;
   newDate = new Date();
-  test:any;
-  constructor(private modalCtrl: ModalController, private datePipe:DatePipe) { }
-  
+  test: any;
+  constructor(private modalCtrl: ModalController, private datePipe: DatePipe) { }
+
   ngOnInit() {
     this.test = this.datePipe.transform(this.newDate, 'yyyy-MM-dd');
 
   }
   close(){
-    this.modalCtrl.dismiss(this.myDate)
+    this.modalCtrl.dismiss(this.myDate);
   }
 }

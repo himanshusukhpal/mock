@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -22,8 +23,8 @@ export class HostEventPage implements OnInit {
     loop: true,
     spaceBetween: 10
   };
-  sliderTwo:any;
-  eventTypeList=[]
+  sliderTwo: any;
+  eventTypeList=[];
   date=new Date();
   eventDetails: Record<string, any>;
   formSubmit = false;
@@ -37,15 +38,15 @@ export class HostEventPage implements OnInit {
     eventAddress: ['', [Validators.required]],
     eventPrivacy: ['', [Validators.required]],
     eventStatus: ['', [Validators.required]],
-    
+
   });
   test: string;
   myDate = new Date();
-  eventPics=[]
-    
+  eventPics=[];
+
 
  constructor(
-   private datePipe:DatePipe,
+   private datePipe: DatePipe,
     private appService: AppService,
     private  formBuilder: FormBuilder,
     private domSanitizer: DomSanitizer
@@ -58,31 +59,31 @@ export class HostEventPage implements OnInit {
   slidesItems: [
     {
       id: 324,
-      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+      link:'https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg'
     },
     {
       id: 321,
-      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+      link:'https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg'
     },
     {
       id: 435,
-      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+      link:'https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg'
     },
     {
       id: 524,
-      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+      link:'https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg'
     },
     {
       id: 235,
-      link:"https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg"
+      link:'https://icon-library.com/images/add-photo-icon/add-photo-icon-29.jpg'
     }
   ]
 
-  }
+  };
 }
 
 
-  ngOnInit() { 
+  ngOnInit() {
     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
   slideNext(object, slideView) {
@@ -91,14 +92,14 @@ export class HostEventPage implements OnInit {
     });
   }
 
- 
+
   slidePrev(object, slideView) {
     slideView.slidePrev(500).then(() => {
       this.checkIfNavDisabled(object, slideView);
     });;
   }
 
-  SlideDidChange(object, slideView) {
+  slideDidChange(object, slideView) {
     this.checkIfNavDisabled(object, slideView);
   }
 
@@ -118,19 +119,19 @@ export class HostEventPage implements OnInit {
     });
   }
 
- 
+
 
   addPic= async (s) =>{ const image = await Camera.getPhoto({
     quality: 90,
     allowEditing: true,
     resultType: CameraResultType.DataUrl
   });
-  var imageUrl = image.dataUrl;
-  console.log(image.dataUrl)
-  s.link=imageUrl
-  this.eventPics.push(imageUrl)
+  const imageUrl = image.dataUrl;
+  console.log(image.dataUrl);
+  s.link=imageUrl;
+  this.eventPics.push(imageUrl);
 
-  }
+  };
   get eventDetailsFormError() {
     return this.eventDetailsForm.controls;
   }
@@ -139,30 +140,30 @@ export class HostEventPage implements OnInit {
   async onSubmit() {
     this.formSubmit = true;
     if(this.eventDetailsForm.valid){
-      console.log(this.eventDetailsForm.get['eventPics'].value,"eventDetails")
-      console.log(this.eventDetailsForm.get['date'].value,"date")
-      this.eventDetailsForm.controls['date'].setValue(new Date(this.eventDetailsForm.get['date'].value));
+      console.log(this.eventDetailsForm.value.eventPics,'eventDetails');
+      console.log(this.eventDetailsForm.value.date,'date');
+      this.eventDetailsForm.controls.date.setValue(new Date(this.eventDetailsForm.value.date));
     this.eventDetails =this.eventDetailsForm.value;
     await this.appService.store.getUser().then(res=>{
       this.token=res.token;
       this.eventDetails.HostId=res.id;
       this.eventDetails.HostName=res.fullname;
     });
-    this.appService.calls.addNewEventCall(this.token,this.params,this.eventDetails).subscribe(res=>{this.eventId=(res["name"]);
-  console.log(res)
+    this.appService.calls.addNewEventCall(this.token,this.params,this.eventDetails).subscribe((res: Record<string, any>)=>{this.eventId=(res.name);
+  console.log(res);
   });
     console.log(this.eventDetails,'null');
-    this.appService.nav.navigateBack('home')
+    this.appService.nav.navigateBack('home');
     }
   }
 
   back =  () => this.appService.nav.navigateBack('home');
 
-  onSwiper=(event)=> console.log(event)
+  onSwiper=(event)=> console.log(event);
 
-  open =(event)=>{this.appService.presentModal(ModalPage,event);}
+  open =(event)=>{this.appService.presentModal(ModalPage,event);};
 
-  
+
 
 
 }

@@ -21,16 +21,16 @@ export class EndpointsService {
   startEventsListUrl = (limit: number) => this.baseURL + this.events + `.json?orderBy="$key"&limitToFirst=${limit}`;
 
   myEventsListUrl =(hostId: string, limit: number) => this.baseURL + this.events + `.json?orderBy="HostId"&equalTo=${hostId}&limitToFirst=${limit}`;
-  
+
   loadMoreEventsUrl = (startAfter: string, limit: number)=> this.baseURL + this.events + `.json?orderBy="$key"&startAt="${startAfter}"&limit=${limit}`;
 
   //loadMoreMyEventsUrl = (hostId:string, startAfter: string, limit: number)=> this.baseURL + this.events + `.json?orderBy="HostId"&equalTo=${hostId}&startAt="${startAfter}"&limit=${limit}`;
 
-  addEventUrl= (token:string)=> this.baseURL + this.events + `.json?auth=`+token;
+  addEventUrl= (token: string)=> this.baseURL + this.events + `.json?auth=`+token;
 
-  addGuestsToEventUrl=(key: string, id: string)=>this.baseURL + this.events + '/' + key + '/guestList/'+ id+'.json'
-  
+  addGuestsToEventUrl=(key: string, id: string)=>this.baseURL + this.events + '/' + key + '/guestList/'+ id+'.json';
 
-  updateRequestStatusUrl=(key: string, id: string)=>this.baseURL + this.events + '/' + key + '/guestList/'+ id+'.json'
+
+  updateRequestStatusUrl=(key: string, id: string)=>this.baseURL + this.events + '/' + key + '/guestList/'+ id+'.json';
 
 }

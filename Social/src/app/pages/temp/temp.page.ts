@@ -23,7 +23,7 @@ export class TempPage implements OnInit {
     console.log(swiper);
   }
   onSlideChange() {
-    
+
     console.log('slide change');
   }
 

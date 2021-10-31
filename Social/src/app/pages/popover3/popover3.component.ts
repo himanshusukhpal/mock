@@ -12,8 +12,8 @@ import { AppService } from 'src/app/services/app.service';
 export class Popover3Component implements OnInit {
   userId;
   res;
-  constructor(private pc: PopoverController, private appService: AppService, private storage:AngularFireStorage) { 
-    this.appService.store.getUser().then(res=>{this.userId=res.id})
+  constructor(private pc: PopoverController, private appService: AppService, private storage: AngularFireStorage) {
+    this.appService.store.getUser().then(res=>{this.userId=res.id;});
   }
 
   ngOnInit() {}
@@ -24,27 +24,27 @@ export class Popover3Component implements OnInit {
       allowEditing: true,
       resultType: CameraResultType.DataUrl
     });
-    var imageUrl = image.dataUrl;
+    const imageUrl = image.dataUrl;
     //console.log(image.dataUrl)
-    this.appService.data.profileImageUrl=imageUrl
-    this.uploadPic(imageUrl)
+    this.appService.data.profileImageUrl=imageUrl;
+    this.uploadPic(imageUrl);
 
-  }
+  };
   uploadPic( file){
-    var metaData={
+    const metaData={
       contentType:'image/jpeg'
-    }
-    var filepath=`${this.userId}/${file.name}`
-    var uploadTask= this.storage.ref(filepath).putString(file,'data_url',metaData).then(
+    };
+    const filepath=`${this.userId}/${file.name}`;
+    const uploadTask= this.storage.ref(filepath).putString(file,'data_url',metaData).then(
       snapshot=>{
         console.log(snapshot);
         this.storage.ref(filepath).getDownloadURL().toPromise().then(
           url=>{
-            console.log(url,"url")
+            console.log(url,'url');
             this.res=url;
-            this.pc.dismiss(this.res)
-          })
-         
-      })
+            this.pc.dismiss(this.res);
+          });
+
+      });
     }
 }

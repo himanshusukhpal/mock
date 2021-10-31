@@ -18,7 +18,7 @@ import { Popover2Component } from '../popover2/popover2.component';
     IonicModule,
     AccountDetailsPageRoutingModule,
     SwiperModule,
-    
+
   ],
   entryComponents:[PopoverComponent,Popover2Component ],
   declarations: [AccountDetailsPage, PopoverComponent, Popover2Component]

@@ -11,7 +11,7 @@ export class ChatPage implements OnInit {
 
   constructor(private appservice: AppService) { }
   profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
-  filterTerm: string; 
+  filterTerm: string;
   sampleRecord: Friends[]=[
     {
       id: 1,

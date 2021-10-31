@@ -12,14 +12,14 @@ import { $ } from 'protractor';
 })
 export class Popover2Component implements OnInit {
   userId;
-  uploadProgress=0
-  res
-  constructor(private pc: PopoverController, private appService: AppService, private storage:AngularFireStorage) {
-    this.appService.store.getUser().then(res=>{this.userId=res.id})
+  uploadProgress=0;
+  res;
+  constructor(private pc: PopoverController, private appService: AppService, private storage: AngularFireStorage) {
+    this.appService.store.getUser().then(res=>{this.userId=res.id;});
    }
 
   ngOnInit() {}
- 
+
 
   editPic= async () => {
     const image = await Camera.getPhoto({
@@ -27,34 +27,34 @@ export class Popover2Component implements OnInit {
       allowEditing: true,
       resultType: CameraResultType.DataUrl
     });
-    var imageUrl = image.dataUrl;
+    const imageUrl = image.dataUrl;
     //console.log(image.dataUrl)
-    this.appService.data.profileImageUrl=imageUrl
-    this.uploadPic(imageUrl)
+    this.appService.data.profileImageUrl=imageUrl;
+    this.uploadPic(imageUrl);
 
-  }
+  };
 
   removePic(){
-    const defaultPic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU'
-    this.pc.dismiss(defaultPic)
+    const defaultPic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
+    this.pc.dismiss(defaultPic);
   }
 
 
 uploadPic( file){
-var metaData={
+const metaData={
   contentType:'image/jpeg'
-}
+};
 
-var uploadTask= this.storage.ref(this.userId).putString(file,'data_url',metaData).then(
+const uploadTask= this.storage.ref(this.userId).putString(file,'data_url',metaData).then(
   snapshot=>{
     console.log(snapshot);
     this.storage.ref(this.userId).getDownloadURL().toPromise().then(
       url=>{
-        console.log(url,"url")
+        console.log(url,'url');
         this.res=url;
-        this.pc.dismiss(this.res)
-      })
-     
-  })
+        this.pc.dismiss(this.res);
+      });
+
+  });
 }
 }

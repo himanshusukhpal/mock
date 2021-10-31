@@ -20,19 +20,19 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 
 export class ProfilePage implements OnInit{
-  
-  images=[]
-  constructor(private pc : PopoverController, private appService:AppService) { }
+
+  images=[];
+  constructor(private pc: PopoverController, private appService: AppService) { }
 
   ngOnInit() {
-    var swiper = new Swiper('.swiper-container', {
+    const swiper = new Swiper('.swiper-container', {
       pagination: {
         el: '.swiper-pagination',
       },
       slidesPerView: 1,
      // paginationClickable: true,
       spaceBetween: 30,
-      observer: true, 
+      observer: true,
       observeParents: true,
       // Navigation arrows
       navigation: {
@@ -42,37 +42,37 @@ export class ProfilePage implements OnInit{
     });
   }
   onSwiper(swiper) {
-    console.log(swiper,"a");
+    console.log(swiper,'a');
     swiper.slideNext();
   }
   onSlideChange() {
     console.log('slide change');
   }
-  async popover(ev:any){
-    const popover = await this.pc.create({  
-      component: PopoverComponent,  
-      event: ev,  
-      animated: true,  
-      showBackdrop: true  
-  });  
-  return await popover.present();  
+  async popover(ev: any){
+    const popover = await this.pc.create({
+      component: PopoverComponent,
+      event: ev,
+      animated: true,
+      showBackdrop: true
+  });
+  return await popover.present();
   }
 
-  back=()=>{this.appService.nav.navigateBack('home');}
+  back=()=>{this.appService.nav.navigateBack('home');};
 
-  async popover2(ev:any){
-    const popover = await this.pc.create({  
-      component: Popover2Component,  
-      event: ev,  
-      animated: true,  
-      showBackdrop: true  
-  });  
+  async popover2(ev: any){
+    const popover = await this.pc.create({
+      component: Popover2Component,
+      event: ev,
+      animated: true,
+      showBackdrop: true
+  });
   popover.onDidDismiss().then(res=>{
-    this.images.push(res['data'])
-    console.log(this.images,"pic")
+    this.images.push(res.data);
+    console.log(this.images,'pic');
   }
-    )
-  return await popover.present(); 
- 
+    );
+  return await popover.present();
+
   }
 }

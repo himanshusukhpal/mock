@@ -10,25 +10,25 @@ import { AppService } from 'src/app/services/app.service';
 export class MyEventsPage implements OnInit {
   myEvents= [];
   userId;
-  filterTerm: string; 
+  filterTerm: string;
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    console.log("init")
+    console.log('init');
       this.appService.data.myeventsList.subscribe(res=>{
         console.log(res);
-        this.myEvents.splice(0,this.myEvents.length,res)});
-        
-      console.log(this.myEvents); 
+        this.myEvents.splice(0,this.myEvents.length,res);});
+
+      console.log(this.myEvents);
 
   }
   ionViewDidEnter(){
-    console.log("will enter")
+    console.log('will enter');
     this.appService.data.myeventsList.subscribe(res=>{
       console.log(res);
-      this.myEvents.splice(0,this.myEvents.length,res)});
-      
-    console.log(this.myEvents); 
+      this.myEvents.splice(0,this.myEvents.length,res);});
+
+    console.log(this.myEvents);
   }
 
   loadMore(event) {
@@ -37,7 +37,7 @@ export class MyEventsPage implements OnInit {
       this.appService.calls.loadMoreEventsCall(lastKey,5).subscribe(
         res => {
           delete res[(Object.keys(res).shift())];
-          if(Object.keys(res).length) this.myEvents.push(res);
+          if(Object.keys(res).length) {this.myEvents.push(res);}
           console.log(this.myEvents);
         }
       );
@@ -53,9 +53,9 @@ export class MyEventsPage implements OnInit {
 
   eventDetails(event){
     this.appService.data.openEvent.next(event.value);
-    this.appService.nav.navigateForward('home/event-details')
+    this.appService.nav.navigateForward('home/event-details');
     //this.appService.presentModal(EventDetailsComponent,{});
   }
 
-  home=()=>{this.appService.nav.navigateBack("home")}
+  home=()=>{this.appService.nav.navigateBack('home');};
 }

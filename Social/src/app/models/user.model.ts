@@ -3,7 +3,7 @@ export class User{
   constructor(
     public id?: string,
     public email?: string ,
-    public profileImageUrl?:any,
+    public profileImageUrl?: any,
     public token?: string,
     //private tokenExpirationDate: Date
     public tokenExpirationDate?: Date,

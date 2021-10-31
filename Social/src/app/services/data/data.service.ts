@@ -11,24 +11,24 @@ import { StorageService } from './../storage/storage.service';
   providedIn: 'root'
 })
 export class DataService {
-  id:string;
-  hostId: BehaviorSubject<string>= new BehaviorSubject<string>("");
+  id: string;
+  hostId: BehaviorSubject<string>= new BehaviorSubject<string>('');
   userData: BehaviorSubject<Record<string, unknown>> = new BehaviorSubject<Record<string, unknown>>({});
   eventsList: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   myeventsList: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
   openEvent: BehaviorSubject<Record<string, any>> = new BehaviorSubject<Record<string, any>>({});
-  eventType=["Birthday Party","Marriage Anniversary","House Party","Reunions","Weddings","Others"]
-  eventId:string;
-  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU'
+  eventType=['Birthday Party','Marriage Anniversary','House Party','Reunions','Weddings','Others'];
+  eventId: string;
+  profileImageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPrcSIYcfdCK1XNhHWpQfuoW5eZyUhuLBMKB5FzAWYJKbGy_XvpR4aAnPlOzYd2ptiDFw&usqp=CAU';
 
- 
+
   constructor(
     private calls: CallsService,
     private store: StorageService
   ) {
-   
-  } 
-   
+
+  }
+
 
   async userDataSync(user: Record<string, unknown>) {
     this.userData.next(user);
@@ -39,12 +39,12 @@ export class DataService {
   }
 
   async userAppDataSync() {
-    this.startEventsList(); 
+    this.startEventsList();
   }
 
 
   myEventsList(){
-  console.log(this.hostId.value,"value");
+  console.log(this.hostId.value,'value');
   this.calls.myEventsListCall(this.hostId.value,5).subscribe(
       res=>{
         this.myEventsListSync(res);
@@ -60,13 +60,13 @@ export class DataService {
   }
   eventsListSync = (events: Record<string, any>) => this.eventsList.next(events);
 
-  myEventsListSync = (events: Record<string, any>) => {this.myeventsList.next(events);}
+  myEventsListSync = (events: Record<string, any>) => {this.myeventsList.next(events);};
 
   hostIdSync= ()=>{this.userData.subscribe(res=>
     {
-      this.hostId.next(JSON.stringify(res.id))
+      this.hostId.next(JSON.stringify(res.id));
     });
-  }
+  };
 
   async removeEntireData() {
     this.store.removeUser();

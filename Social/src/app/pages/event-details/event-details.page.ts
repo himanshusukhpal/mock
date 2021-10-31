@@ -10,53 +10,53 @@ import { AppService } from 'src/app/services/app.service';
 export class EventDetailsPage implements OnInit {
 
   status;
-  hostId
+  hostId;
   eventDetails;
-  filterTerm:string
+  filterTerm: string;
   goodResponse=[];
   evilResponseProps=[];
   userId;
   show=false;
-  eventId:string
+  eventId: string;
   constructor(private appService: AppService) {
-    
+
     this.eventId=this.appService.data.eventId;
     this.appService.data.openEvent.subscribe(res=>{
       console.log(res);
       this.hostId=res.HostId;
-       this.eventDetails=res});
-    
+       this.eventDetails=res;});
+
    }
 
   ngOnInit() {
-    
+
     // this.appService.data.userData.subscribe(res=>{this.userId=res.id})
     // console.log(this.userId,this.eventDetails.HostId)
     // if(this.userId===this.eventDetails.HostId){
     //   this.show=true;
-    //   if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
-    //   }   
-    //   for (const prop of this.evilResponseProps) { 
+    //   if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);
+    //   }
+    //   for (const prop of this.evilResponseProps) {
     //     this.goodResponse.push(this.eventDetails.guestList[prop])
     //   }
     //   console.log(this.goodResponse,"a")
     // }
   }
   ionViewDidEnter(){
-   
-    this.appService.data.userData.subscribe(res=>{this.userId=res.id})
-    console.log(this.userId,this.eventDetails.HostId)
+
+    this.appService.data.userData.subscribe(res=>{this.userId=res.id;});
+    console.log(this.userId,this.eventDetails.HostId);
     if(this.userId===this.eventDetails.HostId){
       this.show=true;
-      if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
-      }   
-      for (const prop of this.evilResponseProps) { 
-        this.goodResponse.push(this.eventDetails.guestList[prop])
+      if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);
       }
-      console.log(this.goodResponse,"a")
+      for (const prop of this.evilResponseProps) {
+        this.goodResponse.push(this.eventDetails.guestList[prop]);
+      }
+      console.log(this.goodResponse,'a');
     }
   }
-  
+
   // ionViewWillEnter(){
   //   this.eventId=this.appService.data.eventId;
   //   this.appService.data.openEvent.subscribe(res=>{
@@ -68,9 +68,9 @@ export class EventDetailsPage implements OnInit {
   //   console.log(this.userId,this.eventDetails.HostId)
   //   if(this.userId===this.eventDetails.HostId){
   //     this.show=true;
-  //     if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);   
-  //     }   
-  //     for (const prop of this.evilResponseProps) { 
+  //     if(this.eventDetails.guestList){this.evilResponseProps = Object.keys(this.eventDetails.guestList);
+  //     }
+  //     for (const prop of this.evilResponseProps) {
   //       this.goodResponse.push(this.eventDetails.guestList[prop])
   //     }
   //     console.log(this.goodResponse,"a")
@@ -79,25 +79,25 @@ export class EventDetailsPage implements OnInit {
   back =  () => this.appService.nav.navigateBack('home');
 
   accept= (guest)=>{
-    
-    guest.requestStatus="accept"
-   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
-  }
+
+    guest.requestStatus='accept';
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res);});
+  };
 
     reject= (guest)=>{
-    
-    guest.requestStatus="reject"
-   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
-  }
+
+    guest.requestStatus='reject';
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res);});
+  };
 
   option= (guest)=>{
-    console.log(guest.requestStatus)
-   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res)})
-  }
+    console.log(guest.requestStatus);
+   this.appService.calls.updateRequestStatusCall(this.eventId,guest.guestId,guest).subscribe(res=>{console.log(res);});
+  };
 }
 
 
 
-  
 
- 
+
+

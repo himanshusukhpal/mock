@@ -19,14 +19,14 @@ export class DashboardPage implements OnInit {
     EventLabel: ['', [Validators.required]],
     DateandTime: ['', [Validators.required]],
     EventType: ['', [Validators.required]]
-   
+
   });
 
 onSubmit(){
-  console.log("submit");
+  console.log('submit');
 }
 back(){
-  console.log("back");
+  console.log('back');
 }
 
   ngOnInit() { }

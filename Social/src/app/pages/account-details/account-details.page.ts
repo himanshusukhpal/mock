@@ -36,13 +36,13 @@ export class AccountDetailsPage implements OnInit {
     //   this.element1=res
     // })
       console.log('In view');
-     
+
      this.fetchUser();
-      
+
     }
-  
+
     profileImageUrl;
-  
+
     edit(){
       //console.log(this.locate);
       this.appservice.nav.navigateForward('home/account-details/edit-account-details');
@@ -51,25 +51,25 @@ export class AccountDetailsPage implements OnInit {
       console.log('home');
       this.appservice.nav.navigateBack('profile');
     }
-  
+
     async fetchUser(){
       console.log(this.id,'this');
       this.element1 =await this.appservice.store.getUser();
-      this.profileImageUrl=this.element1.profileImageUrl
+      this.profileImageUrl=this.element1.profileImageUrl;
       console.log('ELement: ',this.element1);
-  
+
     }
-  
-    async popover(ev:any){
-      const popover = await this.pc.create({  
-        component: PopoverComponent,  
-        event: ev,  
-        animated: true,  
-        showBackdrop: true  
-    });  
-    return await popover.present();  
+
+    async popover(ev: any){
+      const popover = await this.pc.create({
+        component: PopoverComponent,
+        event: ev,
+        animated: true,
+        showBackdrop: true
+    });
+    return await popover.present();
     }
-  
+
   // onSwiper(swiper) {
   //   console.log(swiper);
   // }
