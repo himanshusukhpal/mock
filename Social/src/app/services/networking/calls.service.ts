@@ -31,7 +31,7 @@ export class CallsService {
 
   startEventsListCall = (limit: number) => this.http.get(this.ends.startEventsListUrl(limit));
 
-  myEventsListCall = (hostId: string, limit:number) => this.http.get(this.ends.myEventsListUrl(hostId,limit));
+  myEventsListCall = (hostId: string, limit: number) => this.http.get(this.ends.myEventsListUrl(hostId,limit));
 
   loadMoreEventsCall = (startAfter: string, limit: number) => this.http.get(this.ends.loadMoreEventsUrl(startAfter, limit));
 
@@ -41,7 +41,9 @@ export class CallsService {
 
   addNewEventCall = (token: string, params: string, event: any) => this.http.post(this.ends.addEventUrl(token), event);
 
-  addGuestsToEventCall = (key: string,id: string,  guests: {}) => this.http.put(this.ends.addGuestsToEventUrl(key,id), guests);
+  addGuestsToEventCall = (key: string,id: string,  guests: Record<string, unknown>) => this.http.put(this.ends.addGuestsToEventUrl(key,id), guests);
 
-  updateRequestStatusCall = (key: string,id: string,  guest:{}) => this.http.put(this.ends.updateRequestStatusUrl(key,id), guest);
+  updateRequestStatusCall = (key: string,id: string,  guest: Record<string, unknown>) => this.http.put(this.ends.updateRequestStatusUrl(key,id), guest);
+
+  fetchInterestList = () => this.http.get(this.ends.interestsUrl()).pipe((res)=>res);
 }

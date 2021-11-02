@@ -48,7 +48,7 @@
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
     "css-what": "^5.0.1",
-    "firebase": "^8.6.1",
+    "firebase": "^8.10.0",
     "glob-parent": "^6.0.0",
     "ionic-selectable": "^4.9.0",
     "ng2-search-filter": "^0.5.1",

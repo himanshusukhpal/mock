@@ -4,10 +4,10 @@ ion-img{
     width:100%;
     height:100%;
   }
-  
+
   .myCard{
     position:relative;
-  
+
   }
   .div{
       position: relative;
@@ -21,7 +21,7 @@ ion-img{
       opacity: 0.5;
       background: #000;
       color: #fff;
-  
+
   }
   ion-item{
     opacity: 0.5;
@@ -41,7 +41,7 @@ ion-img{
     text-align: center;
     z-index: 100;
   }
- 
+
   ion-text{
     margin-left: 10px;
   }
@@ -49,3 +49,35 @@ ion-img{
     color: black;
     size: 20px;
 }
+
+.editprofile{
+  top: 7px;
+    z-index: 9;
+    position: absolute;
+    background: #fff;
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 2px 5px;
+    right: 9px;
+}
+.info_sec{
+  letter-spacing: .5 px;
+  padding: 1px 10px;
+  margin-top: 15px;
+  h3{
+    color: #000;
+    margin-left: 0px;
+    margin-bottom: 20px;
+  }
+  h4{
+   color: #000;
+  }
+  .textsec{
+    padding: 7px 8px;
+    border-radius: 4px;
+    background: #f5f6f9;
+    margin-top: 10px;
+  }
+
+}
+

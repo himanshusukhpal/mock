@@ -1,5 +1,5 @@
 
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Profile</ion-title>
     <ion-icon ios="ellipsis-horizontal" md="ellipsis-horizontal" size="large"  (click)="popover($event)" slot="end" style="margin-right: 10px;"></ion-icon>
@@ -14,14 +14,7 @@
   <div class="mainContainer">
     <div class="div">
     <ion-card class="myCard">
-    <!-- <swiper
-    [slidesPerView]="1"
-    (swiper)="onSwiper($event)"
-    (slideChange)="onSlideChange()"
-    [navigation]="true"
-    [pagination]="{ clickable: true }"
-    [scrollbar]="{ draggable: true }"
-  > -->
+
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -37,38 +30,13 @@
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-    
+
   </div>
-    <!-- <ng-template swiperSlide>
-      
-        <ion-img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" (click)="popover2($event)"> </ion-img>
-    </ng-template>
-    <ng-template swiperSlide>
-      <ion-img src="https://thumbs.dreamstime.com/b/profile-picture-vector-perfect-social-media-other-web-use-125320944.jpg">
 
-      </ion-img>
-    </ng-template>
-    <ng-template swiperSlide>
-      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
-
-      </ion-img>
-    </ng-template>
-    <ng-template swiperSlide>
-      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
-
-    </ion-img>
-  </ng-template>
-    <ng-template swiperSlide>
-      <ion-img src="https://static.thenounproject.com/png/3322766-200.png">
-
-      </ion-img>
-    </ng-template>
-   
-  </swiper> -->
 </ion-card>
   <div class="myOverlay">
   <h1><b> UserName</b></h1>
-  <br><h3>Age</h3> 
+  <br><h3>Age</h3>
 </div>
 </div>
 <br>
@@ -84,6 +52,34 @@
   </ion-chip>
 </ion-header>
   </div>
-  
+
+</ion-content> -->
+
+<ion-content>
+  <button type="button" class="editprofile" (click)="takePicture()">Edit Profile</button>
+
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-img src="{{this.imageUrl}}"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="{{this.imageUrl}}"> </ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="{{this.imageUrl}}"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="{{this.imageUrl}}"></ion-img>
+    </ion-slide>
+
+  </ion-slides>
+  <div class="info_sec">
+
+    <h3>Jitendra Singh</h3>
+    <h4>About..</h4>
+    <ion-textarea class="textsec"></ion-textarea>
+  </div>
+
 </ion-content>
+
 
