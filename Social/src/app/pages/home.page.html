@@ -1,20 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-button size="large" class="profile" fill="clear" (click)="onClick()" slot="start" shape="round">
-      <ion-avatar>
-        <img [src]="profileImageUrl">
-      </ion-avatar>
-    </ion-button>
     <ion-title>Home</ion-title>
-    <ion-button (click)="swipeNext()" slot="end" shape="round" size="large">
-      <ion-icon name="chatbubbles"></ion-icon>
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="mainContainer centerContainerHorizontally">
+  <div class="mainContainer">
     <ng-template ngFor let-events [ngForOf]="eventBlocks">
       <ion-card *ngFor="let event of events | keyvalue; let i=index" (click)="eventDetails(event)" class="eventCard">
         <ion-card-header>
@@ -62,17 +54,10 @@
         <ion-avatar>
           <ion-img [src]="profileImageUrl" class="icon"></ion-img>
         </ion-avatar>
-
-
       </ion-tab-button>
-
-
       <ion-tab-button (click)="hostEventPage()">
         <ion-icon name="add-circle" size="large"></ion-icon>
-
       </ion-tab-button>
-
-
       <ion-tab-button (click)="myEvents()">
         <ion-icon name="list" size="large"></ion-icon>
         <ion-label>My Events</ion-label>

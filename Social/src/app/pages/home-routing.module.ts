@@ -42,9 +42,11 @@ const routes: Routes = [
   {
     path: 'temp',
     loadChildren: () => import('./temp/temp.module').then( m => m.TempPageModule)
-  }
-
-
+  },
+  {
+    path: 'events',
+    loadChildren: () => import('./events/events.module').then( m => m.EventsPageModule)
+  },
 
 ];
 

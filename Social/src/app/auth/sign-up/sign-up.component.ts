@@ -8,11 +8,10 @@ import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-sign-up',
-  templateUrl: './sign-up.page.html',
-  styleUrls: ['./sign-up.page.scss'],
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss'],
 })
-
-export class SignUpPage implements OnInit {
+export class SignUpComponent implements OnInit {
 
   signUpSubmit = false;
   defaultPic='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg';
@@ -51,4 +50,3 @@ export class SignUpPage implements OnInit {
   navToLogin = () => this.appService.nav.navigateForward('login');
 
 }
-

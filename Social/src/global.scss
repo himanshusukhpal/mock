@@ -78,7 +78,9 @@ ion-buttons {
   align-items: center;
   width: 85%;
   max-width: 550px;
-  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .picker-toolbar.sc-ion-picker-md{

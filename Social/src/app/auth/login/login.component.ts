@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginSubmit = false;
 
@@ -39,6 +39,4 @@ export class LoginPage implements OnInit {
   }
 
   navToSignup = () => this.appService.nav.navigateForward('sign-up');
-
 }
-

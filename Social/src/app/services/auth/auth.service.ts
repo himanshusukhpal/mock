@@ -119,7 +119,7 @@ export class AuthService {
   }
 
   async logout() {
-    this.nav.navigateBack('login');
+    this.nav.navigateBack('auth');
     this.isLoggedIn = false;
     this.data.removeEntireData();
   }

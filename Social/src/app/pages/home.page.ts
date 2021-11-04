@@ -1,10 +1,7 @@
 /* eslint-disable curly */
 /* eslint-disable max-len */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../services/app.service';
-import { IonSlides } from '@ionic/angular';
-
-
 
 @Component({
   selector: 'app-home',
@@ -14,8 +11,6 @@ import { IonSlides } from '@ionic/angular';
 })
 
 export class HomePage implements OnInit{
-
-  @ViewChild('slides' ,{ static: true })  slides: IonSlides;
 
   profileImageUrl;
   status=false;
@@ -47,7 +42,6 @@ export class HomePage implements OnInit{
       console.log(this.eventsArr);
       this.eventBlocks.splice(0,this.eventBlocks.length,res);});
     console.log(this.eventBlocks,'e');
-
   }
 
   ngOnInit() { }
@@ -60,7 +54,6 @@ export class HomePage implements OnInit{
       this.hostId=res.id;
       this.userName=res.fname;
       //this.profileImageUrl=res.profileImageUrl
-
     });
     this.appService.store.getUser().then(res=>{this.profileImageUrl=res.profileImageUrl;});
     this.appService.data.eventsList.subscribe(res=>{
