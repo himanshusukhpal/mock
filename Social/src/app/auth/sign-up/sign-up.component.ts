@@ -47,6 +47,6 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  navToLogin = () => this.appService.nav.navigateForward('login');
+  navToLogin = () => this.appService.nav.navigateBack('auth');
 
 }
