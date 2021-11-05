@@ -1,0 +1,7 @@
+{
+  "name": "Social-ng-upgrade",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
