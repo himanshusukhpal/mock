@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  // @ViewChild('#themeToggle') toggle;
+
+  constructor() {
+    // const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // // Listen for changes to the prefers-color-scheme media query
+    // prefersDark.addListener((e) => checkToggle(e.matches));
+
+    // // Called when the app loads
+    // function loadApp() {
+    //   checkToggle(prefersDark.matches);
+    // }
+
+    // // Called by the media query to check/uncheck the toggle
+    // function checkToggle(shouldCheck) {
+    //   toggle.checked = shouldCheck;
+    // }
+  }
+
+  toggleTheme(event) {
+    document.body.classList.toggle('dark', event.detail.checked);
+  }
+
 }
